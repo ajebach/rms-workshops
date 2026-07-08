@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Workshop 1 - Introduction to Jamovi &amp; Descriptive Statistics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="workshop1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="workshop1_files/libs/quarto-html/quarto.js"></script>
+<script src="workshop1_files/libs/quarto-html/popper.min.js"></script>
+<script src="workshop1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="workshop1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="workshop1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="workshop1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="workshop1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="workshop1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="workshop1_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-jamovi" id="toc-what-is-jamovi" class="nav-link active" data-scroll-target="#what-is-jamovi">What is Jamovi?</a></li>
+  <li><a href="#getting-set-up" id="toc-getting-set-up" class="nav-link" data-scroll-target="#getting-set-up">Getting set up</a>
+  <ul class="collapse">
+  <li><a href="#get-the-practice-file" id="toc-get-the-practice-file" class="nav-link" data-scroll-target="#get-the-practice-file">Get the practice file</a></li>
+  </ul></li>
+  <li><a href="#the-jamovi-essentials" id="toc-the-jamovi-essentials" class="nav-link" data-scroll-target="#the-jamovi-essentials">The Jamovi essentials</a></li>
+  <li><a href="#generating-descriptive-statistics" id="toc-generating-descriptive-statistics" class="nav-link" data-scroll-target="#generating-descriptive-statistics">Generating descriptive statistics</a></li>
+  <li><a href="#tasks-for-you-to-do" id="toc-tasks-for-you-to-do" class="nav-link" data-scroll-target="#tasks-for-you-to-do">Tasks for you to do</a>
+  <ul class="collapse">
+  <li><a href="#task-1-recode-the-labels" id="toc-task-1-recode-the-labels" class="nav-link" data-scroll-target="#task-1-recode-the-labels">Task 1 — Recode the labels</a></li>
+  <li><a href="#task-2-find-the-obvious-errors" id="toc-task-2-find-the-obvious-errors" class="nav-link" data-scroll-target="#task-2-find-the-obvious-errors">Task 2 — Find the obvious errors</a></li>
+  <li><a href="#task-3-which-variable-has-the-most-missing-data" id="toc-task-3-which-variable-has-the-most-missing-data" class="nav-link" data-scroll-target="#task-3-which-variable-has-the-most-missing-data">Task 3 — Which variable has the most missing data?</a></li>
+  <li><a href="#task-4-five-number-summary" id="toc-task-4-five-number-summary" class="nav-link" data-scroll-target="#task-4-five-number-summary">Task 4 — Five-number summary</a></li>
+  <li><a href="#task-5-choose-appropriate-visualisations" id="toc-task-5-choose-appropriate-visualisations" class="nav-link" data-scroll-target="#task-5-choose-appropriate-visualisations">Task 5 — Choose appropriate visualisations</a></li>
+  </ul></li>
+  <li><a href="#how-this-links-to-assessment" id="toc-how-this-links-to-assessment" class="nav-link" data-scroll-target="#how-this-links-to-assessment">How this links to assessment</a></li>
+  <li><a href="#thats-it-for-jamovi-today." id="toc-thats-it-for-jamovi-today." class="nav-link" data-scroll-target="#thats-it-for-jamovi-today.">That’s it for Jamovi today.</a></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting help</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Workshop 1 - Introduction to Jamovi &amp; Descriptive Statistics</h1>
+<p class="subtitle lead">Research Methods and Statistics - T2 2026</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><strong>Introduction</strong></p>
+<p>Welcome to the first workshop! This is a hands-on session to get you comfortable driving <a href="https://www.jamovi.org">Jamovi</a>, the statistics software we’ll use all trimester. Today is about the <em>tool</em>, not the theory: opening data, cleaning it, and producing your first descriptive statistics. You’ve already met these concepts in lectures, so this is where you put them into practice.</p>
+<p>You can come back to this page any time you need a reminder of how to do something in Jamovi.</p>
+<p><strong>What you’ll do today</strong></p>
+<ul>
+<li>Get set up with Jamovi (lab computer, your own laptop, or the cloud)</li>
+<li>Learn to open, save, and export your work</li>
+<li>Explore the dataset, fix data-entry errors, and recode variables</li>
+<li>Produce descriptive statistics and choose appropriate plots</li>
+</ul>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><img src="WS1_Titanic.gif" class="img-fluid" style="width:100.0%"> This week we’re using the <strong>Titanic dataset</strong> as a friendly, familiar way to explore Jamovi for the first time. Don’t worry about the statistics being “important” yet, the goal is to find your way around.</p>
+</div>
+</div>
+</div>
+<section id="what-is-jamovi" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-jamovi">What is Jamovi?</h2>
+<p>Jamovi is point-and-click statistical software built for students and researchers. Under the hood it runs on <strong>R</strong> (a programming language for statistics), but it shows everything through simple menus and buttons, so you get powerful analysis without writing any code.</p>
+<p>You’ll use Jamovi to explore datasets visually, summarise data with descriptive statistics. Later in the trimester we will use it to run hypothesis tests. It lets you focus on <em>interpretation and decision-making</em> rather than formulas (we’ll save those for lectures).</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Two short videos</strong> from <em>datalabccon</em> on YouTube walk through navigating Jamovi and producing descriptive statistics. Handy if you get lost in class or want to revisit later.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/e2Wc2wpWk4Y" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/srqNCux0ijY" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div>
+</div>
+</div>
+</section>
+<section id="getting-set-up" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="getting-set-up">Getting set up</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">In the lab</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Your own laptop</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Chromebook / restricted device</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Jamovi is <strong>pre-installed on all lab computers</strong>. Search for the ‘Jamovi’ in the Windows bar, open it, and follow along, nothing to install.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS1_jamovi_logo.png" class="img-fluid figure-img" width="50"></p>
+<figcaption class="figure-caption">The Jamovi icon looks like this.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>You can install Jamovi for free:</p>
+<ol type="1">
+<li>Visit <a href="https://www.jamovi.org/download.html">jamovi.org</a></li>
+<li>Click the download button, it should auto detect for macOS or Windows.</li>
+<li>Version 2.7 or above will be fine</li>
+</ol>
+<p><img src="WS1_jamovi_download.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>If you can’t install software, use <strong>Jamovi Cloud</strong> it runs in a browser. It works, but can be slower or a little glitchy, so install the desktop version if you can.</p>
+</div>
+</div>
+</div>
+<section id="get-the-practice-file" class="level3">
+<h3 class="anchored" data-anchor-id="get-the-practice-file">Get the practice file</h3>
+<p>We’ll be working with a dataset called <strong><code>titanic.omv</code></strong>.</p>
+<ul>
+<li>Dataset: <a href="https://lms.griffith.edu.au/courses/32192/files/9303980?wrap=1"><strong>titanic.omv</strong></a> <em>(the omv file means it will require Jamovi to open)</em></li>
+</ul>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Save the dataset somewhere easy to find, you will be opening it next.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="the-jamovi-essentials" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-jamovi-essentials">The Jamovi essentials</h2>
+<p>Work through these tabs in order. Each one is a self-contained skill you’ll use constantly.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Open &amp; Save</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Export to PDF</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Data vs Variables tabs</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false" href="">Measure types</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false" href="">Entering data</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" role="tab" aria-controls="tabset-2-6" aria-selected="false" href="">Recoding &amp; Filters</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p><strong>Opening data</strong></p>
+<ol type="1">
+<li>Open Jamovi</li>
+<li>Click the menu (≡) in the top-left</li>
+<li>Select <strong>Open ▸ This PC…</strong></li>
+<li>Browse to your <code>.omv</code> file (e.g.&nbsp;<code>titanic.omv</code>)</li>
+</ol>
+<p>The data opens in a spreadsheet view, ready to go.</p>
+<p><strong>Saving data</strong></p>
+<ol type="1">
+<li>Click the menu (≡)</li>
+<li>Select <strong>Save As…</strong></li>
+<li>Choose a location and name your file</li>
+<li>Save with the <code>.omv</code> extension (Jamovi adds this automatically)</li>
+</ol>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Jamovi opens <code>.omv</code>, <code>.csv</code>, and <code>.xlsx</code> files. Saving as <code>.omv</code> keeps <strong>both your data and your analysis</strong> together in one file.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>As well as saving the full <code>.omv</code>, you can export just your <strong>results</strong> (tables, graphs, outputs) to a clean PDF:</p>
+<ol type="1">
+<li>Complete your analysis in Jamovi</li>
+<li>Click the menu (≡) in the top-left</li>
+<li>Choose <strong>Export ▸ PDF</strong></li>
+<li>Pick a location and file name, then <strong>Save</strong></li>
+</ol>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The PDF includes everything currently shown in the right-hand <strong>results panel</strong>, but not the raw dataset.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p>When you open a dataset you’ll see a spreadsheet view with two key tabs.</p>
+<p><strong>Data tab</strong> (the default view)</p>
+<ul>
+<li>Each <strong>column</strong> is a variable</li>
+<li>Each <strong>row</strong> is a case or participant</li>
+<li>Click any cell to view or edit a value</li>
+</ul>
+<p>Use this to explore your raw data, just like in Excel.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS1_data_tab.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">The <strong>Data</strong> tab: columns are variables, rows are cases.</figcaption>
+</figure>
+</div>
+<p><strong>Variables tab</strong></p>
+<p>This shows the <em>metadata</em> about each variable. Here you can:</p>
+<ul>
+<li>Change a variable’s <strong>measure type</strong> (continuous, ordinal, nominal) and <strong>data type</strong> (integer, decimal, text)</li>
+<li>Add variable descriptions and units</li>
+<li>Specify missing-value codes (e.g.&nbsp;<code>NA</code>, <code>-</code>, <code>999</code>). Left blank, Jamovi handles missing data automatically.</li>
+</ul>
+<p>This is where you tell Jamovi <em>how to treat</em> your data which is crucial for accurate analysis.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS1_var_tab.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">The <strong>Variables</strong> tab: set measure types and add descriptions here.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<p>Setting the right measure type matters. Use this quick guide:</p>
+<table class="table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 37%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Measure type</th>
+<th>What it means</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>ID</strong></td>
+<td>Unique identifier</td>
+<td>Participant ID</td>
+</tr>
+<tr class="even">
+<td><strong>Nominal</strong></td>
+<td>Categories with no order</td>
+<td>Sex (M, F)</td>
+</tr>
+<tr class="odd">
+<td><strong>Ordinal</strong></td>
+<td>Ordered categories</td>
+<td>Education (BSc, MSc, PhD)</td>
+</tr>
+<tr class="even">
+<td><strong>Continuous</strong></td>
+<td>Numeric scale</td>
+<td>Heart rate (60, 64, 59)</td>
+</tr>
+</tbody>
+</table>
+<p>Try the helper below to check your understanding.</p>
+<div id="mt-helper" style="border:1px solid #d9d9d9; border-radius:8px; padding:16px 18px; margin:14px 0; background:#fafafa;">
+  <label for="mt-select" style="display:block; font-weight:600; margin-bottom:8px;">Pick a variable, what measure type should it be?</label>
+  <select id="mt-select" style="width:100%; max-width:420px; padding:8px; border:1px solid #bbb; border-radius:6px; font-size:15px;">
+    <option value="">— choose a variable —</option>
+    <option value="id">Passenger ID</option>
+    <option value="nominal">Sex (male / female)</option>
+    <option value="nominal2">Embarked port (Cherbourg / Queenstown / Southampton)</option>
+    <option value="ordinal">Passenger class (1st / 2nd / 3rd)</option>
+    <option value="continuous">Age in years</option>
+    <option value="continuous2">Fare paid (£)</option>
+  </select>
+  <div id="mt-answer" style="margin-top:12px; font-size:15px; min-height:1.4em;"></div>
+</div>
+<script>
+(function(){
+  var ans = {
+    id:        ["ID", "A unique label for each passenger, not something you'd average or order."],
+    nominal:   ["Nominal", "Unordered categories. Male and female have no inherent rank."],
+    nominal2:  ["Nominal", "Three ports with no natural order, just labels."],
+    ordinal:   ["Ordinal", "Classes have a clear order (1st &gt; 2nd &gt; 3rd), but the 'gap' between them isn't a measured quantity."],
+    continuous:["Continuous", "A measured number on a scale, you can take a mean, SD, etc."],
+    continuous2:["Continuous", "Money on a continuous scale, means, ranges and quartiles all make sense."]
+  };
+  var sel = document.getElementById('mt-select');
+  var out = document.getElementById('mt-answer');
+  sel.addEventListener('change', function(){
+    var v = ans[sel.value];
+    if(!v){ out.innerHTML = ''; return; }
+    out.innerHTML = '<strong style="color:#c0152f;">' + v[0] + '.</strong> ' + v[1];
+  });
+})();
+</script>
+</div>
+<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
+<p>How you enter data depends on the variable type.</p>
+<p><strong>Quantitative (continuous)</strong></p>
+<ul>
+<li>Enter values as numbers, one observation per row</li>
+<li>e.g.&nbsp;a <code>body_mass</code> variable in kg → <code>57</code>, <code>72.4</code>, <code>63</code></li>
+</ul>
+<p><strong>Qualitative (categorical)</strong></p>
+<ul>
+<li>Enter text labels <em>consistently</em></li>
+</ul>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Be consistent with categories! Jamovi treats <code>"running"</code>, <code>"Running"</code>, and <code>"Runing"</code> as <strong>three different groups</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-6-tab">
+<p><strong>Recoding values</strong> (turning <code>0</code>/<code>1</code> into meaningful labels)</p>
+<ul>
+<li>Go to the <strong>Data</strong> tab</li>
+<li>Click the variable, then <strong>Setup</strong> in the top ribbon</li>
+<li>Make sure the <strong>Measure Type</strong> is correct (e.g.&nbsp;Nominal)</li>
+<li>In the <strong>Levels</strong> column, rename each value (e.g.&nbsp;<code>0</code> → <em>male</em>, <code>1</code> → <em>female</em>)</li>
+</ul>
+<p><strong>Using filters</strong> (focusing on a subset of the data)</p>
+<ul>
+<li>Go to the <strong>Data</strong> tab and click <strong>Filters</strong></li>
+<li>Create a condition, for example <code>age &gt; 50</code> or <code>sex == "female"</code></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS1_filter.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">Creating a filter: type a condition like <code>age &gt; 100</code> into the formula box.</figcaption>
+</figure>
+</div>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>==</code></td>
+<td>equal to</td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>not equal to</td>
+</tr>
+<tr class="odd">
+<td><code>&gt;</code> / <code>&lt;</code></td>
+<td>greater than / less than</td>
+</tr>
+<tr class="even">
+<td><code>&gt;=</code> / <code>&lt;=</code></td>
+<td>greater/less than or equal to</td>
+</tr>
+</tbody>
+</table>
+<p>Tick or untick filters to activate them, and use the <strong>eye icon</strong> (bottom-left) to show or hide rows that don’t meet the condition.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS1_eye.png" class="img-fluid figure-img" width="220"></p>
+<figcaption class="figure-caption">The <strong>eye icon</strong> (bottom toolbar) shows or hides filtered-out rows.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="generating-descriptive-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="generating-descriptive-statistics">Generating descriptive statistics</h2>
+<p>Descriptive statistics are the <strong>first step in any analysis</strong>. They help you understand your sample at a glance, spot data-entry errors, check distributions and variability, and catch problems before running anything more complex.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>For continuous variables</th>
+<th>For categorical variables</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>mean, median, SD, min, max</td>
+<td>counts (frequencies), percentages</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Running descriptives in Jamovi
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Open Jamovi and load your dataset</li>
+<li>Go to the <strong>Exploration</strong> tab in the top menu</li>
+<li>Select <strong>Descriptives</strong></li>
+<li>In the left panel, move your variable(s) into the <strong>Variables</strong> box (right panel)
+<ul>
+<li><strong>Split by</strong> divides results by a group (e.g.&nbsp;by <code>sex</code>)</li>
+</ul></li>
+<li>Choose your statistics under <strong>Statistics</strong> (mean, SD, etc.)</li>
+<li>Results appear instantly in the right-hand <strong>Results</strong> panel</li>
+<li>To run something else, go to the <strong>Analyses</strong> tab and pick your next test, it’s added below the last one in the Results panel</li>
+</ol>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS1_descriptives.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption"><strong>Exploration ▸ Descriptives</strong> opens from the Analyses tab.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS1_freq_tables.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">Inside Descriptives: drag variables into <strong>Variables</strong> (and <strong>Split by</strong> for groups). The <strong>Variables across</strong> and <strong>Frequency tables</strong> controls are highlighted at the bottom.</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Frequency tables:</strong> tick <em>Frequency tables</em> in the Descriptives options to see percentages for each level of a categorical variable.</p>
+<p><strong>Table layout:</strong> use the <em>Variables across</em> dropdown to flip whether variables run in columns or rows which is handy for group comparisons.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="tasks-for-you-to-do" class="level2">
+<h2 class="anchored" data-anchor-id="tasks-for-you-to-do">Tasks for you to do</h2>
+<p>Work through these in Jamovi, then <strong>check your answers as you go</strong>, each task has a small answer box. Type (or select) what you found and press <strong>✓ Check</strong>. You’ll get instant feedback, and a hint appears if you’re stuck after a couple of tries.</p>
+<p>The full <strong>Worked answer</strong> for each task is locked until you answer correctly, and if you’re really stuck, a <em>reveal</em> option appears after three attempts, so have a genuine go first. A fully worked version (with screenshots of every output) is released after all lab classes finish for the week.</p>
+<style>
+.ws-quiz{border:1px solid #d9d9d9;border-left:4px solid #2c7fb8;border-radius:8px;
+  padding:16px 18px;margin:14px 0 20px 0;background:#fafafa;}
+.ws-quiz p.ws-qtext{font-weight:600;margin:0 0 10px 0;}
+.ws-quiz .ws-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0;}
+.ws-quiz label.ws-inlab{min-width:170px;font-size:15px;}
+.ws-quiz input[type=number], .ws-quiz input[type=text]{
+  width:110px;padding:6px 8px;border:1px solid #bbb;border-radius:6px;font-size:15px;}
+.ws-quiz .ws-opt{display:block;margin:5px 0;font-size:15px;font-weight:400;}
+.ws-quiz .ws-opt input{margin-right:7px;}
+.ws-quiz button.ws-check{margin-top:10px;padding:7px 16px;border:1px solid #2c7fb8;
+  border-radius:6px;background:#2c7fb8;color:#fff;font-size:15px;cursor:pointer;}
+.ws-quiz button.ws-check:hover{background:#1f5f8b;}
+.ws-quiz .ws-fb{display:block;margin-top:10px;font-size:15px;min-height:1.3em;}
+.ws-quiz .ws-fb.ok{color:#2e7d32;font-weight:600;}
+.ws-quiz .ws-fb.no{color:#c0152f;font-weight:600;}
+.ws-quiz .ws-hint{display:none;margin-top:6px;font-size:14px;color:#555;
+  border-top:1px dashed #ccc;padding-top:6px;}
+.ws-quiz button.ws-reveal{display:block;margin-top:10px;padding:6px 14px;
+  border:1px solid #bbb;border-radius:6px;background:#fff;color:#555;
+  font-size:14px;cursor:pointer;}
+.ws-quiz button.ws-reveal:hover{border-color:#c0152f;color:#c0152f;}
+.ws-locked{display:none;}
+.ws-lockednote{font-size:14px;color:#777;margin:-6px 0 18px 0;}
+.ws-lockednote::before{content:"🔒 ";}
+</style>
+<script>
+/* Lightweight formative answer-checking (no data leaves the page).
+   Numeric inputs: data-answer + optional data-tol (tolerance).
+   Radio questions: put data-answer on the .ws-quiz container.
+   data-unlock: id of the worked-answer block to unlock on success
+   (or via the reveal button after 3 attempts). */
+function wsUnlock(id){
+  var el = document.getElementById(id);
+  if(el){ el.classList.remove('ws-locked'); }
+  var note = document.querySelector('.ws-lockednote[data-for="' + id + '"]');
+  if(note){ note.remove(); }
+}
+document.addEventListener('click', function(e){
+  var btn = e.target.closest('.ws-check');
+  if(!btn) return;
+  var q  = btn.closest('.ws-quiz');
+  var fb = q.querySelector('.ws-fb');
+  var hint = q.querySelector('.ws-hint');
+  var nums = q.querySelectorAll('input[data-answer]');
+  var allOk = true, anyBlank = false;
+
+  if(nums.length){
+    nums.forEach(function(inp){
+      if(inp.value.trim() === ''){ anyBlank = true; }
+      var exp = parseFloat(inp.dataset.answer);
+      var tol = parseFloat(inp.dataset.tol || 0);
+      var val = parseFloat(inp.value);
+      var ok  = !isNaN(val) && Math.abs(val - exp) <= tol;
+      inp.style.borderColor = ok ? '#2e7d32' : '#c0152f';
+      inp.style.background  = ok ? '#eef7ee' : '#fdf0f2';
+      if(!ok) allOk = false;
+    });
+  } else if(q.dataset.answer !== undefined){
+    var sel = q.querySelector('input[type=radio]:checked') ||
+              q.querySelector('select');
+    if(sel && sel.tagName === 'SELECT'){
+      if(sel.value === ''){ anyBlank = true; allOk = false; }
+      else allOk = (sel.value === q.dataset.answer);
+    } else if(sel){
+      allOk = (sel.value === q.dataset.answer);
+    } else {
+      anyBlank = true; allOk = false;
+    }
+  }
+
+  if(anyBlank && !allOk){
+    fb.className = 'ws-fb no';
+    fb.textContent = 'Fill in an answer first, then press Check.';
+    return;
+  }
+
+  q.dataset.tries = (parseInt(q.dataset.tries || '0', 10) + 1);
+
+  if(allOk){
+    fb.className = 'ws-fb ok';
+    fb.textContent = '✓ Correct! ' + (q.dataset.okmsg || '');
+    if(hint) hint.style.display = 'none';
+    if(q.dataset.unlock){
+      wsUnlock(q.dataset.unlock);
+      fb.textContent += ' The worked answer is now unlocked below.';
+      var rv = q.querySelector('.ws-reveal');
+      if(rv) rv.remove();
+    }
+  } else {
+    fb.className = 'ws-fb no';
+    fb.textContent = '✗ Not quite. Go back to your Jamovi output and try again.';
+    if(hint && q.dataset.tries >= 2){ hint.style.display = 'block'; }
+    if(q.dataset.unlock && q.dataset.tries >= 3 && !q.querySelector('.ws-reveal')){
+      var btn2 = document.createElement('button');
+      btn2.type = 'button';
+      btn2.className = 'ws-reveal';
+      btn2.textContent = 'Stuck? Reveal the worked answer';
+      btn2.addEventListener('click', function(){
+        wsUnlock(q.dataset.unlock);
+        btn2.remove();
+        fb.className = 'ws-fb';
+        fb.textContent = 'Worked answer unlocked below. Read it closely, then try to reproduce the output in Jamovi yourself.';
+      });
+      q.appendChild(btn2);
+    }
+  }
+});
+</script>
+<section id="task-1-recode-the-labels" class="level3">
+<h3 class="anchored" data-anchor-id="task-1-recode-the-labels">Task 1 — Recode the labels</h3>
+<ol type="a">
+<li>Recode <strong><code>embarked</code></strong> assuming <code>0 = cherbourg</code>, <code>1 = queenstown</code>, <code>2 = southampton</code></li>
+<li>Recode <strong><code>survived</code></strong> assuming <code>0 = died</code>, <code>1 = survived</code></li>
+</ol>
+<p>Once you’ve recoded <code>embarked</code>, run a <strong>frequency table</strong> (Descriptives ▸ tick <em>Frequency tables</em>) and enter the counts below.</p>
+
+<div class="ws-quiz" data-unlock="t1-worked" data-okmsg="">
+  <p class="ws-qtext">How many passengers embarked at each port?</p>
+  <div class="ws-row"><label class="ws-inlab" for="t1-c">Cherbourg:</label>
+    <input type="number" id="t1-c" data-answer="270"></div>
+  <div class="ws-row"><label class="ws-inlab" for="t1-q">Queenstown:</label>
+    <input type="number" id="t1-q" data-answer="123"></div>
+  <div class="ws-row"><label class="ws-inlab" for="t1-s">Southampton:</label>
+    <input type="number" id="t1-s" data-answer="914"></div>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> after recoding, go to
+    <em>Exploration ▸ Descriptives</em>, move <code>embarked</code> into Variables,
+    and tick <em>Frequency tables</em> at the bottom. The counts column is what you need.</div>
+</div>
+<p class="ws-lockednote" data-for="t1-worked">Worked answer locked. Answer correctly above to unlock it.</p>
+<div id="t1-worked" class="ws-locked callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Worked answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Part a)</strong> Once recoded, a frequency table of <code>embarked</code> gives:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Embarked</th>
+<th>Counts</th>
+<th>% of total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cherbourg</td>
+<td>270</td>
+<td>21%</td>
+</tr>
+<tr class="even">
+<td>Queenstown</td>
+<td>123</td>
+<td>9%</td>
+</tr>
+<tr class="odd">
+<td>Southampton</td>
+<td>914</td>
+<td>70%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Part b)</strong> <code>survived</code> simply becomes <strong>died</strong> (<code>0</code>) and <strong>survived</strong> (<code>1</code>). Recoding to meaningful labels makes every later table and plot far easier to read.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="task-2-find-the-obvious-errors" class="level3">
+<h3 class="anchored" data-anchor-id="task-2-find-the-obvious-errors">Task 2 — Find the obvious errors</h3>
+<p>Check the <strong><code>class</code></strong> and <strong><code>age</code></strong> variables for obvious errors and correct them where needed. <em>Hint: look at the minimum and maximum values.</em></p>
+<div class="ws-quiz" data-unlock="t2-worked" data-okmsg="Both maximums are impossible. A 4th class doesn't exist and nobody lives to 224. These are data-entry errors to fix before any real analysis.">
+  <p class="ws-qtext">Run Descriptives on <code>class</code> and <code>age</code>. What are the maximum values?</p>
+  <div class="ws-row"><label class="ws-inlab" for="t2-cl">Maximum of <code>class</code>:</label>
+    <input type="number" id="t2-cl" data-answer="4"></div>
+  <div class="ws-row"><label class="ws-inlab" for="t2-ag">Maximum of <code>age</code>:</label>
+    <input type="number" id="t2-ag" data-answer="224"></div>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> in Descriptives, make sure
+    <em>Minimum</em> and <em>Maximum</em> are ticked under <em>Statistics</em>.
+    Then ask yourself: is that value even possible on the Titanic?</div>
+</div>
+<p class="ws-lockednote" data-for="t2-worked">Worked answer locked. Answer correctly above to unlock it.</p>
+<div id="t2-worked" class="ws-locked callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Worked answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Running Descriptives on both variables:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>N</th>
+<th>Missing</th>
+<th>Mean</th>
+<th>Median</th>
+<th>SD</th>
+<th>Min</th>
+<th>Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Class</td>
+<td>1309</td>
+<td>0</td>
+<td>2.30</td>
+<td>3</td>
+<td>0.839</td>
+<td>1</td>
+<td><strong>4</strong></td>
+</tr>
+<tr class="even">
+<td>Age (y)</td>
+<td>1309</td>
+<td>0</td>
+<td>29.64</td>
+<td>28</td>
+<td>13.99</td>
+<td>0</td>
+<td><strong>224</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Both <strong>maximums are impossible</strong>: there are only 3 classes on the ship (so <code>4</code> is a typo), and no-one lives to <code>224</code> years. These are data-entry errors you’d remove or correct before any real analysis.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="task-3-which-variable-has-the-most-missing-data" class="level3">
+<h3 class="anchored" data-anchor-id="task-3-which-variable-has-the-most-missing-data">Task 3 — Which variable has the most missing data?</h3>
+
+<div class="ws-quiz" data-unlock="t3-worked" data-answer="embarked" data-okmsg="Embarked has 2 missing values; every other variable is complete.">
+  <p class="ws-qtext">Tick the <em>Missing</em> box in Descriptives. Which variable has the most missing data?</p>
+  <label class="ws-opt"><input type="radio" name="t3" value="passenger">Passenger</label>
+  <label class="ws-opt"><input type="radio" name="t3" value="age">Age</label>
+  <label class="ws-opt"><input type="radio" name="t3" value="fare">Fare</label>
+  <label class="ws-opt"><input type="radio" name="t3" value="embarked">Embarked</label>
+  <label class="ws-opt"><input type="radio" name="t3" value="class">Class</label>
+  <label class="ws-opt"><input type="radio" name="t3" value="survived">Survival</label>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> add <em>all</em> variables to the
+    Variables box at once. The Missing row of the Descriptives table then compares
+    every variable side by side.</div>
+</div>
+<p class="ws-lockednote" data-for="t3-worked">Worked answer locked. Answer correctly above to unlock it.</p>
+<div id="t3-worked" class="ws-locked callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Worked answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Tick the <strong>Missing</strong> box in Descriptives to get a missing-data count for every variable:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Passenger, Age, Fare, Sex, SibSp, ParCh, Class, Survival</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td><strong>Embarked</strong></td>
+<td><strong>2</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Embarked</strong> has the most missing values (2); every other variable is complete.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="task-4-five-number-summary" class="level3">
+<h3 class="anchored" data-anchor-id="task-4-five-number-summary">Task 4 — Five-number summary</h3>
+<p>Generate a <strong>five-number summary</strong> for the <strong><code>fare</code></strong> variable, <strong>split by <code>survived</code></strong>. A five-number summary is <strong>Min – Q1 – Median (Q2) – Q3 – Max</strong>, the table version of a box plot.</p>
+<div class="ws-quiz" data-unlock="t4-worked" data-okmsg="Survivors paid more at every quartile. An early hint that fare (and class) relates to survival.">
+  <p class="ws-qtext">From your split output, enter the median fare for each group:</p>
+  <div class="ws-row"><label class="ws-inlab" for="t4-d">Median fare — <em>died</em>:</label>
+    <input type="number" id="t4-d" step="0.1" data-answer="13" data-tol="0.5"></div>
+  <div class="ws-row"><label class="ws-inlab" for="t4-s">Median fare — <em>survived</em>:</label>
+    <input type="number" id="t4-s" step="0.1" data-answer="26" data-tol="0.5"></div>
+  <div class="ws-row"><label class="ws-inlab" for="t4-q3">75th percentile (Q3) — <em>survived</em>:</label>
+    <input type="number" id="t4-q3" step="0.1" data-answer="57" data-tol="0.5"></div>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> put <code>fare</code> in Variables and
+    <code>survived</code> in <em>Split by</em>. Under <em>Statistics</em>, tick
+    <em>Median</em> and the <em>Percentiles / Quartiles</em> options (25th, 50th, 75th).</div>
+</div>
+<p class="ws-lockednote" data-for="t4-worked">Worked answer locked. Answer correctly above to unlock it.</p>
+<div id="t4-worked" class="ws-locked callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Worked answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="table">
+<thead>
+<tr class="header">
+<th>Survival</th>
+<th>Min</th>
+<th>25th (Q1)</th>
+<th>50th (Median)</th>
+<th>75th (Q3)</th>
+<th>Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Died</td>
+<td>0</td>
+<td>7.0</td>
+<td>13.0</td>
+<td>27.0</td>
+<td>512</td>
+</tr>
+<tr class="even">
+<td>Survived</td>
+<td>0</td>
+<td>12.0</td>
+<td>26.0</td>
+<td>57.0</td>
+<td>512</td>
+</tr>
+</tbody>
+</table>
+<p>Notice survivors paid more on average across every quartile. An early hint that fare (and class) relates to survival.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="task-5-choose-appropriate-visualisations" class="level3">
+<h3 class="anchored" data-anchor-id="task-5-choose-appropriate-visualisations">Task 5 — Choose appropriate visualisations</h3>
+<p>Create visualisations for <strong>(a) age × survival</strong> and <strong>(b) sex × survival</strong>. Choose the <em>right</em> table/graph for each variable type — frequency tables, histograms+density, box-plots, or bar-plots. Try building each option in Jamovi (Descriptives ▸ <strong>Plots</strong>) before answering below.</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The lesson here isn’t “make a graph”, it’s <strong>matching the plot to the variable type</strong>. The best plot for age is <em>not</em> the best plot for sex.</p>
+</div>
+</div>
+</div>
+<section id="a-age-survival" class="level4">
+<h4 class="anchored" data-anchor-id="a-age-survival">(a) Age × Survival</h4>
+<div class="ws-quiz" data-unlock="t5a-worked" data-answer="box" data-okmsg="Age is continuous, so it deserves a plot that shows the whole distribution and the box-plot does this most cleanly once the impossible outlier is filtered out.">
+  <p class="ws-qtext"><code>age</code> is continuous. Which plot best shows how age relates to survival?</p>
+  <label class="ws-opt"><input type="radio" name="t5a" value="bar">A bar chart of mean age for died vs survived</label>
+  <label class="ws-opt"><input type="radio" name="t5a" value="hist">A histogram + density, split by survival</label>
+  <label class="ws-opt"><input type="radio" name="t5a" value="box">A box-plot of age, split by survival (outlier filtered out)</label>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> which of the three lets you see the
+    median, the spread, <em>and</em> any remaining outliers at a glance, rather than
+    collapsing everything to a single number?</div>
+</div>
+<p class="ws-lockednote" data-for="t5a-worked">Worked answer locked. Answer correctly above to unlock it.</p>
+<div id="t5a-worked" class="ws-locked callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Worked answer — (a) Age × Survival
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>age</code> is continuous, so:</p>
+<p><strong>A bar chart of means is a <em>poor</em> choice.</strong> The two groups look almost identical because everything about the distribution (spread, shape, outliers) is hidden behind one mean (bar) per group:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS1_Task5a_ok.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption"><em>Ok, but very limited:</em> a bar chart of mean age hides the distribution entirely.</figcaption>
+</figure>
+</div>
+<p><strong>A histogram + density is <em>better</em>.</strong> Now you can see the shape of each group, though the impossible <code>224</code> outlier stretches the x-axis and squashes the real data into the left side:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS1_Task5a_good.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption"><em>Better:</em> histogram + density shows the shape, but the <code>224</code> error distorts the axis (could filter this to improve).</figcaption>
+</figure>
+</div>
+<p><strong>A box-plot is <em>best</em>.</strong> medians, quartiles, spread and outliers for died vs survived, all in one view. You can even see the <code>224</code> data-entry error sitting alone at the top; <strong>filter it out (ID 656)</strong> and the comparison becomes clean:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS1_Task5a_great.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption"><em>Best:</em> box-plots show medians, spread and outliers side by side and exposes the impossible value (filter this to improve, currently a chart crime).</figcaption>
+</figure>
+</div>
+<p><strong>Takeaway:</strong> continuous data deserve a plot that shows the whole distribution and/or individual data points, and cleaning errors matters.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="b-sex-survival" class="level4">
+<h4 class="anchored" data-anchor-id="b-sex-survival">(b) Sex × Survival</h4>
+<div class="ws-quiz" data-unlock="t5b-worked" data-answer="bar" data-okmsg="Sex is nominal-binary. Counts within groups is exactly what categorical data calls for.">
+  <p class="ws-qtext"><code>sex</code> is nominal (binary). Which plot best shows how sex relates to survival?</p>
+  <label class="ws-opt"><input type="radio" name="t5b" value="box">A box-plot of sex, split by survival</label>
+  <label class="ws-opt"><input type="radio" name="t5b" value="dens">A density plot of sex, split by survival</label>
+  <label class="ws-opt"><input type="radio" name="t5b" value="bar">A grouped bar / counts plot of sex within died vs survived</label>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> sex only takes two values (0/1). Does a
+    "distribution" between those values even mean anything? What summary <em>does</em>
+    make sense for categories?</div>
+</div>
+<p class="ws-lockednote" data-for="t5b-worked">Worked answer locked. Answer correctly above to unlock it.</p>
+<div id="t5b-worked" class="ws-locked callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Worked answer — (b) Sex × Survival
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>sex</code> is nominal-binary, so:</p>
+<p><strong>A box-plot <em>fails</em>:</strong> Jamovi will draw one, but a “median sex” of 0 or 1 and boxes stretched between the two values are meaningless. This is a classic sign of treating a categorical variable as continuous:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS1_Task5b_bad.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption"><em>Bad:</em> a box-plot of a binary variable produces nonsense — there is no distribution to summarise.</figcaption>
+</figure>
+</div>
+<p><strong>A density plot also <em>fails</em>:</strong> the smooth curves imply values <em>between</em> male and female that don’t exist. All the real data is piled at exactly 0 and 1:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS1_Task5b_bad2.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption"><em>Also bad:</em> density curves invent values between the two categories. You can’t really smooth like a continuous histogram; the data is binary.</figcaption>
+</figure>
+</div>
+<p><strong>A grouped bar / counts plot is <em>best</em>:</strong> counts of male/female within died/survived is exactly what nominal-binary data calls for, and the pattern (most men died; women were far more likely to survive) is instantly readable:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS1_Task5b_good.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption"><em>Best:</em> grouped bars show counts within categories, the story is much clearer.</figcaption>
+</figure>
+</div>
+<p><strong>Takeaway:</strong> categorical data want counts and groups, not distribution plots. Always pick the visualisation that suits the data <strong>and</strong> the research question (in this case, might there be a relationship between sex and survival?).</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="how-this-links-to-assessment" class="level2">
+<h2 class="anchored" data-anchor-id="how-this-links-to-assessment">How this links to assessment</h2>
+<p>There’s no standalone Jamovi assignment, but:</p>
+<ul>
+<li>Your online exams may include questions referencing Jamovi output or techniques</li>
+<li>You’ll use Jamovi throughout your <strong>Portfolio of Evidence</strong> activities</li>
+</ul>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>The more you explore, the easier Jamovi gets.</strong> It’s designed to be intuitive. Don’t be afraid to click around and try things. Many free practice datasets (<code>.csv</code>) are at <a href="https://www.kaggle.com/datasets">kaggle.com/datasets</a> if you want to apply each week’s skills to new data.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="thats-it-for-jamovi-today." class="level2">
+<h2 class="anchored" data-anchor-id="thats-it-for-jamovi-today.">That’s it for Jamovi today.</h2>
+<p>Hopefully it didn’t feel too long…</p>
+<p><img src="WS1_Boring.gif" class="img-fluid" style="width:50.0%"></p>
+<p><strong>Now get ready for your practice attempt for the group Portfolio of Evidence activity (20mins):</strong></p>
+<ul>
+<li><p>Put all phones, laptops, electronic devices away</p></li>
+<li><p>Turn off the lab computers</p></li>
+<li><p>You can have a calculator, ruler, pen</p></li>
+<li><p>You can write/draw on the exam sheet</p></li>
+<li><p>Please include all names and s numbers for all group members</p></li>
+<li><p>1 mark for first correct scratch, 1/2 mark for second, 1/4 for third, 0 for forth and fifth</p></li>
+<li><p>Work together as a team :)</p></li>
+</ul>
+</section>
+<section id="getting-help" class="level2">
+<h2 class="anchored" data-anchor-id="getting-help">Getting help</h2>
+<p>During the session I’ll circulate to help, don’t be afraid to ask. After the workshop, revisit this page, check your module notes for interpretation help, or post in the Microsoft Teams channel, email me, or <a href="https://lms.griffith.edu.au/courses/32192#cc-collection-4"><strong>book an office hours meeting</strong></a>.</p>
+<hr>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>[1] The jamovi project (2024). <em>jamovi.</em> (Version 2.6) [Computer Software]. Retrieved from <a href="https://www.jamovi.org" class="uri">https://www.jamovi.org</a>.</p>
+<p>[2] R Core Team (2024). <em>R: A Language and environment for statistical computing.</em> (Version 4.4) [Computer software]. Retrieved from <a href="https://cran.r-project.org" class="uri">https://cran.r-project.org</a>.</p>
+<hr>
+<p><em>Document prepared by Aaron Bach using Quarto.</em></p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
