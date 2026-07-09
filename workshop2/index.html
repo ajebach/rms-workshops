@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Workshop 2 - Correlation &amp; Simple Linear Regression in Jamovi</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Workshop2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Workshop2_files/libs/quarto-html/quarto.js"></script>
+<script src="Workshop2_files/libs/quarto-html/popper.min.js"></script>
+<script src="Workshop2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Workshop2_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Workshop2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Workshop2_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Workshop2_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Workshop2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Workshop2_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#why-correlation-regression" id="toc-why-correlation-regression" class="nav-link active" data-scroll-target="#why-correlation-regression">Why correlation &amp; regression?</a></li>
+  <li><a href="#the-regression-essentials" id="toc-the-regression-essentials" class="nav-link" data-scroll-target="#the-regression-essentials">The regression essentials</a></li>
+  <li><a href="#get-the-practice-file" id="toc-get-the-practice-file" class="nav-link" data-scroll-target="#get-the-practice-file">Get the practice file</a></li>
+  <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question">Research question</a></li>
+  <li><a href="#tasks-for-you-to-do" id="toc-tasks-for-you-to-do" class="nav-link" data-scroll-target="#tasks-for-you-to-do">Tasks for you to do</a>
+  <ul class="collapse">
+  <li><a href="#task-1-descriptives-histograms" id="toc-task-1-descriptives-histograms" class="nav-link" data-scroll-target="#task-1-descriptives-histograms">Task 1 — Descriptives &amp; histograms</a></li>
+  <li><a href="#task-2-correlation-pearsons-r" id="toc-task-2-correlation-pearsons-r" class="nav-link" data-scroll-target="#task-2-correlation-pearsons-r">Task 2 — Correlation (Pearson’s r)</a></li>
+  <li><a href="#task-3-scatterplot-visualising-the-slr" id="toc-task-3-scatterplot-visualising-the-slr" class="nav-link" data-scroll-target="#task-3-scatterplot-visualising-the-slr">Task 3 — Scatterplot (visualising the SLR)</a></li>
+  <li><a href="#task-4a-simple-linear-regression-slr" id="toc-task-4a-simple-linear-regression-slr" class="nav-link" data-scroll-target="#task-4a-simple-linear-regression-slr">Task 4a — Simple Linear Regression (SLR)</a></li>
+  <li><a href="#task-4b-check-the-assumptions" id="toc-task-4b-check-the-assumptions" class="nav-link" data-scroll-target="#task-4b-check-the-assumptions">Task 4b — Check the assumptions</a></li>
+  <li><a href="#task-5-removal-of-outliers-optional" id="toc-task-5-removal-of-outliers-optional" class="nav-link" data-scroll-target="#task-5-removal-of-outliers-optional">Task 5 — Removal of outliers (optional)</a></li>
+  </ul></li>
+  <li><a href="#putting-it-into-words" id="toc-putting-it-into-words" class="nav-link" data-scroll-target="#putting-it-into-words">Putting it into words</a></li>
+  <li><a href="#how-this-links-to-assessment" id="toc-how-this-links-to-assessment" class="nav-link" data-scroll-target="#how-this-links-to-assessment">How this links to assessment</a></li>
+  <li><a href="#thats-it-for-jamovi-today." id="toc-thats-it-for-jamovi-today." class="nav-link" data-scroll-target="#thats-it-for-jamovi-today.">That’s it for Jamovi today.</a></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting help</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Workshop 2 - Correlation &amp; Simple Linear Regression in Jamovi</h1>
+<p class="subtitle lead">Research Methods and Statistics - T2 2026</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><strong>Introduction</strong></p>
+<p>Welcome back! Last week you learned to <em>drive</em> Jamovi: opening data, cleaning it, and producing descriptives. This week we ask our first real research question of the trimester and answer it with <strong>correlation</strong> and <strong>simple linear regression (SLR)</strong>.</p>
+<p>You met all of these ideas in <strong>Lecture 4 - Association Between Groups</strong> (r, r², the regression equation ŷ = a + bx, assumptions, outliers). Today is where you run them on real data, check the assumptions yourself, and practise writing the results up in plain English.</p>
+<p>You can come back to this page any time you need a reminder of how to do something in Jamovi.</p>
+<p><strong>What you’ll do today</strong></p>
+<ul>
+<li>Explore a new dataset with descriptives and histograms</li>
+<li>Run a <strong>correlation</strong> (Pearson’s r) and interpret its direction and strength</li>
+<li>Build a <strong>scatterplot</strong> with a regression line</li>
+<li>Run a <strong>simple linear regression</strong>, write the equation, and use it to predict</li>
+<li>Check the <strong>assumptions</strong> (normality of residuals, homoscedasticity) and consider outliers</li>
+<li>Finish with the <strong>group Portfolio of Evidence activity</strong> (counts for marks this time, details at the end)</li>
+</ul>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS2_running.gif" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>This week’s dataset looks at aerobic athletic prediction focusing on <strong>resting heart rate vs.&nbsp;VO₂max</strong> (a measure of aerobic fitness). Unlike the Titanic data, this one <em>is</em> related to health statistics.</p>
+</div>
+</div>
+</div>
+<section id="why-correlation-regression" class="level2">
+<h2 class="anchored" data-anchor-id="why-correlation-regression">Why correlation &amp; regression?</h2>
+<p>Correlation and simple linear regression both examine the relationship between <strong>two continuous variables</strong>, but they answer slightly different questions:</p>
+<table class="table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Tool</th>
+<th>What you get</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>How strongly do these two variables move together, and in which direction?</em></td>
+<td><strong>Correlation</strong> (Pearson’s r)</td>
+<td>One number between −1 and +1</td>
+</tr>
+<tr class="even">
+<td><em>Can I predict one variable from the other, and by how much?</em></td>
+<td><strong>Simple linear regression</strong></td>
+<td>An equation: ŷ = a + bx, plus r²</td>
+</tr>
+</tbody>
+</table>
+<p>Correlation is <strong>descriptive and symmetric</strong>: the correlation between height and weight is identical to the correlation between weight and height. Regression is <strong>directional and predictive</strong>: you must choose which variable is the <em>predictor</em> (x) and which is the <em>outcome</em> (y), and the equation lets you plug in an x and predict a y. (This is why swapping the axes in Task 3 <em>would</em> change your regression equation, even though it wouldn’t change r.)</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>One thing r cannot see: curves.</strong> Pearson’s r only measures <em>straight-line</em> association. Two variables can have a strong, perfectly real relationship that happens to be curved (think drug dose vs. benefit: rises, peaks, then falls), and r can come out near <strong>zero</strong>. This is why the golden rule of this workshop is: <strong>always plot your data first</strong>. If the scatterplot isn’t roughly a straight-line cloud, r and the regression line will mislead you.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>A real-world example…</strong> a pharmacist might examine the relationship between drug dose and plasma concentration. Correlation tells them how strongly the two are associated (e.g.&nbsp;r = 0.85, a very strong positive relationship), while regression provides the equation to <em>predict</em> plasma concentration from a given dose, crucial for therapeutic drug monitoring and dosing decisions.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Pearson vs.&nbsp;Spearman, in passing.</strong> Pearson’s r (what we use) measures <em>linear</em> association between two continuous variables and is a <strong>parametric</strong> statistic. You may also see <strong>Spearman’s rho</strong> in Jamovi’s options, a rank-based (non-parametric) cousin used when data are ordinal or badly non-normal. In this course we focus on parametric tests (plus chi-square later), so Pearson is our tool, but it’s good to recognise Spearman when you see it in papers.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Two short videos</strong> on running a <em>Correlation Matrix</em> and <em>Linear Regression</em> by <em>datalabcc</em> on YouTube. Note both videos use <strong>more than two</strong> variables (<em>multiple regression</em>); we only cover <strong>simple</strong> (two-variable) correlation and regression in this course, so the ideas transfer, just ignore the extra variables.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/u5kZ4erx8QE" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/_5AVGuEzCXc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-regression-essentials" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-regression-essentials">The regression essentials</h2>
+<p>Work through these tabs before starting the tasks. They’re the theory from Lecture 4 condensed into what you need at the keyboard, plus a first friendly look at three new columns (SE, t, p) that will appear in your output.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">The equation</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">r vs r²</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Assumptions</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Reading the output (SE, t, p)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>From Lecture 4, the simple linear regression line is:</p>
+<p><span class="math display">\[\hat{y} = a + bx\]</span></p>
+<table class="table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 61%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Name</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\hat{y}\)</span></td>
+<td>predicted value</td>
+<td>the outcome the <em>line</em> predicts (the “hat” = predicted, not actual)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a\)</span></td>
+<td>intercept</td>
+<td>predicted y when x = 0</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(b\)</span></td>
+<td>slope</td>
+<td>how much y changes for every 1-unit increase in x</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(x\)</span></td>
+<td>predictor</td>
+<td>the value you plug in</td>
+</tr>
+</tbody>
+</table>
+<p>And remember the <strong>residual</strong> = actual y − predicted ŷ, the vertical distance from each point to the line. A positive residual means the person sits <em>above</em> the line (the model under-predicted them); a negative residual means they sit <em>below</em> it (over-predicted).</p>
+<p><strong>Where does “the” line come from?</strong> Imagine laying a ruler through the scatterplot by eye, you could draw hundreds of plausible lines. The regression line is the single line that makes the <strong>squared residuals as small as possible</strong> (the <em>least squares</em> line). Squaring does two useful things: it stops positive and negative misses cancelling out, and it punishes big misses much more than small ones, which is exactly why one extreme outlier can drag the whole line (Task 5).</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Two numbers, two jobs:</p>
+<ul>
+<li><strong>r (correlation coefficient):</strong> direction <em>and</em> strength of the linear association, from −1 to +1. It’s an <strong>effect size</strong>.</li>
+<li><strong>r² (coefficient of determination):</strong> the <em>proportion of variance</em> in y explained by x, from 0 to 1. Multiply by 100 to talk in percentages (“x explains 31% of the variance in y”). r² is literally r × r, so the sign always disappears.</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>r value</th>
+<th>Strength of association</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.00–0.10</td>
+<td>negligible</td>
+</tr>
+<tr class="even">
+<td>0.10–0.30</td>
+<td>weak</td>
+</tr>
+<tr class="odd">
+<td>0.30–0.50</td>
+<td>weak-to-moderate</td>
+</tr>
+<tr class="even">
+<td>0.50–0.70</td>
+<td>moderate</td>
+</tr>
+<tr class="odd">
+<td>0.70–0.90</td>
+<td>strong</td>
+</tr>
+<tr class="even">
+<td>0.90–1.00</td>
+<td>very strong</td>
+</tr>
+</tbody>
+</table>
+<p>The sign (+/−) never affects strength, r = −0.55 and r = +0.55 are equally strong, just in opposite directions. And remember these are <em>guidelines</em>, not laws: in some fields an r of 0.20 is a big deal.</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>Simple linear regression trusts your data to behave. From Lecture 4, the assumptions (and how we check each one <strong>today</strong>):</p>
+<table class="table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 28%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Assumption</th>
+<th>What it means</th>
+<th>How we check it in Jamovi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Linearity</strong></td>
+<td>X and Y follow a straight-line relationship</td>
+<td>Scatterplot (Task 3), does a line make sense?</td>
+</tr>
+<tr class="even">
+<td><strong>Independence</strong></td>
+<td>Each observation is unrelated to the others</td>
+<td>Can’t check with a plot! It comes from <em>study design</em> (one row = one separate person)</td>
+</tr>
+<tr class="odd">
+<td><strong>Normality</strong></td>
+<td>The <strong>residuals</strong> are normally distributed</td>
+<td>Q-Q plot of residuals (Task 4b)</td>
+</tr>
+<tr class="even">
+<td><strong>Homoscedasticity</strong></td>
+<td>The spread of residuals is constant along the line</td>
+<td>Residuals vs.&nbsp;fitted plot, look for <em>funnelling</em> (Task 4b)</td>
+</tr>
+<tr class="odd">
+<td><strong>No influential outliers</strong>*</td>
+<td>Extreme points can drag the whole line</td>
+<td>Boxplot of residuals / 3s rule (Task 5)</td>
+</tr>
+</tbody>
+</table>
+<p>*<em>not strictly an assumption, but outliers can distort b, r and r², so we treat them with care.</em></p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Why bother checking?</strong> Jamovi will happily draw a line and print p-values through <em>any</em> data, it never warns you. If the assumptions are violated, the line still exists but the p-values and predictions can no longer be trusted. The checks are your quality control, not decoration. Note two common mix-ups: (1) it’s the <strong>residuals</strong> that must be normal, not the raw variables themselves (the Task 1 histograms are a data-screening step, not the normality check); (2) homoscedasticity is about the <em>spread</em> of residuals staying constant, if the spread funnels outwards, your predictions get less trustworthy at that end of the line.</p>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS2_scedasticity.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">Homoscedasticity (left) vs.&nbsp;heteroscedasticity (right): funnelling = trouble.</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>What is a Q-Q plot?</strong> It compares your actual residuals to what you’d expect if they were perfectly normally distributed. Each dot is <strong>one participant’s residual</strong>. <strong>X-axis:</strong> the value that residual “should” have if the data were perfectly normal (a theoretical quantile, written as a z-score). <strong>Y-axis:</strong> the residual’s actual standardised value. <strong>The diagonal line:</strong> where a dot lands when actual = expected, i.e. perfect normality. So the question you ask is simply <em>“do the dots hug the diagonal?”</em> Yes → residuals look normal. Real data always wobbles a little at the very top and bottom ends; that’s fine. A pronounced S-shape or a curve bending away from the line through the <em>middle</em> is the warning sign. (You’ll read your own Q-Q plot in Task 4b.)</p>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS2-qqplots.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">How different shapes show up on a Q-Q plot: points hugging the line = normal residuals; systematic curves = skew.</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Residual plots:</strong> Jamovi gives you three. Let’s just worry about the first <strong>(Fitted)</strong> it is the important one, residuals plotted against your regression line’s predictions. The other two plot residuals against each individual variable we can ignore today. A funnel = heteroscedasticity (violation of assumption), meaning the model predicts some people much better than others, so predictions (and p-values) become less reliable at the wide end of the funnel.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p>When you run a regression, Jamovi shows more columns than we’ve met so far. Here’s your <strong>first gentle introduction</strong>, we’ll cover the full machinery (z-, t-, F-, and chi-square tests) later in the trimester under <em>hypothesis testing</em>. For today, this plain-English version is all you need:</p>
+<table class="table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 81%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Plain-English meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Estimate</strong></td>
+<td>The two numbers that <em>build your line</em>. The <strong>Intercept</strong> row is <em>a</em>; the row named after your predictor (here “Resting Heart Rate”) is the slope <em>b</em>. Read the table one row at a time, left to right: each row gives that number’s Estimate, then its SE, t and p.</td>
+</tr>
+<tr class="even">
+<td><strong>SE (standard error)</strong></td>
+<td>How <em>precise</em> that estimate is. Ask: “if I repeated this whole study with a fresh sample of 150 people, how much would this number wobble?” Small SE = we’ve pinned the number down tightly; big SE = it’s fuzzy. (Same idea as SEM from Week 1, but for a slope instead of a mean.)</td>
+</tr>
+<tr class="odd">
+<td><strong>t</strong></td>
+<td>The estimate divided by its SE, i.e.&nbsp;“how many SEs is this estimate away from zero?” A big value (far from 0, in either direction) = the effect stands out clearly from the noise</td>
+</tr>
+<tr class="even">
+<td><strong>p</strong></td>
+<td>If there were <em>truly no relationship</em>, how often would random sampling alone produce a result <strong>at least this strong</strong>? Small p (below 0.05 by convention) = hard to explain away as chance, we call it <strong>statistically significant</strong></td>
+</tr>
+</tbody>
+</table>
+<p>So, reading the <strong>slope row</strong> of our example output as one sentence: “the slope Estimate is −0.61, it’s pinned down to within an SE of 0.07, that’s about 9 SEs from zero (t ≈ −8.8), so p is tiny.” That single row is the whole regression in a nutshell.</p>
+
+<!-- PLACEHOLDER IMAGE: annotated coefficients table.
+     Generate with WS2_placeholder_figures.R (WS2_coeff_annotated.png)
+     or replace with an annotated Jamovi screenshot. -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS2_coeff_annotated.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Anatomy of the Model Coefficients table.</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Notice the chain: <strong>t = Estimate ÷ SE</strong>, and <strong>p is calculated from t</strong>. So the three new columns are really one idea, <em>how confidently does this estimate stand out from zero (i.e., no association)?</em> File that away; it’s the seed of everything in the hypothesis-testing weeks.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Two things p does NOT mean</strong> (the most common exam traps in statistics, we will have a dedicated lecture to this):</p>
+<ol type="1">
+<li>p is <strong>not</strong> the probability that the relationship is real, and 1 − p is not your “confidence” in the result. p only describes how surprising your data would be <em>in a world where no relationship exists</em>.</li>
+<li>A small p does <strong>not</strong> mean the effect is big or important. With a huge sample, even a tiny, useless correlation becomes “significant”. <strong>p answers “is it detectable?”; r and r² answer “how big is it?”</strong> You need both, which is why our write-up template reports both.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="get-the-practice-file" class="level2">
+<h2 class="anchored" data-anchor-id="get-the-practice-file">Get the practice file</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS2_data.gif" class="img-fluid figure-img" width="259"></p>
+</figure>
+</div>
+<ul>
+<li>Dataset: <a href="https://lms.griffith.edu.au/courses/32192/files/9303980?wrap=1"><strong>hr_vo2.omv</strong></a></li>
+</ul>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Save the dataset somewhere easy to find, then open it in Jamovi.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="research-question" class="level2">
+<h2 class="anchored" data-anchor-id="research-question">Research question</h2>
+<blockquote class="blockquote">
+<p><strong>Can we predict someone’s fitness (Maximal Oxygen Consumption, VO₂max) from their resting heart rate?</strong></p>
+</blockquote>
+<p>Before you touch anything: which variable is the <strong>predictor (x)</strong> and which is the <strong>outcome (y)</strong>? Physiologically, a lower resting heart rate reflects a fitter heart, so we’ll use <strong>Resting Heart Rate → predictor</strong> and <strong>VO₂max → outcome</strong>.</p>
+<hr>
+</section>
+<section id="tasks-for-you-to-do" class="level2">
+<h2 class="anchored" data-anchor-id="tasks-for-you-to-do">Tasks for you to do</h2>
+<p>Work through these in Jamovi in order, then <strong>check your answers as you go</strong>, each task has a small answer box. Type (or select) what you found and press <strong>✓ Check</strong>. You’ll get instant feedback, and a hint appears if you’re stuck after a couple of tries.</p>
+<p>The full <strong>Worked answer</strong> for each task is locked until you answer correctly, and if you’re really stuck, a <em>reveal</em> option appears after three attempts, so have a genuine go first. A fully worked version (with screenshots of every output) is released after all lab classes finish for the week.</p>
+<p><img src="WS2_plotting.gif" class="img-fluid"></p>
+<style>
+.ws-quiz{border:1px solid #d9d9d9;border-left:4px solid #2c7fb8;border-radius:8px;
+  padding:16px 18px;margin:14px 0 20px 0;background:#fafafa;}
+.ws-quiz p.ws-qtext{font-weight:600;margin:0 0 10px 0;}
+.ws-quiz .ws-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0;}
+.ws-quiz label.ws-inlab{min-width:170px;font-size:15px;}
+.ws-quiz input[type=number], .ws-quiz input[type=text]{
+  width:110px;padding:6px 8px;border:1px solid #bbb;border-radius:6px;font-size:15px;}
+.ws-quiz .ws-opt{display:block;margin:5px 0;font-size:15px;font-weight:400;}
+.ws-quiz .ws-opt input{margin-right:7px;}
+.ws-quiz button.ws-check{margin-top:10px;padding:7px 16px;border:1px solid #2c7fb8;
+  border-radius:6px;background:#2c7fb8;color:#fff;font-size:15px;cursor:pointer;}
+.ws-quiz button.ws-check:hover{background:#1f5f8b;}
+.ws-quiz .ws-fb{display:block;margin-top:10px;font-size:15px;min-height:1.3em;}
+.ws-quiz .ws-fb.ok{color:#2e7d32;font-weight:600;}
+.ws-quiz .ws-fb.no{color:#c0152f;font-weight:600;}
+.ws-quiz .ws-hint{display:none;margin-top:6px;font-size:14px;color:#555;
+  border-top:1px dashed #ccc;padding-top:6px;}
+.ws-quiz button.ws-reveal{display:block;margin-top:10px;padding:6px 14px;
+  border:1px solid #bbb;border-radius:6px;background:#fff;color:#555;
+  font-size:14px;cursor:pointer;}
+.ws-quiz button.ws-reveal:hover{border-color:#c0152f;color:#c0152f;}
+.ws-locked{display:none;}
+.ws-lockednote{font-size:14px;color:#777;margin:-6px 0 18px 0;}
+.ws-lockednote::before{content:"🔒 ";}
+</style>
+<script>
+/* Lightweight formative answer-checking (no data leaves the page).
+   Numeric inputs: data-answer + optional data-tol (tolerance).
+   Radio questions: put data-answer on the .ws-quiz container.
+   data-unlock: id of the worked-answer block to unlock on success
+   (or via the reveal button after 3 attempts). */
+function wsUnlock(id){
+  var el = document.getElementById(id);
+  if(el){ el.classList.remove('ws-locked'); }
+  var note = document.querySelector('.ws-lockednote[data-for="' + id + '"]');
+  if(note){ note.remove(); }
+}
+document.addEventListener('click', function(e){
+  var btn = e.target.closest('.ws-check');
+  if(!btn) return;
+  var q  = btn.closest('.ws-quiz');
+  var fb = q.querySelector('.ws-fb');
+  var hint = q.querySelector('.ws-hint');
+  var nums = q.querySelectorAll('input[data-answer]');
+  var allOk = true, anyBlank = false;
+
+  if(nums.length){
+    nums.forEach(function(inp){
+      if(inp.value.trim() === ''){ anyBlank = true; }
+      var exp = parseFloat(inp.dataset.answer);
+      var tol = parseFloat(inp.dataset.tol || 0);
+      var val = parseFloat(inp.value);
+      var ok  = !isNaN(val) && Math.abs(val - exp) <= tol;
+      inp.style.borderColor = ok ? '#2e7d32' : '#c0152f';
+      inp.style.background  = ok ? '#eef7ee' : '#fdf0f2';
+      if(!ok) allOk = false;
+    });
+  } else if(q.dataset.answer !== undefined){
+    var sel = q.querySelector('input[type=radio]:checked') ||
+              q.querySelector('select');
+    if(sel && sel.tagName === 'SELECT'){
+      if(sel.value === ''){ anyBlank = true; allOk = false; }
+      else allOk = (sel.value === q.dataset.answer);
+    } else if(sel){
+      allOk = (sel.value === q.dataset.answer);
+    } else {
+      anyBlank = true; allOk = false;
+    }
+  }
+
+  if(anyBlank && !allOk){
+    fb.className = 'ws-fb no';
+    fb.textContent = 'Fill in an answer first, then press Check.';
+    return;
+  }
+
+  q.dataset.tries = (parseInt(q.dataset.tries || '0', 10) + 1);
+
+  if(allOk){
+    fb.className = 'ws-fb ok';
+    fb.textContent = '✓ Correct! ' + (q.dataset.okmsg || '');
+    if(hint) hint.style.display = 'none';
+    if(q.dataset.unlock){
+      wsUnlock(q.dataset.unlock);
+      fb.textContent += ' The worked answer is now unlocked below.';
+      var rv = q.querySelector('.ws-reveal');
+      if(rv) rv.remove();
+    }
+  } else {
+    fb.className = 'ws-fb no';
+    fb.textContent = '✗ Not quite. Go back to your Jamovi output and try again.';
+    if(hint && q.dataset.tries >= 2){ hint.style.display = 'block'; }
+    if(q.dataset.unlock && q.dataset.tries >= 3 && !q.querySelector('.ws-reveal')){
+      var btn2 = document.createElement('button');
+      btn2.type = 'button';
+      btn2.className = 'ws-reveal';
+      btn2.textContent = 'Stuck? Reveal the worked answer';
+      btn2.addEventListener('click', function(){
+        wsUnlock(q.dataset.unlock);
+        btn2.remove();
+        fb.className = 'ws-fb';
+        fb.textContent = 'Worked answer unlocked below. Read it closely, then try to reproduce the output in Jamovi yourself.';
+      });
+      q.appendChild(btn2);
+    }
+  }
+});
+</script>
+<section id="task-1-descriptives-histograms" class="level3">
+<h3 class="anchored" data-anchor-id="task-1-descriptives-histograms">Task 1 — Descriptives &amp; histograms</h3>
+<p>First, get to know the data (this should feel like last week):</p>
+<ol type="a">
+<li>Check the <strong>Variables</strong> tab: are the names sensible, and are the measure types right (<code>id</code> = ID, <code>sex</code> = nominal, <code>age</code>, <code>Resting Heart Rate</code>, <code>Maximal Oxygen Consumption</code> = continuous)?</li>
+<li>Run <strong>Exploration ▸ Descriptives</strong> on the two primary variables (Resting HR and VO₂max): N, missing, mean, median, SD, min, max.</li>
+<li>Tick <strong>Histogram</strong> (and <em>Density</em>) under <strong>Plots</strong>. Is each variable roughly normal, or skewed?</li>
+</ol>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Why screen first?</strong> Three quick sanity checks before any analysis: <strong>impossible values</strong> (e.g.&nbsp;a resting HR of 300 bpm is a typo, not a person), <strong>missing data</strong> (does N match the number of participants you expected?), and <strong>shape</strong> (a heavily skewed variable is a heads-up to look extra carefully at the scatterplot and residual checks later). Note this is <em>not</em> the formal normality assumption, that applies to the <strong>residuals</strong> and gets checked properly in Task 4b.</p>
+</div>
+</div>
+</div>
+<p><img src="WS2_descriptives.jpg" class="img-fluid" style="width:100.0%"></p>
+
+<div class="ws-quiz" data-unlock="t1-worked" data-okmsg="">
+  <p class="ws-qtext">From your Descriptives table:</p>
+  <div class="ws-row"><label class="ws-inlab" for="t1-n">N (participants):</label>
+    <input type="number" id="t1-n" data-answer="150"></div>
+  <div class="ws-row"><label class="ws-inlab" for="t1-hr">Mean Resting HR (bpm):</label>
+    <input type="number" id="t1-hr" step="0.1" data-answer="58.8" data-tol="0.5"></div>
+  <div class="ws-row"><label class="ws-inlab" for="t1-vo">Mean VO₂max (mL/kg/min):</label>
+    <input type="number" id="t1-vo" step="0.1" data-answer="49.9" data-tol="0.5"></div>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> Exploration ▸ Descriptives, move both
+    variables into the Variables box. N and Mean are on by default; tick anything
+    missing under <em>Statistics</em>.</div>
+</div>
+<p class="ws-lockednote" data-for="t1-worked">Worked answer locked. Answer correctly above to unlock it.</p>
+<div id="t1-worked" class="ws-locked callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Worked answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 7%">
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>N</th>
+<th>Missing</th>
+<th>Mean</th>
+<th>Median</th>
+<th>SD</th>
+<th>Min</th>
+<th>Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Resting HR (bpm)</td>
+<td>150</td>
+<td>0</td>
+<td>58.77</td>
+<td>59.00</td>
+<td>4.99</td>
+<td>46.0</td>
+<td>81.0</td>
+</tr>
+<tr class="even">
+<td>VO₂max (mL/kg/min)</td>
+<td>150</td>
+<td>0</td>
+<td>49.95</td>
+<td>50.30</td>
+<td>5.17</td>
+<td>33.3</td>
+<td>63.1</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS2_Task1_hist.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Histograms of both variables, both are roughly bell-shaped, no wild skew.</figcaption>
+</figure>
+</div>
+<p>Nothing impossible in the min/max, no missing data, and both distributions look approximately normal (mean ≈ median is another quick clue). Good to proceed. (If you saw a resting HR of 300 here, you’d deal with it <em>before</em> any correlation, exactly like the Titanic age of 224 last week.)</p>
+</div>
+</div>
+</div>
+</section>
+<section id="task-2-correlation-pearsons-r" class="level3">
+<h3 class="anchored" data-anchor-id="task-2-correlation-pearsons-r">Task 2 — Correlation (Pearson’s r)</h3>
+<ul>
+<li>Go to <strong>Analyses ▸ Regression ▸ Correlation Matrix</strong></li>
+<li>Move both variables of interest into the box on the right</li>
+<li>Your output should look like the one below (similar, not identical values)</li>
+</ul>
+<p><img src="WS2_correlation.jpg" class="img-fluid" style="width:100.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS2_correlation_results.jpg" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<p>In the output we care about <strong>Pearson’s r</strong>, the <strong>correlation coefficient</strong>. You’ll also see <strong>df</strong> (degrees of freedom = n − 2). Don’t worry about df for now, it’s a book-keeping number the test needs and we’ll meet it properly in the hypothesis-testing weeks; just report it. Finally there’s a <strong>p-value</strong>: here it is tiny (p &lt; .001), which we state as <em>resting heart rate is significantly correlated with VO₂max</em>.</p>
+<div class="ws-quiz" data-unlock="t2-worked" data-okmsg="r = −0.55: as resting heart rate goes up, VO₂max goes down.">
+  <p class="ws-qtext">From your Correlation Matrix:</p>
+  <div class="ws-row"><label class="ws-inlab" for="t2-r">Pearson's r:</label>
+    <input type="number" id="t2-r" step="0.01" data-answer="-0.55" data-tol="0.01"></div>
+  <div class="ws-row"><label class="ws-inlab" for="t2-df">df:</label>
+    <input type="number" id="t2-df" data-answer="148"></div>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> Analyses ▸ Regression ▸ Correlation
+    Matrix, then read the <em>Pearson's r</em> and <em>df</em> rows where the two
+    variables cross. Don't drop the minus sign!</div>
+</div>
+
+<div class="ws-quiz" data-answer="strongneg" data-okmsg="">
+  <p class="ws-qtext">Interpret the r value (direction and strength, using the benchmarks table in the <em>r vs r²</em> tab):</p>
+  <label class="ws-opt"><input type="radio" name="t2b" value="weakpos">Weak positive relationship</label>
+  <label class="ws-opt"><input type="radio" name="t2b" value="modneg">Negligible negative relationship</label>
+  <label class="ws-opt"><input type="radio" name="t2b" value="strongneg">Moderate-to-strong negative relationship</label>
+  <label class="ws-opt"><input type="radio" name="t2b" value="perfneg">Perfect negative relationship</label>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> the sign gives direction; the size gives
+    strength. Where does 0.55 sit in the benchmarks table? Lecture 4 bands say
+    0.5–0.7 = moderate; Cohen's guide says 0.5 = strong.</div>
+</div>
+<p class="ws-lockednote" data-for="t2-worked">Worked answer locked. Answer correctly above to unlock it.</p>
+<div id="t2-worked" class="ws-locked callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Worked answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>r(148) = −0.55, p &lt; .001.</strong></p>
+<ul>
+<li><strong>Direction:</strong> negative, higher resting heart rate goes with <em>lower</em> VO₂max.</li>
+<li><strong>Strength:</strong> by the Lecture 4 bands this is <em>moderate</em> (0.5–0.7).</li>
+<li><strong>df = 148</strong> because df = N − 2 = 150 − 2.</li>
+<li><strong>p &lt; .001</strong>: if there were truly no relationship between resting HR and VO₂max in the population, random sampling would almost never produce a correlation at least this strong in a sample of 150. In a sentence: resting HR is <em>significantly</em> correlated with VO₂max. Careful though: this does <em>not</em> mean there’s a &gt;99.9% chance the relationship is real.</li>
+</ul>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Beyond direction, r is an <strong>effect size</strong>: it tells us how <em>meaningful</em> the relationship is in practical terms, and unlike p, it doesn’t inflate just because the sample is big. What counts as “meaningful” depends on your field; in some areas r = 0.20 is a big deal! We’ll unpack <strong>practical vs.&nbsp;statistical significance</strong> later in the trimester.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-3-scatterplot-visualising-the-slr" class="level3">
+<h3 class="anchored" data-anchor-id="task-3-scatterplot-visualising-the-slr">Task 3 — Scatterplot (visualising the SLR)</h3>
+<ul>
+<li>Navigate to <strong>Exploration ▸ Scatterplot</strong></li>
+<li>Put your <strong>predictor</strong> in the <code>X-Axis</code> box and your <strong>outcome</strong> in the <code>Y-Axis</code> box</li>
+<li>Under <code>Regression line</code>, tick <strong>Linear</strong> to overlay the SLR line</li>
+</ul>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Newer versions of Jamovi also let you build a scatterplot straight from the <strong>Plots</strong> tab (in the variable setup screen, before you hit <em>edit</em>). Either route gives the same picture, we’ll use <strong>Exploration ▸ Scatterplot</strong> here so everyone’s on the same menu.</p>
+</div>
+</div>
+</div>
+<p><img src="WS2_scatterplot.jpg" class="img-fluid" style="width:100.0%"></p>
+<div class="ws-quiz" data-unlock="t3-worked" data-answer="hrx" data-okmsg="Predictor (explanatory) on the x-axis, outcome (response) on the y-axis, straight from Lecture 4.">
+  <p class="ws-qtext">Which variable goes on which axis?</p>
+  <label class="ws-opt"><input type="radio" name="t3" value="hrx">Resting HR on X (predictor), VO₂max on Y (outcome)</label>
+  <label class="ws-opt"><input type="radio" name="t3" value="vox">VO₂max on X (predictor), Resting HR on Y (outcome)</label>
+  <label class="ws-opt"><input type="radio" name="t3" value="either">Either way, it makes no difference to the regression</label>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> our research question is "can we predict
+    <em>fitness</em> from <em>resting heart rate</em>". The thing doing the predicting
+    (explanatory variable) always goes on the x-axis. And no, it's not symmetric,
+    swapping the axes changes the regression equation (unlike correlation!).</div>
+</div>
+<p class="ws-lockednote" data-for="t3-worked">Worked answer locked. Answer correctly above to unlock it.</p>
+<div id="t3-worked" class="ws-locked callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Worked answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS2_example_scatter.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption class="figure-caption">Scatterplot with the linear regression line overlaid.</figcaption>
+</figure>
+</div>
+<p>While you’re here, do the <strong>first two assumption checks by eye</strong>:</p>
+<ul>
+<li><strong>Linearity:</strong> the cloud of points follows a straight downward trend, a line is a sensible model (no obvious curve or U-shape).</li>
+<li><strong>Outliers:</strong> scan for points sitting far from the pack, especially far <em>vertically</em> from the line, or way out at the ends of the x-axis (those have the most leverage to tilt the line). One point low-left sits noticeably below the pack, keep an eye on it; Task 5 shows you how to handle it formally.</li>
+</ul>
+<p>This is also the plot you’d put in a report: readers grasp “downhill-sloping cloud” faster than any table.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="task-4a-simple-linear-regression-slr" class="level3">
+<h3 class="anchored" data-anchor-id="task-4a-simple-linear-regression-slr">Task 4a — Simple Linear Regression (SLR)</h3>
+<ul>
+<li>Navigate to <strong>Analyses ▸ Regression ▸ Linear Regression</strong></li>
+<li>Put your <strong>predictor</strong> (Resting Heart Rate) in <code>Covariates</code> and your <strong>outcome</strong> (VO₂max) in <code>Dependent Variable</code></li>
+<li>Your output has two sections: <strong>Model Fit Measures</strong> and <strong>Model Coefficients</strong></li>
+</ul>
+<p><img src="WS2_regression.jpg" class="img-fluid" style="width:100.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS2_regression_results.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<p>Reading it:</p>
+<ul>
+<li><strong>Model Fit ▸ R²:</strong> the proportion of variance in VO₂max explained by resting HR, multiply by 100 for a percentage. In <em>simple</em> linear regression, R² is just your Task 2 correlation squared, check it: (−0.55)² ≈ 0.31 ✓</li>
+<li><strong>Model Coefficients ▸ Estimate:</strong> the <strong>Intercept</strong> (predicted VO₂max when resting HR = 0) and the <strong>slope</strong> for Resting Heart Rate (change in <em>predicted</em> VO₂max per 1 bpm)</li>
+<li><strong>SE, t, p:</strong> precision, signal-vs-noise, and chance, exactly as in the <em>Reading the output</em> tab. Notice t = Estimate ÷ SE (try it: −0.57 ÷ 0.07 ≈ −8.1 ✓)</li>
+</ul>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Jamovi’s regression also reports <strong>R</strong> (capital, no square) under Model Fit. It’s always shown as <em>positive</em>, so it tells you strength but <strong>not</strong> direction, that’s why we ran the correlation first in Task 2 (which keeps the minus sign). To avoid confusion you can untick “R” under <code>Model Fit</code> and take direction from your Task 2 correlation.</p>
+</div>
+</div>
+</div>
+<div class="ws-quiz" data-unlock="t4a-worked" data-okmsg="">
+  <p class="ws-qtext">From your regression output, build the equation ŷ = a + bx:</p>
+  <div class="ws-row"><label class="ws-inlab" for="t4-a">Intercept (a):</label>
+    <input type="number" id="t4-a" step="0.01" data-answer="83.73" data-tol="0.1"></div>
+  <div class="ws-row"><label class="ws-inlab" for="t4-b">Slope (b):</label>
+    <input type="number" id="t4-b" step="0.01" data-answer="-0.57" data-tol="0.02"></div>
+  <div class="ws-row"><label class="ws-inlab" for="t4-r2">R² :</label>
+    <input type="number" id="t4-r2" step="0.01" data-answer="0.31" data-tol="0.02"></div>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> Intercept and slope live in the
+    <em>Estimate</em> column of Model Coefficients; R² is in Model Fit Measures.
+    Keep the slope's minus sign.</div>
+</div>
+<div class="ws-quiz" data-unlock="t4a2-worked" data-okmsg="About 49 mL/kg/min, you just used a regression model to predict!">
+  <p class="ws-qtext">Use your equation to <strong>predict</strong> the VO₂max of a person with a resting HR of 60 bpm:</p>
+  <div class="ws-row"><label class="ws-inlab" for="t4-p">Predicted VO₂max:</label>
+    <input type="number" id="t4-p" step="0.1" data-answer="49.3" data-tol="0.6"></div>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> ŷ = 83.73 + (−0.57 × 60). Same routine
+    as the squat/sprint example from Lecture 4.</div>
+</div>
+<p class="ws-lockednote" data-for="t4a-worked">Worked answer locked. Answer the first box correctly to unlock it.</p>
+<div id="t4a-worked" class="ws-locked callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Worked answer — the equation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\widehat{VO_2max} = 83.73 + (-0.57 \times \text{Resting HR})\]</span></p>
+<ul>
+<li><strong>Intercept = 83.73:</strong> the model’s predicted VO₂max at a resting HR of 0 bpm. Obviously nobody has a resting HR of 0, the intercept is a mathematical anchor for the line, not always a physiologically meaningful value (this is <em>extrapolation</em> territory from Lecture 4). Don’t be tempted to interpret it as a real person.</li>
+<li><strong>Slope = −0.57:</strong> every extra 1 bpm of resting heart rate predicts a VO₂max <strong>≈ 0.57 mL/kg/min lower</strong>, <em>on average</em>. Individuals will vary around that; the slope describes the trend, not any one person.</li>
+<li><strong>R² = 0.31:</strong> resting HR explains <strong>31%</strong> of the variance in VO₂max. The other 69% is due to things we didn’t measure (age, training, genetics…) plus measurement noise. A useful predictor can still leave most of the variance unexplained, 31% from a single, easy-to-measure variable is genuinely useful.</li>
+<li><strong>The new columns:</strong> slope SE = 0.07 (a tight estimate), t = −0.57 ÷ 0.07 ≈ −8.1 (the slope is about 8 standard errors away from zero, a very clear signal), p &lt; .001 (a slope this steep would essentially never arise by chance if the true slope were zero).</li>
+</ul>
+</div>
+</div>
+</div>
+<p class="ws-lockednote" data-for="t4a2-worked">Worked answer locked. Answer the prediction correctly to unlock it.</p>
+<div id="t4a2-worked" class="ws-locked callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Worked answer — the prediction
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\hat{y} = 83.73 - 0.57 \times 60 = 83.73 - 34.5 = 49.2 \text{ mL/kg/min}\]</span></p>
+<p>A resting HR of 60 bpm predicts a VO₂max of about <strong>49 mL/kg/min</strong>. (Small print: if you rounded the slope to −0.57 you’d get ≈ 49.5, using Jamovi’s fuller −0.57 gives 49.2, that’s rounding, not an error.) Two health warnings on every prediction:</p>
+<ul>
+<li>It’s the <em>average</em> expectation for people with that resting HR; real individuals scatter around it (that scatter <em>is</em> the residuals, and with R² = 0.31 there’s plenty of it).</li>
+<li>Keep predictions <strong>inside the range of your data</strong> (here roughly 46–81 bpm). Plugging in HR = 20 or HR = 200 would be <strong>extrapolation</strong>: the line keeps going mathematically, but you have no evidence the relationship stays linear out there.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="task-4b-check-the-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="task-4b-check-the-assumptions">Task 4b — Check the assumptions</h3>
+<ul>
+<li>In your regression analysis (Task 4a), expand <strong>Assumption Checks</strong></li>
+<li>Tick <strong>Q-Q plot of residuals</strong> (checks <strong>Normality</strong>) and <strong>Residual plots</strong> (checks <strong>Homoscedasticity</strong>)</li>
+</ul>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Need a refresher on what you’re looking at?</strong> The <em>Assumptions</em> tab up in “The regression essentials” explains how to read a Q-Q plot (do the dots hug the diagonal?) and what funnelling looks like on a residuals-vs-fitted plot. Pop back up there if either plot is unfamiliar when you run it, then interpret your <em>own</em> output below.</p>
+</div>
+</div>
+</div>
+<p><strong>1. Normality — Q-Q plot of residuals.</strong> In Jamovi, look at your Q-Q plot: each dot is one participant’s residual, and the question is simply whether the dots hug the diagonal.</p>
+<div class="ws-quiz" data-unlock="t4b-worked-norm" data-answer="normal" data-okmsg="Minor wobble at the tails is expected; the middle tracks the line, so normality holds.">
+  <p class="ws-qtext">In <em>your</em> Jamovi Q-Q plot, how do the residuals look?</p>
+  <label class="ws-opt"><input type="radio" name="t4bqq" value="normal">The dots hug the diagonal, with only minor wobble at the extreme ends</label>
+  <label class="ws-opt"><input type="radio" name="t4bqq" value="sshape">A pronounced S-shape bending away from the line through the middle</label>
+  <label class="ws-opt"><input type="radio" name="t4bqq" value="funnel">The dots fan out into a funnel from left to right</label>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> a Q-Q plot never shows a “funnel” (that pattern belongs to the residuals-vs-fitted plot). Look at the <em>middle</em> of the line: do the points track it, or curve away? A couple of stray points at the very top and bottom are expected in real data.</div>
+</div>
+<p class="ws-lockednote" data-for="t4b-worked-norm">Worked answer locked. Interpret your Q-Q plot correctly to unlock it.</p>
+<div id="t4b-worked-norm" class="ws-locked callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Worked answer — Normality
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS2_qqplot_data.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">Q-Q plot of residuals — dots hug the diagonal.</figcaption>
+</figure>
+</div>
+<p>The dots track the diagonal closely through the middle, with only a little wobble at the low end and one point sitting high at the top-right (the same extreme participant you’ll meet in Task 5). Real data always wobbles at the very tails; it’s a systematic S-shape or a bend through the <em>middle</em> that would worry us, and we don’t see that here → residuals approximately normal → <strong>Normality ✓</strong></p>
+</div>
+</div>
+</div>
+<p><strong>2. Homoscedasticity — Residuals vs.&nbsp;Fitted.</strong> Now look at your residuals-vs-fitted plot in Jamovi, scanning the width of the band across the plot for <em>funnelling</em>.</p>
+<div class="ws-quiz" data-unlock="t4b-worked-homo" data-answer="even" data-okmsg="An even band, no funnel, no curve → homoscedasticity met.">
+  <p class="ws-qtext">Does <em>your</em> residuals-vs-fitted plot in Jamovi meet homoscedasticity?</p>
+  <label class="ws-opt"><input type="radio" name="t4bhomo" value="even">Yes, the spread is a roughly even band around zero across the fitted values</label>
+  <label class="ws-opt"><input type="radio" name="t4bhomo" value="fan">No, the spread clearly fans out (funnels) from one end to the other</label>
+  <label class="ws-opt"><input type="radio" name="t4bhomo" value="curve">No, the points follow an obvious curve rather than a flat band</label>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> ignore the single stray point high up near the top; judge the <em>overall</em> spread. Does the vertical scatter stay about the same width from left to right, or does it visibly widen/narrow?</div>
+</div>
+<p class="ws-lockednote" data-for="t4b-worked-homo">Worked answer locked. Interpret your residuals-vs-fitted plot correctly to unlock it.</p>
+<div id="t4b-worked-homo" class="ws-locked callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Worked answer — Homoscedasticity
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS2_scedasticityTask4b.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">Residuals vs.&nbsp;fitted — an even band, no funnel.</figcaption>
+</figure>
+</div>
+<p>An even band around zero with no funnel and no curve → <strong>Homoscedasticity ✓</strong> (and linearity looks fine). That one high residual near the top is a single point, not a change in spread, so it doesn’t break the assumption.</p>
+<p>The remaining two assumptions aren’t read off this plot: <strong>Linearity</strong> was already checked by eye in Task 3 ✓, and <strong>Independence</strong> comes from the study design — each row is a different person measured once ✓ (it would be <em>violated</em> if, say, some participants were measured twice).</p>
+<p>If a check <em>failed</em>, you wouldn’t necessarily throw the analysis away; you’d report the violation and interpret with caution or use a different model (beyond this course). What you must <strong>never</strong> do is simply not look, an unchecked assumption is a hidden asterisk on every number you report.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="task-5-removal-of-outliers-optional" class="level3">
+<h3 class="anchored" data-anchor-id="task-5-removal-of-outliers-optional">Task 5 — Removal of outliers (optional)</h3>
+<p><em>Optional due to time. Outlier removal isn’t always appropriate; it’s up to you to analyse with and without, then justify and report your choice.</em></p>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Identify-and-remove should only be performed <strong>once</strong>. Removing initial outliers shrinks the SD of the residuals, which can make previously normal points look like new “outliers” in the re-run.</p>
+</div>
+</div>
+</div>
+<p><strong>Save and inspect the residuals.</strong> In your regression (Task 4a), open the <strong>Save</strong> panel and tick <code>Residuals</code> (and <code>Predicted values</code> if you like). Now run <strong>Exploration ▸ Descriptives</strong> on that saved <em>Residuals</em> column and tick <strong>Box plot</strong> under Plots. Outliers appear as individual points beyond the whiskers.</p>
+<p><strong>How many outliers here?</strong> On our data the residual boxplot flags <strong>exactly one</strong> point beyond the whiskers, <strong>id 6</strong> (a participant whose VO₂max sits about 3 SDs below what their resting HR predicts). That is the <em>only</em> point that meets the boxplot/3s rule.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS2_outliersTask5.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Boxplot of residuals, only id 6 falls beyond the whisker.</figcaption>
+</figure>
+</div>
+<p><strong>Filter &amp; re-analyse.</strong> Go to <strong>Data ▸ Filters</strong> and create <code>id != 6</code>. With the filter active your regression re-runs automatically. Compare the two sets of results:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>r</th>
+<th>slope (b)</th>
+<th>R²</th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>All data (N=150)</strong></td>
+<td>−0.55</td>
+<td>−0.57</td>
+<td>0.31</td>
+<td>&lt; .001</td>
+</tr>
+<tr class="even">
+<td><strong>Minus id 6 (N=149)</strong></td>
+<td>−0.59</td>
+<td>−0.61</td>
+<td>0.34</td>
+<td>&lt; .001</td>
+</tr>
+</tbody>
+</table>
+<p>Removing that one point nudges the relationship from <em>moderate</em> to a touch stronger (r −0.55 → −0.59; R² 0.31 → 0.34), but the <strong>direction, the significance, and the overall story are unchanged</strong>. That’s the sign of a <em>robust</em> result. Whether you keep or drop id 6, the honest move is to <strong>report you tested both</strong> and say what you landed on in the end.</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>How I would justify removal even when it wasn’t an erroneous data-point:</strong> <em>“A single outlier (id 6) was detected through residual analysis and excluded to test the robustness of the model. Its removal did not change the direction or significance of the relationship, and altered the slope and R² only slightly, confirming that the association between VO₂max and resting heart rate was not dependent on this extreme value.”</em></p>
+</div>
+</div>
+</div>
+<div class="ws-quiz" data-answer="justify" data-okmsg="Transparency beats tidiness: report both, justify your call.">
+  <p class="ws-qtext">You find one legitimate (not erroneous) extreme value. Best practice is to:</p>
+  <label class="ws-opt"><input type="radio" name="t5" value="delete">Delete it quietly, outliers ruin regressions</label>
+  <label class="ws-opt"><input type="radio" name="t5" value="keep">Always keep it, removing data is never allowed</label>
+  <label class="ws-opt"><input type="radio" name="t5" value="justify">Run the analysis with and without it, then report and justify your decision</label>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> think about what a reader of your report
+    needs to trust your result. What would the Tasmanian Devils example from
+    Lecture 4 suggest, and what did that outlier do to r and r²?</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="putting-it-into-words" class="level2">
+<h2 class="anchored" data-anchor-id="putting-it-into-words">Putting it into words</h2>
+<p>The numbers only matter if you can communicate them. Here’s the full interpretation for today’s analysis, this is the <em>template</em> for your studies for future exams (short answer output interpretation). <em>(These numbers are for the full dataset, N = 150; if you also ran the outlier-removed version, you’d report both.)</em></p>
+<blockquote class="blockquote">
+<p>Pearson’s correlation showed a moderate negative relationship between resting heart rate and VO₂max, r(148) = −.55, p &lt; .001: higher resting heart rates were associated with lower fitness. Resting heart rate was a significant predictor of VO₂max (VO₂max = 83.73 − 0.57 × Resting HR, p &lt; .001). For every 1 bpm increase in resting heart rate, predicted VO₂max decreased by about 0.57 mL·kg⁻¹·min⁻¹. The model explained 31% of the variance in VO₂max (R² = 0.31). Assumption checks (Q-Q and residual plots) showed no violations of normality or homoscedasticity.</p>
+</blockquote>
+<p>Notice the anatomy: <strong>direction + strength + statistic</strong> (r, with its df), <strong>the equation</strong>, <strong>the slope in plain units</strong>, <strong>variance explained</strong> (r²), and <strong>a one-line assumptions statement</strong>. Every sentence pairs a number with its plain-English meaning.</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Correlation still does not imply causation.</strong> We <em>predicted</em> fitness from resting HR; we did not show HR <em>causes</em> fitness (or vice versa). Age, training history and genetics are classic <strong>lurking/confounding variables</strong> here. Notice how careful the template above is: “associated with”, “predictor”, “predicted”, never “causes”, “lowers”, or “improves”. Be careful with your vocabulary.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Five classic traps</strong> (cheap marks in the exam, expensive mistakes):</p>
+<ol type="1">
+<li><strong>“Significant” ≠ “big”.</strong> p tells you the relationship is detectable; r and r² tell you how big it is. Report both.</li>
+<li><strong>r ≠ r².</strong> r = −0.55 is the correlation; r² = 0.31 is the variance explained. Don’t say “the correlation was 31%”.</li>
+<li><strong>The slope is not the correlation.</strong> b = −0.57 is in real units (mL/kg/min per bpm) and depends on the units of measurement; r is unit-free and capped at ±1. They just happen to look similar here, pure coincidence.</li>
+<li><strong>Prediction runs one way.</strong> Our equation predicts VO₂max from HR. To predict HR from VO₂max you’d need to re-run the regression with the variables swapped, you can’t just rearrange the equation.</li>
+<li><strong>Don’t extrapolate.</strong> The equation is only trustworthy inside the range of resting HRs actually observed in the sample (≈ 46–81 bpm) and even within that it gets less reliable toward the extremes.</li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="how-this-links-to-assessment" class="level2">
+<h2 class="anchored" data-anchor-id="how-this-links-to-assessment">How this links to assessment</h2>
+<ul>
+<li>Today’s workflow (descriptives → correlation → scatterplot → regression → assumptions → interpretation) is how we will frame all our tests as we move through the trimester and you will be tested on in the <strong>Exams</strong>.</li>
+<li>The <strong>exams</strong> may include Jamovi output or interpretation questions in this style as well.</li>
+<li>And most immediately… the group activity (next) counts towards your <strong>Portfolio of Evidence</strong> and has lab specific questions.</li>
+</ul>
+<hr>
+</section>
+<section id="thats-it-for-jamovi-today." class="level2">
+<h2 class="anchored" data-anchor-id="thats-it-for-jamovi-today.">That’s it for Jamovi today.</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="WS2_ifat.gif" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><strong>Now get ready for the group Portfolio of Evidence activity (20mins). Unlike last week, this one counts for marks:</strong></p>
+<ul>
+<li><p>Put all phones, laptops, electronic devices away</p></li>
+<li><p>Turn off the lab computers</p></li>
+<li><p>You can have a calculator, ruler, pen</p></li>
+<li><p>You can write/draw on the exam sheet</p></li>
+<li><p>Please include all names and s numbers for all group members</p></li>
+<li><p>1 mark for first correct scratch, 1/2 mark for second, 1/4 for third, 0 for forth and fifth</p></li>
+<li><p>Work together as a team :)</p></li>
+</ul>
+<hr>
+</section>
+<section id="getting-help" class="level2">
+<h2 class="anchored" data-anchor-id="getting-help">Getting help</h2>
+<p>During the session I’ll circulate to help, don’t be afraid to ask. After the workshop, revisit this page, check your module notes for interpretation help, or post in the Microsoft Teams channel, email me, or <a href="https://lms.griffith.edu.au/courses/32192#cc-collection-4"><strong>book an office hours meeting</strong></a>.</p>
+<hr>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>[1] The jamovi project (2024). <em>jamovi.</em> (Version 2.6) [Computer Software]. Retrieved from <a href="https://www.jamovi.org" class="uri">https://www.jamovi.org</a>.</p>
+<p>[2] R Core Team (2024). <em>R: A Language and environment for statistical computing.</em> (Version 4.4) [Computer software]. Retrieved from <a href="https://cran.r-project.org" class="uri">https://cran.r-project.org</a>.</p>
+<hr>
+<p><em>Document prepared by Aaron Bach using Quarto.</em></p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
