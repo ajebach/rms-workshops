@@ -909,8 +909,8 @@ Worked answer — the prediction
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><span class="math display">\[\hat{y} = 83.73 - 0.57 \times 60 = 83.73 - 34.5 = 49.2 \text{ mL/kg/min}\]</span></p>
-<p>A resting HR of 60 bpm predicts a VO₂max of about <strong>49 mL/kg/min</strong>. (Small print: if you rounded the slope to −0.57 you’d get ≈ 49.5, using Jamovi’s fuller −0.57 gives 49.2, that’s rounding, not an error.) Two health warnings on every prediction:</p>
+<p><span class="math display">\[\hat{y} = 83.727 - 0.575 \times 60 = 83.73 - 34.50 = 49.23 \text{ mL/kg/min}\]</span></p>
+<p>A resting HR of 60 bpm predicts a VO₂max of about <strong>49 mL/kg/min</strong>. (Small print: if you rounded the slope to −0.58 you’d get ≈ 49.93, that’s from rounding, not an error.) Two health warnings on every prediction:</p>
 <ul>
 <li>It’s the <em>average</em> expectation for people with that resting HR; real individuals scatter around it (that scatter <em>is</em> the residuals, and with R² = 0.31 there’s plenty of it).</li>
 <li>Keep predictions <strong>inside the range of your data</strong> (here roughly 46–81 bpm). Plugging in HR = 20 or HR = 200 would be <strong>extrapolation</strong>: the line keeps going mathematically, but you have no evidence the relationship stays linear out there.</li>
