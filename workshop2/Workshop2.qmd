@@ -721,12 +721,11 @@ $$\widehat{VO_2max} = 83.73 + (-0.57 \times \text{Resting HR})$$
 ::: {#t4a2-worked .callout-note .ws-locked collapse="true"}
 ## Worked answer --- the prediction
 
-$$\hat{y} = 83.73 - 0.57 \times 60 = 83.73 - 34.5 = 49.2 \text{ mL/kg/min}$$
+$$\hat{y} = 83.727 - 0.575 \times 60 = 83.73 - 34.50 = 49.23 \text{ mL/kg/min}$$
 
 A resting HR of 60 bpm predicts a VO₂max of about **49 mL/kg/min**.
-(Small print: if you rounded the slope to −0.57 you'd get ≈ 49.5, using
-Jamovi's fuller −0.57 gives 49.2, that's rounding, not an error.) Two
-health warnings on every prediction:
+(Small print: if you rounded the slope to −0.58 you’d get ≈ 49.93, 
+that’s from rounding, not an error.) Two health warnings on every prediction:
 
 -   It's the *average* expectation for people with that resting HR; real
     individuals scatter around it (that scatter *is* the residuals, and
