@@ -185,27 +185,22 @@ variation alone would produce, and the CI gives the range of population
 means (or mean differences) consistent with the data. Which one you use
 is decided entirely by your **design**:
 
-+------------------------------+----------------+----------------+
-| Question                     | Test           | What it        |
-|                              |                | compares       |
-+==============================+================+================+
-| *Does this group differ from | **One-sample** | One sample     |
-| a known/recommended value?*  |                | mean vs. a     |
-|                              |                | fixed          |
-|                              |                | hypothesised   |
-|                              |                | value μ₀ (e.g. |
-|                              |                | 7 h)           |
-+------------------------------+----------------+----------------+
-| *Do two separate groups      | **Independent  | Mean of group  |
-| differ?*                     | samples**      | A vs. mean of  |
-|                              |                | group B (bet   |
-|                              |                | ween-subjects) |
-+------------------------------+----------------+----------------+
-| *Did the same people change  | **Paired       | Mean of the    |
-| between two                  | samples**      | *within-person |
-| conditions/times?*           |                | differences*   |
-|                              |                | vs. 0          |
-+------------------------------+----------------+----------------+
++----------------------+----------------------+----------------------+
+| Question             | Test                 | What it compares     |
++======================+======================+======================+
+| *Does this group     | **One-sample**       | One sample mean vs.  |
+| differ from a        |                      | a fixed hypothesised |
+| known/recommended    |                      | value μ₀ (e.g. 7 h)  |
+| value?*              |                      |                      |
++----------------------+----------------------+----------------------+
+| *Do two separate     | **Independent        | Mean of group A vs.  |
+| groups differ?*      | samples**            | mean of group B (bet |
+|                      |                      | ween-subjects)       |
++----------------------+----------------------+----------------------+
+| *Did the same people | **Paired samples**   | Mean of the          |
+| change between two   |                      | *within-person       |
+| conditions/times?*   |                      | differences* vs. 0   |
++----------------------+----------------------+----------------------+
 
 ![The three t-tests from three research
 designs.](t-tests.jpg){width="100%" fig-align="center"}
@@ -237,18 +232,19 @@ questions:
 2.  **Are the two sets of scores from the *same* people (or matched
     pairs)?** Yes → *paired*. No → *independent*.
 
-+-----------------------------------------------+----------------+
-| Design cue in the scenario                    | Test           |
-+===============================================+================+
-| "compared to the recommended...", "differ     | One-sample     |
-| from the norm"                                |                |
-+-----------------------------------------------+----------------+
-| "two groups", "smokers vs non-smokers",       | Independent    |
-| "between"                                     | samples        |
-+-----------------------------------------------+----------------+
-| "before and after", "each participant did     | Paired samples |
-| both", "matched pairs", "cross-over"          |                |
-+-----------------------------------------------+----------------+
++-----------------------------------+-----------------------------------+
+| Design cue in the scenario        | Test                              |
++===================================+===================================+
+| "compared to the recommended...", | One-sample                        |
+| "differ from the norm"            |                                   |
++-----------------------------------+-----------------------------------+
+| "two groups", "smokers vs         | Independent samples               |
+| non-smokers", "between"           |                                   |
++-----------------------------------+-----------------------------------+
+| "before and after", "each         | Paired samples                    |
+| participant did both", "matched   |                                   |
+| pairs", "cross-over"              |                                   |
++-----------------------------------+-----------------------------------+
 
 Quick-fire practice (three scenarios, no data needed):
 
@@ -287,33 +283,42 @@ Quick-fire practice (three scenarios, no data needed):
 Every significance test follows the same recipe from Lecture 12. Jamovi
 does the arithmetic for steps 3 and 4; steps 1, 2 and 5 are **yours**.
 
-+----------------+--------------------------------+----------------+
-| Step           | What you do                    | Where it       |
-|                |                                | happens today  |
-+================+================================+================+
-| 1\. A          | Continuous outcome,            | Exploration ▸  |
-| ssumptions\*\* | independent observations       | Descriptives   |
-|                | (design), approximately normal |                |
-+----------------+--------------------------------+----------------+
-| 2\.            | H₀: no difference (μ = 7, μ₁ = | Written        |
-| **Hypotheses** | μ₂, or μ_d = 0).               | *before* you   |
-|                |                                | analyse        |
-|                | Hₐ: a difference (≠,           |                |
-|                | two-tailed)                    |                |
-+----------------+--------------------------------+----------------+
-| 3\. **Test     | t = (observed difference) ÷    | Jamovi output, |
-| statistic**    | (standard error of that        | `Statistic`    |
-|                | difference)                    |                |
-+----------------+--------------------------------+----------------+
-| 4\.            | Probability of a t at least    | Jamovi output, |
-| **p-value**    | this extreme *if H₀ were       | `p`            |
-|                | true*, using the               |                |
-|                | t-distribution with df         |                |
-+----------------+--------------------------------+----------------+
-| 5\.            | Reject / fail to reject H₀,    | Your write-up  |
-| **Conclusion** | then interpret with CI, effect |                |
-|                | size and real-world context    |                |
-+----------------+--------------------------------+----------------+
++---------------------+---------------------+---------------------+
+| Step                | What you do         | Where it happens    |
+|                     |                     | today               |
++=====================+=====================+=====================+
+| 1\. A               | Continuous outcome, | Exploration ▸       |
+| ssumptions\*\*      | independent         | Descriptives        |
+|                     | observations        |                     |
+|                     | (design),           |                     |
+|                     | approximately       |                     |
+|                     | normal              |                     |
++---------------------+---------------------+---------------------+
+| 2\. **Hypotheses**  | H₀: no difference   | Written *before*    |
+|                     | (μ = 7, μ₁ = μ₂, or | you analyse         |
+|                     | μ_d = 0).           |                     |
+|                     |                     |                     |
+|                     | Hₐ: a difference    |                     |
+|                     | (≠, two-tailed)     |                     |
++---------------------+---------------------+---------------------+
+| 3\. **Test          | t = (observed       | Jamovi output,      |
+| statistic**         | difference) ÷       | `Statistic`         |
+|                     | (standard error of  |                     |
+|                     | that difference)    |                     |
++---------------------+---------------------+---------------------+
+| 4\. **p-value**     | Probability of a t  | Jamovi output, `p`  |
+|                     | at least this       |                     |
+|                     | extreme *if H₀ were |                     |
+|                     | true*, using the    |                     |
+|                     | t-distribution with |                     |
+|                     | df                  |                     |
++---------------------+---------------------+---------------------+
+| 5\. **Conclusion**  | Reject / fail to    | Your write-up       |
+|                     | reject H₀, then     |                     |
+|                     | interpret with CI,  |                     |
+|                     | effect size and     |                     |
+|                     | real-world context  |                     |
++---------------------+---------------------+---------------------+
 
 ::: {.callout-tip appearance="simple"}
 **Two-tailed by default.** All three research questions today ask
@@ -332,26 +337,23 @@ T-tests are **parametric**, they assume the sampling distribution of the
 mean is normal. In practice we check the *data* (or the *differences*,
 for a paired test) three ways and read them together:
 
-+---------------+----------------------------+---------------+
-| Check         | What to look for           | Jamovi        |
-+===============+============================+===============+
-| **Sh          | p \> 0.05 → no evidence    | Descriptives  |
-| apiro--Wilk** | **against** normality      | ▸ Statistics  |
-|               |                            | ▸ Normality,  |
-|               |                            | or T-Tests ▸  |
-|               |                            | Assumption    |
-|               |                            | Checks        |
-+---------------+----------------------------+---------------+
-| **Histog      | Roughly bell-shaped, no    | Descriptives  |
-| ram/density** | severe skew                | ▸ Plots       |
-+---------------+----------------------------+---------------+
-| **Q-Q plot**  | Dots hug the diagonal;     | Descriptives  |
-|               | wobble at the very ends is | ▸ Plots ▸     |
-|               | normal, an S-bend is not   | Q-Q, or       |
-|               |                            | T-Tests ▸     |
-|               |                            | Assumption    |
-|               |                            | Checks        |
-+---------------+----------------------------+---------------+
++-----------------------+-----------------------+-----------------------+
+| Check                 | What to look for      | Jamovi                |
++=======================+=======================+=======================+
+| **Sh apiro--Wilk**    | p \> 0.05 → no        | Descriptives ▸        |
+|                       | evidence **against**  | Statistics ▸          |
+|                       | normality             | Normality, or T-Tests |
+|                       |                       | ▸ Assumption Checks   |
++-----------------------+-----------------------+-----------------------+
+| **Histog              | Roughly bell-shaped,  | Descriptives ▸ Plots  |
+| ram/density**         | no severe skew        |                       |
++-----------------------+-----------------------+-----------------------+
+| **Q-Q plot**          | Dots hug the          | Descriptives ▸ Plots  |
+|                       | diagonal; wobble at   | ▸ Q-Q, or T-Tests ▸   |
+|                       | the very ends is      | Assumption Checks     |
+|                       | normal, an S-bend is  |                       |
+|                       | not                   |                       |
++-----------------------+-----------------------+-----------------------+
 
 Plus two you check from the **design**, not a plot... the outcome is
 **continuous**, and observations are **independent** (one row = one
@@ -383,39 +385,46 @@ all the adjustments you can make to data when it is non-normal.
 Jamovi's t-test table has more columns than we've used before. Here's
 what each one is, in the order they appear:
 
-+----------------+-------------------------------------------------+
-| Column         | Plain-English meaning                           |
-+================+=================================================+
-| **Statistic    | The observed difference divided by its standard |
-| (t)**          | error, i.e. *how many SEs away from H₀ are we?* |
-|                | Bigger (either sign) = stronger evidence        |
-+----------------+-------------------------------------------------+
-| **df**         | Degrees of freedom. One-sample and paired: n    |
-|                | − 1. Independent: n₁ + n₂ − 2. Sets the exact   |
-|                | shape of the t-distribution                     |
-+----------------+-------------------------------------------------+
-| **p**          | If H₀ were true, how often would sampling alone |
-|                | give a t at least this extreme? Below 0.05 →    |
-|                | *statistically significant*                     |
-+----------------+-------------------------------------------------+
-| **Mean         | The raw effect in the units you measured        |
-| difference**   | (hours, points, mm). For one-sample: mean −     |
-|                | hypothesised value (μ₀)                         |
-+----------------+-------------------------------------------------+
-| **SE           | The precision of that difference (how much it   |
-| difference**   | would wobble in a repeat study). Note **t =     |
-|                | Mean difference ÷ SE**                          |
-+----------------+-------------------------------------------------+
-| **95% CI       | The range of plausible values for the           |
-| (Lower,        | *population* difference. For one-sample Jamovi  |
-| Upper)**       | shows the CI of the **difference** in the       |
-|                | t-test table and the CI of the **mean** in      |
-|                | Descriptives                                    |
-+----------------+-------------------------------------------------+
-| **Effect size  | The difference in **SD units**, so results can  |
-| (Cohen's d)**  | be compared across studies with different       |
-|                | scales                                          |
-+----------------+-------------------------------------------------+
++-----------------------------------+-----------------------------------+
+| Column                            | Plain-English meaning             |
++===================================+===================================+
+| **Statistic (t)**                 | The observed difference divided   |
+|                                   | by its standard error, i.e. *how  |
+|                                   | many SEs away from H₀ are we?*    |
+|                                   | Bigger (either sign) = stronger   |
+|                                   | evidence                          |
++-----------------------------------+-----------------------------------+
+| **df**                            | Degrees of freedom. One-sample    |
+|                                   | and paired: n − 1. Independent:   |
+|                                   | n₁ + n₂ − 2. Sets the exact shape |
+|                                   | of the t-distribution             |
++-----------------------------------+-----------------------------------+
+| **p**                             | If H₀ were true, how often would  |
+|                                   | sampling alone give a t at least  |
+|                                   | this extreme? Below 0.05 →        |
+|                                   | *statistically significant*       |
++-----------------------------------+-----------------------------------+
+| **Mean difference**               | The raw effect in the units you   |
+|                                   | measured (hours, points, mm). For |
+|                                   | one-sample: mean − hypothesised   |
+|                                   | value (μ₀)                        |
++-----------------------------------+-----------------------------------+
+| **SE difference**                 | The precision of that difference  |
+|                                   | (how much it would wobble in a    |
+|                                   | repeat study). Note **t = Mean    |
+|                                   | difference ÷ SE**                 |
++-----------------------------------+-----------------------------------+
+| **95% CI (Lower, Upper)**         | The range of plausible values for |
+|                                   | the *population* difference. For  |
+|                                   | one-sample Jamovi shows the CI of |
+|                                   | the **difference** in the t-test  |
+|                                   | table and the CI of the **mean**  |
+|                                   | in Descriptives                   |
++-----------------------------------+-----------------------------------+
+| **Effect size (Cohen's d)**       | The difference in **SD units**,   |
+|                                   | so results can be compared across |
+|                                   | studies with different scales     |
++-----------------------------------+-----------------------------------+
 
 ::: {.callout-warning appearance="simple"}
 **Two easy-to-confuse terms.** The **test statistic** is *t*, the number
@@ -478,15 +487,11 @@ compared directly, which is what makes **meta-analysis** possible, by
 pooling and comparing results across studies even when they measured the
 outcome on different scales or in different units.
 
-+-----------+-----------+
-| d         | Label     |
-+===========+===========+
-| ≈ 0.2     | Small     |
-+-----------+-----------+
-| ≈ 0.5     | Medium    |
-+-----------+-----------+
-| ≥ 0.8     | Large     |
-+-----------+-----------+
+| d     | Label  |
+|-------|--------|
+| ≈ 0.2 | Small  |
+| ≈ 0.5 | Medium |
+| ≥ 0.8 | Large  |
 
 **What d actually describes.** Picture the histogram (with its density
 curve) of each group's scores, as Jamovi draws them, side by side on the
@@ -504,10 +509,10 @@ Two rules for today. **1)** If p \> 0.05, interpret d with great caution
 no difference for d to describe the size of. **2)** Effect size ≠
 clinical meaningfulness. Whether a difference *matters* needs domain
 knowledge or is already a standard value e.g., what patients can notice,
-what guidelines say, a cost threshold. A "small" d can matter (e.g., 20
+what guidelines say, a cost threshold. A "small" d can matter (e.g., 25
 min less sleep every night) and a "significant" difference can be
 irrelevant (e.g., a 1.4-point change on a scale where people only begin
-to notice if it is \>4).
+to notice a change of about 5).
 ::::::::
 
 ------------------------------------------------------------------------
@@ -677,7 +682,9 @@ document.addEventListener('click', function(e){
 **Scenario.** The Sleep Health Foundation recommends adults get at least
 **7 hours** of sleep a night. You've collected sleep data from 57
 university students during exam period. Are they meeting the
-recommendation?
+recommendation? For judging whether any shortfall *matters*: sleep
+research links even 20--30 minutes less sleep a night, sustained over
+weeks, to measurably poorer concentration, mood and wellbeing.
 
 - **H₀:** μ = 7.0 h (students get the recommended amount of sleep)
 - **Hₐ:** μ ≠ 7.0 h (two-tailed)
@@ -837,7 +844,10 @@ small p-values but it doesn't mean anything clinically.
 **Scenario.** Many students lean on caffeine during the trimester. Does
 regular coffee drinking go with different stress levels? You have
 perceived-stress scores (visual analogue scale, 0--10) from 33 regular
-coffee drinkers and 33 non-drinkers.
+coffee drinkers and 33 non-drinkers. For context, on this scale a change
+of about **1 point** is roughly the smallest difference students report
+noticing in how stressed they feel; smaller gaps are unlikely to matter
+day to day.
 
 - **H₀:** μ~Coffee~ = μ~NonCoffee~ (no difference in mean stress)
 - **Hₐ:** μ~Coffee~ ≠ μ~NonCoffee~ (two-tailed)
@@ -992,7 +1002,10 @@ are so valuable when they're feasible.
 **Scenario.** Does background music help you study? 22 students
 completed a focus task under two conditions, **silence** and **music**,
 in counterbalanced order. Each person contributes both scores (out of
-100), so the two columns are *paired*.
+100), so the two columns are *paired*. The focus scale was designed so
+that a change of about **5 points** is the smallest difference students
+can actually notice in their concentration; keep that benchmark in mind
+when you judge whether any difference you find is meaningful.
 
 - **H₀:** μ~d~ = 0 (no difference in focus between conditions)
 - **Hₐ:** μ~d~ ≠ 0 (two-tailed)
@@ -1087,7 +1100,7 @@ approximately normal (SW p = 0.873, clean histogram and Q-Q) therfore
 
 ```{=html}
 <div class="ws-quiz" data-answer="notmeaningful" data-okmsg="Significant, but not big enough to matter on this scale.">
-  <p class="ws-qtext"><strong>Clinical meaningfulness.</strong> Suppose the focus scale was validated so that a change of about <strong>5 points</strong> is the smallest difference students can actually notice in their concentration. How should the 1.43-point effect be judged?</p>
+  <p class="ws-qtext"><strong>Clinical meaningfulness.</strong> The scenario told you the focus scale was designed so that about <strong>5 points</strong> is the smallest change students can actually notice. How should the 1.43-point effect be judged?</p>
   <label class="ws-opt"><input type="radio" name="t3clin" value="meaningful">Statistically significant and clinically meaningful; students should stop listening to music</label>
   <label class="ws-opt"><input type="radio" name="t3clin" value="notmeaningful">Statistically significant but not clinically meaningful; too small to warrant changing study habits</label>
   <label class="ws-opt"><input type="radio" name="t3clin" value="nothing">Not significant, so there's nothing to interpret</label>
@@ -1441,7 +1454,8 @@ predicted), which is exactly the sleep-vs-7-hours logic from Task 1.
     not show coffee has *no* effect; it found no evidence of one.
 2.  **Significant ≠ big.** p only says the difference is unlikely to be
     chance; the mean difference and d say how large it is. Report both
-    (Task 4a showed 6 minutes
+    (Task 4a showed a 6-minute sleep shortfall becoming "significant"
+    once n reached about 480).
 3.  **Overlapping group CIs ≠ non-significant.** Non-overlapping
     **group** CIs guarantee significance; overlapping **group** CIs tell
     you nothing either way. Only the CI for the **mean difference**
