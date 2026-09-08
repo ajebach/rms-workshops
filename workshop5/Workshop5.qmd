@@ -39,7 +39,7 @@ editor:
 -->
 <style>
 /* ---------- interactive tools (CI lab + effect-size viewer) ---------- */
-.tt-lab, .tt-dviz{
+.tt-lab, .tt-dviz, .tt-sampler{
   --ink:#16232E; --muted:#5C6B76; --line:#DFE6E9; --panel:#FFFFFF;
   --teal:#0E7C7B; --teal-d:#0A5F5E; --teal-l:#4FA3A0; --amber:#C77D0A; --red:#B5352A;
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -80,6 +80,11 @@ editor:
 .tt-legend{ display:flex; flex-wrap:wrap; gap:14px; margin:2px 0 6px; font-size:11.5px; color:var(--muted);}
 .tt-legend span{ display:inline-flex; align-items:center; gap:6px;}
 .tt-legend i{ width:11px; height:11px; border-radius:3px; display:inline-block;}
+.tt-sampler canvas{ width:100%; height:auto; display:block; border-radius:12px; background:#fff; border:1px solid var(--line);}
+.tt-actions{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 12px;}
+.tt-actions button{ font-family:inherit; font-size:13px; font-weight:700; border-radius:10px; padding:8px 14px; border:1px solid var(--teal); background:var(--teal); color:#fff; cursor:pointer;}
+.tt-actions button.ghost{ background:#fff; color:var(--teal-d);}
+.tt-actions button:disabled{ opacity:.5; cursor:default;}
 
 /* ---------- formative checks (same as Workshops 2 & 4) ---------- */
 .ws-quiz{border:1px solid #d9d9d9;border-left:4px solid #0E7C7B;border-radius:8px;
@@ -507,14 +512,14 @@ to notice if it is \>4).
 
 ![](spicy_data.gif){fig-align="center" width="410"}
 
-Three small datasets, one for each type of t-test. Save them somewhere
+Three datasets, one for each type of t-test. Save them somewhere
 easy to find, then open each in Jamovi when its task comes up.
 
--   Task 1: [**student_sleep.omv**](LMS-LINK-HERE) --- 57 students,
+-   Task 1: [**student_sleep.csv**](https://lms.griffith.edu.au/courses/32192/files/10008969?wrap=1) --- 57 students,
     `Sleep (h)`
--   Task 2: [**coffee_stress.omv**](LMS-LINK-HERE) --- 66 students,
+-   Task 2: [**coffee_stress.csv**](https://lms.griffith.edu.au/courses/32192/files/10008970?wrap=1) --- 66 students,
     `Group` (Coffee / NonCoffee) and `VAS Stress 0-10 Score (mm)`
--   Task 3: [**music_focus.omv**](LMS-LINK-HERE) --- 22 students,
+-   Task 3: [**music_focus.csv**](https://lms.griffith.edu.au/courses/32192/files/10008972?wrap=1) --- 22 students,
     `Silence` and `Music` focus scores (out of 100)
 
 ::: {.callout-important appearance="simple"}
@@ -537,7 +542,7 @@ Jamovi guesses, and it often guesses wrong.
 ## Tasks for you to do
 
 Work through these in Jamovi in order and **check your answers as you
-go**. Each task has small answer boxes: type (or select) what you found
+go**. Each task has small answer boxes, type (or select) what you found
 and press **✓ Check**. As usual, you get instant feedback, and a hint
 appears if you're stuck after a couple of tries. The full **worked
 answer** for each task stays locked until you answer correctly (a
@@ -844,7 +849,7 @@ T-Test**:
 ::: {.callout-note appearance="simple"}
 **The extra assumption for two groups.** Student's t assumes the two
 groups have roughly **equal variances** (it pools them). Levene's test
-checks this: p \> 0.05 then it's fine, you can use Student's. If
+checks this... p \> 0.05 then it's fine, you can use Student's. If
 Levene's p \< 0.05, tick **Welch's** under *Tests* and report that row
 instead; Welch's doesn't assume equal variances and adjusts the df
 (usually to a non-integer). Here the SDs look a little different (1.52
@@ -1115,12 +1120,77 @@ prefer paired designs when we can get them.
 
 ### Task 4 --- Visualisation, confidence intervals & effect sizes (if we have time in class)
 
-Two interactive tools, then three short questions. No Jamovi needed.
+Three interactive tools, then a few short questions. No Jamovi needed.
 
-**a) The CI lab.** This is the sleep study from Task 1 as a live
+**a) Where the sampling distribution comes from.** Every CI and every
+t-test on this page rests on one idea from Lecture 11: if you took many
+samples from the same population, the sample *means* would themselves
+form a distribution, the **sampling distribution of the mean**. You can
+never see it in real research (you get one sample), so here it is
+simulated. Pick a population shape, choose a sample size, and press
+**Draw 1 sample**: the dots that fall are individual people's scores;
+they settle into a sample, their mean is calculated, and that mean drops
+into the bottom panel. Do it a few times, then let the tool draw
+hundreds.
+
+```{=html}
+<div class="tt-sampler"></div>
+```
+Three things to notice, in this order:
+
+1.  The **sample means pile up around the population mean μ**, and they
+    are far less spread out than the individual scores above them.
+    Their spread is the **standard error of the mean**, and the tool
+    shows it matches σ ÷ √n.
+2.  **Increase n** and draw again, the pile gets narrower. That is the
+    whole reason larger samples give narrower CIs and smaller p-values.
+3.  Switch to the **right-skewed** or **bimodal** population and draw a
+    few hundred samples with n = 30. The population is nothing like a
+    bell curve, yet the sampling distribution of the mean is. That is
+    the **Central Limit Theorem**, and it is why the t-test only needs
+    *approximate* normality once samples are moderately large.
+
+::: {.callout-important appearance="simple"}
+**This is where the z, t and F tables come from, and where hypothesis
+tests come from.** You have just built a sampling distribution by brute
+force. Statisticians worked out the *exact* shape of these
+distributions mathematically, for every sample size, and that is what
+the tables in the lecture (and Jamovi's p-values) contain: the
+sampling distribution you would get **if H₀ were true**. The t-table
+has a row for every df because, once σ has to be estimated from the
+sample, the shape depends on n, which is why small samples need a bigger
+t to reach significance.
+
+A hypothesis test is then a simple question: *is my sample mean (or
+mean difference) a plausible draw from the sampling distribution that
+H₀ predicts?* If it sits in the middle, H₀ survives. If it sits out in
+the tail, beyond the critical value, we conclude our sample did **not**
+come from a population with that mean. For a pre/post weight-loss
+study, rejecting H₀ says the post-programme weights behave as if they
+were drawn from a population with a *different* mean to the
+pre-programme weights, i.e. the programme moved the population mean,
+not just this sample.
+:::
+
+```{=html}
+<div class="ws-quiz" data-answer="narrow" data-okmsg="SEM = σ ÷ √n, so quadrupling n halves the spread of the sample means.">
+  <p class="ws-qtext">Keep the population the same and change only the sample size from n = 10 to n = 40. After a few hundred draws, what happens to the sampling distribution of the mean?</p>
+  <label class="ws-opt"><input type="radio" name="t4samp" value="narrow">It stays centred on μ but its spread roughly halves</label>
+  <label class="ws-opt"><input type="radio" name="t4samp" value="same">Nothing changes: the population is the same, so the sampling distribution is the same</label>
+  <label class="ws-opt"><input type="radio" name="t4samp" value="shift">It shifts to a different centre and gets wider</label>
+  <button class="ws-check" type="button">✓ Check</button>
+  <span class="ws-fb"></span>
+  <div class="ws-hint"><strong>Hint:</strong> compare the "SD of the sample means" readout at the two sample sizes, and compare both with σ ÷ √n. √40 is twice √10.</div>
+</div>
+```
+
+**b) The CI lab.** This is the sleep study from Task 1 as a live
 calculation. Everything in the t-test table comes from just four
-numbers: n, the mean, the SD and the hypothesised value μ₀. Drag them
-and watch the CI, t and p move **together**.
+numbers: n, the mean, the SD and the hypothesised value μ₀. The SEM in
+the first card is the spread of the sampling distribution you just
+watched form; the CI is simply the middle 95% of it, centred on the
+sample mean. Drag the inputs and watch the CI, t and p move
+**together**.
 
 ```{=html}
 <div class="tt-lab" data-n="57" data-mean="6.584" data-sd="1.101" data-mu="7" data-conf="95"></div>
@@ -1186,7 +1256,7 @@ very different stories, which is why the four interpretation questions
 are asked together and never separately.
 :::
 
-**b) What does Cohen's d look like?** Effect sizes are new this week, so
+**c) What does Cohen's d look like?** Effect sizes are new this week, so
 here is the picture behind the number. **Each dot is one person's raw
 score** (e.g., a stress rating, hours of sleep, a focus score) and each
 bell curve is just the smoothed outline of one group's dots, exactly
@@ -1214,14 +1284,6 @@ means do, which is why two groups can overlap heavily here (small d) and
 still have a mean difference whose CI clearly excludes 0.
 :::
 
-::: {.callout-note appearance="simple"}
-This visual is modelled on Kristoffer Magnusson's [*Interpreting Cohen's
-d*](https://rpsychologist.com/cohend/), which is worth ten minutes of
-your time: it also lets you change the SD and see the raw
-(unstandardised) difference alongside d, and explains why the overlap
-figure is counted in people rather than area.
-:::
-
 ```{=html}
 <div class="tt-dviz" data-d="0.45"></div>
 ```
@@ -1229,7 +1291,7 @@ figure is counted in people rather than area.
 <div class="ws-quiz" data-answer="small" data-okmsg="A d of 0.15 leaves the two groups almost completely overlapping.">
   <p class="ws-qtext"><strong>Study question.</strong> A researcher finds that students who use social media &gt; 3 h/day have significantly lower GPAs (p = 0.03) but d = 0.15. Press the <em>Social media</em> preset button (d = 0.15) and look at the overlap, then choose the best interpretation:</p>
   <label class="ws-opt"><input type="radio" name="t4d" value="strong">p = 0.03 shows a strong effect of social media on GPA</label>
-  <label class="ws-opt"><input type="radio" name="t4d" value="small">The difference is unlikely to be chance, but it's very small: heavy and light users' GPAs overlap almost entirely</label>
+  <label class="ws-opt"><input type="radio" name="t4d" value="small">The difference is unlikely to be chance, but it's very small because heavy and light users' GPAs overlap almost entirely</label>
   <label class="ws-opt"><input type="radio" name="t4d" value="none">d = 0.15 means there's no real difference, so the p-value must be wrong</label>
   <button class="ws-check" type="button">✓ Check</button>
   <span class="ws-fb"></span>
@@ -1334,8 +1396,8 @@ ONE](https://pubmed.ncbi.nlm.nih.gov/34995334/)
 :::
 
 ::: {.callout-tip appearance="simple"}
-**Why no one-sample example?** They're rare in published research:
-studies almost always have a comparison group, and a trustworthy
+**Why no one-sample example?** They're rare in published research.
+Studies almost always have a comparison group, and a trustworthy
 population reference value is hard to come by. Where one-sample tests do
 appear it is usually to compare a clinical group with a normative or
 age-predicted value (e.g. patients' VO₂peak as a percentage of
@@ -1366,7 +1428,7 @@ predicted), which is exactly the sleep-vs-7-hours logic from Task 1.
 :::
 
 ::: {.callout-tip appearance="simple"}
-**Looking ahead: multiple comparisons.** Each study today asked *one*
+**Looking ahead we need to consider multiple comparisons.** Each study today asked *one*
 question, so α = 0.05 was fine. If you tested whether music affects
 focus **and** stress **and** memory (three tests on the same data), the
 chance of at least one false positive rises to about 14%. An upcoming
@@ -1696,15 +1758,133 @@ interactive visualization* (Version 2.6.0) \[Web app\]. R Psychologist.
         st("Above the other mean",(u3*100).toFixed(0)+"%","of the amber group score above the teal group\u2019s average (50% if d = 0)")+
         st("Superiority",(ps*100).toFixed(0)+"%","chance a random amber person outscores a random teal person (50% if d = 0)");
       var A=nameA.replace(/\s*\(.*\)$/,""), B=nameB.replace(/\s*\(.*\)$/,"");
-      el.querySelector(".tt-verdict").innerHTML='<b>In plain language, d = '+f2(d)+' means:</b> '+(u3*100).toFixed(0)+'% of <em>'+B+'</em> score above the average of <em>'+A+'</em>; '+(overlap*100).toFixed(0)+'% of all the scores sit in the range where the two groups overlap; and if you picked one person from each group at random, the one from <em>'+B+'</em> would have the higher score '+(ps*100).toFixed(0)+'% of the time (it would be 50% if d = 0). By Cohen\u2019s benchmarks this is a <b>'+label+'</b> effect. Whether it <em>matters</em> is a separate question that needs the scale, the context and the cost of acting on it.';
+            el.querySelector(".tt-verdict").innerHTML='<b>In plain language, d = '+f2(d)+' means:</b> '+(u3*100).toFixed(0)+'% of <em>'+B+'</em> score above the average of <em>'+A+'</em>; '+(overlap*100).toFixed(0)+'% of all the scores sit in the range where the two groups overlap; and if you picked one person from each group at random, the one from <em>'+B+'</em> would have the higher score '+(ps*100).toFixed(0)+'% of the time (it would be 50% if d = 0). By Cohen\u2019s benchmarks this is a <b>'+label+'</b> effect. Whether it <em>matters</em> is a separate question that needs the scale, the context and the cost of acting on it. <span style="display:block;margin-top:6px;font-size:12px;color:#5C6B76">This visual is modelled on Kristoffer Magnusson\u2019s <a href="https://rpsychologist.com/cohend/" target="_blank" rel="noopener">Interpreting Cohen\u2019s d</a>.</span>';
     }
     var def=el.querySelector('.tt-presets button[data-d="'+d0+'"]'); if(def){ def.click(); } else { render(); }
+  }
+
+  /* ---------- Sampling-distribution simulator ---------- */
+  function initSampler(el){
+    var W=720,H=520, pad=36, xmin=0, xmax=100;
+    var POP={
+      normal:{name:"Normal",draw:function(){ var u=1-Math.random(), v=Math.random(); return 50+12*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }},
+      skew:{name:"Right-skewed",draw:function(){ var g=0; for(var i=0;i<2;i++){ g+=-Math.log(1-Math.random()); } return 8+g*14; }},
+      bimodal:{name:"Bimodal",draw:function(){ var u=1-Math.random(), v=Math.random(), z=Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); return (Math.random()<0.5?28:72)+7*z; }},
+      uniform:{name:"Uniform",draw:function(){ return 5+90*Math.random(); }}
+    };
+    function sampleVal(pp){ var x, g=0; do{ x=pp.draw(); g++; }while((x<xmin||x>=xmax)&&g<50); return Math.max(xmin,Math.min(xmax-0.001,x)); }
+    Object.keys(POP).forEach(function(k){ /* population mean, sd and density from a large fixed pre-sample (values outside 0-100 are redrawn) */
+      var pp=POP[k], n=60000, sum=0, sq=0, bins=new Array(60).fill(0);
+      for(var i=0;i<n;i++){ var x=sampleVal(pp); sum+=x; sq+=x*x; bins[Math.floor((x-xmin)/(xmax-xmin)*60)]++; }
+      pp.mu=sum/n; pp.sigma=Math.sqrt(sq/n-pp.mu*pp.mu); pp.dens=bins.map(function(b){ return b/n; });
+    });
+    el.innerHTML='<p class="tt-eyebrow">Sampling distribution simulator \u2014 from people, to a sample, to the mean of many samples</p>'+
+      '<div class="tt-presets tt-pop">'+Object.keys(POP).map(function(k,i){ return '<button data-pop="'+k+'" class="'+(i===0?'on':'')+'">'+POP[k].name+' population</button>'; }).join('')+'</div>'+
+      '<div class="tt-controls"><div class="tt-field" data-key="n"><label>Sample size (n) <span class="tt-val">10</span></label><input type="range" min="2" max="100" step="1" value="10"></div></div>'+
+      '<div class="tt-actions"><button data-act="one">Draw 1 sample</button><button data-act="ten">Draw 10 samples (animated)</button><button data-act="many" class="ghost">Draw 100 samples (fast)</button><button data-act="lots" class="ghost">Draw 1000 (instant)</button><button data-act="reset" class="ghost">Reset</button></div>'+
+      '<canvas width="'+W+'" height="'+H+'"></canvas>'+
+      '<div class="tt-legend"><span><i style="background:#0E7C7B;border-radius:50%"></i>One person\u2019s score</span><span><i style="background:#C77D0A;border-radius:50%"></i>One sample\u2019s mean</span><span><i style="background:#B5352A;height:3px;border-radius:0"></i>Population mean \u03bc</span><span><i style="background:#8A939A;height:3px;border-radius:0"></i>Normal curve with SD = \u03c3 \u00f7 \u221an</span></div>'+
+      '<div class="tt-stats"></div><div class="tt-verdict"></div>';
+    var cv=el.querySelector("canvas"), ctx=cv.getContext("2d");
+    var popKey="normal", n=10, means=[], balls=[], meanBall=null, sample=[], busy=false, lastMean=null, chain=false;
+    var yPopBase=150, ySampBase=290, yHistBase=470;
+    function X(v){ return pad+(v-xmin)/(xmax-xmin)*(W-2*pad); }
+    function pop(){ return POP[popKey]; }
+
+    function drawStatic(){
+      ctx.clearRect(0,0,W,H);
+      ctx.font="12px system-ui, sans-serif"; ctx.textBaseline="alphabetic";
+      /* --- population panel --- */
+      var pp=pop(), maxd=Math.max.apply(null,pp.dens), scale=100/maxd, bw=(W-2*pad)/60;
+      ctx.fillStyle="rgba(14,124,123,.15)"; ctx.strokeStyle="#0E7C7B"; ctx.lineWidth=2; ctx.beginPath();
+      for(var i=0;i<60;i++){ var x=pad+i*bw, y=yPopBase-pp.dens[i]*scale; if(i===0) ctx.moveTo(x,yPopBase); ctx.lineTo(x,y); ctx.lineTo(x+bw,y); }
+      ctx.lineTo(W-pad,yPopBase); ctx.closePath(); ctx.fill(); ctx.stroke();
+      axis(yPopBase); label(pad, 28, "POPULATION \u2014 every individual\u2019s score", "#0A5F5E");
+      ctx.fillStyle="#5C6B76"; ctx.fillText("\u03bc = "+pp.mu.toFixed(1)+"   \u03c3 = "+pp.sigma.toFixed(1), W-pad-150, 28);
+      muLine(yPopBase-108, yPopBase);
+      /* --- sample panel --- */
+      label(pad, yPopBase+30, "ONE SAMPLE \u2014 n = "+n+" people drawn from the population", "#0A5F5E");
+      axis(ySampBase); muLine(ySampBase-60, ySampBase);
+      ctx.fillStyle="#0E7C7B";
+      sample.forEach(function(b){ dot(b.x,b.y,4.5,"#0E7C7B"); });
+      if(lastMean!==null && !meanBall){ tick(X(lastMean), ySampBase, "#C77D0A", "x\u0304 = "+lastMean.toFixed(1)); }
+      /* --- sampling distribution panel --- */
+      label(pad, ySampBase+30, "SAMPLING DISTRIBUTION OF THE MEAN \u2014 one dot per sample ("+means.length+" so far)", "#8A5A08");
+      axis(yHistBase); muLine(yHistBase-160, yHistBase);
+      var nb=100, hb=new Array(nb).fill(0), cw=(W-2*pad)/nb;
+      means.forEach(function(m){ hb[Math.min(nb-1,Math.floor((m-xmin)/(xmax-xmin)*nb))]++; });
+      var hmax=Math.max(1,Math.max.apply(null,hb)), unit=Math.min(7, 150/hmax);
+      for(var j=0;j<nb;j++){ if(!hb[j]) continue; var cx=pad+(j+0.5)*cw; if(unit>=5){ for(var k=0;k<hb[j];k++){ dot(cx, yHistBase-4-k*unit-unit/2, Math.min(3.2,unit/2-0.5), "#C77D0A"); } } else { ctx.fillStyle="rgba(199,125,10,.75)"; ctx.fillRect(cx-cw/2+0.5, yHistBase-hb[j]*unit-2, cw-1, hb[j]*unit); } }
+      /* theoretical normal for the mean */
+      if(means.length>=10){ var se=pp.sigma/Math.sqrt(n), tot=means.length, binw=(xmax-xmin)/nb;
+        ctx.strokeStyle="#8A939A"; ctx.lineWidth=2; ctx.setLineDash([5,4]); ctx.beginPath();
+        for(var t=xmin; t<=xmax; t+=0.5){ var dens=Math.exp(-0.5*Math.pow((t-pp.mu)/se,2))/(se*Math.sqrt(2*Math.PI)); var yy=yHistBase-2-dens*binw*tot*unit; if(t===xmin) ctx.moveTo(X(t),yy); else ctx.lineTo(X(t),yy); }
+        ctx.stroke(); ctx.setLineDash([]); }
+      /* axis numbers */
+      ctx.fillStyle="#5C6B76"; ctx.textAlign="center"; for(var v=0; v<=100; v+=20){ ctx.fillText(v, X(v), yHistBase+16); } ctx.textAlign="left";
+      ctx.fillText("score (0\u2013100)", W-pad-70, yHistBase+32);
+    }
+    function axis(y){ ctx.strokeStyle="#C7D3D6"; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(pad,y+0.5); ctx.lineTo(W-pad,y+0.5); ctx.stroke(); }
+    function label(x,y,t,c){ ctx.fillStyle=c; ctx.font="700 11px system-ui, sans-serif"; ctx.fillText(t,x,y); ctx.font="12px system-ui, sans-serif"; }
+    function muLine(y0,y1){ ctx.strokeStyle="#B5352A"; ctx.lineWidth=1.5; ctx.setLineDash([4,3]); ctx.beginPath(); ctx.moveTo(X(pop().mu),y0); ctx.lineTo(X(pop().mu),y1); ctx.stroke(); ctx.setLineDash([]); }
+    function dot(x,y,r,c){ ctx.fillStyle=c; ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill(); }
+    function tick(x,y,c,t){ ctx.strokeStyle=c; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(x,y-34); ctx.lineTo(x,y+2); ctx.stroke(); ctx.fillStyle=c; ctx.font="700 12px system-ui, sans-serif"; ctx.fillText(t,x+6,y-22); ctx.font="12px system-ui, sans-serif"; }
+
+    function stats(){
+      var pp=pop(), m=means.length, mm=0, sd=0;
+      if(m){ mm=means.reduce(function(a,b){return a+b;},0)/m; if(m>1){ var v=0; means.forEach(function(x){ v+=(x-mm)*(x-mm); }); sd=Math.sqrt(v/(m-1)); } }
+      function st(k,v,sub){ return '<div class="tt-stat"><div class="k" style="text-transform:none">'+k+'</div><div class="v">'+v+'</div><div class="s">'+sub+'</div></div>'; }
+      el.querySelector(".tt-stats").innerHTML=
+        st("POPULATION \u03bc and \u03c3", pp.mu.toFixed(1)+", "+pp.sigma.toFixed(1), "the truth we never see")+
+        st("LAST SAMPLE MEAN", lastMean===null?"\u2014":lastMean.toFixed(1), "n = "+n)+
+        st("SAMPLES DRAWN", m, "dots in the bottom panel")+
+        st("MEAN OF THE MEANS", m?mm.toFixed(1):"\u2014", "should settle on \u03bc = "+pp.mu.toFixed(1))+
+        st("SD OF THE SAMPLE MEANS", m>1?sd.toFixed(2):"\u2014", "observed standard error")+
+        st("PREDICTED: \u03c3 \u00f7 \u221an", (pp.sigma/Math.sqrt(n)).toFixed(2), "predicted standard error");
+      var v=el.querySelector(".tt-verdict");
+      if(m<10){ v.innerHTML="Draw some samples. Watch where the orange dots land compared with the teal population above."; }
+      else { v.innerHTML='<b>'+m+' samples of n = '+n+'.</b> The sample means cluster around \u03bc with a spread of about '+sd.toFixed(2)+' (predicted \u03c3 \u00f7 \u221an = '+(pp.sigma/Math.sqrt(n)).toFixed(2)+'), and the dashed normal curve fits them'+(popKey!=="normal"?' even though the population is '+pp.name.toLowerCase():'')+'. This spread is the SEM that every CI and t-statistic on this page is built from.'; }
+    }
+
+    function drawOneInstant(){ var pp=pop(), sum=0; for(var i=0;i<n;i++){ sum+=sampleVal(pp); } var m=sum/n; means.push(m); lastMean=m; return m; }
+    function animateOne(done, quick){
+      busy=true; setBusy(true); sample=[]; meanBall=null; lastMean=null;
+      var pp=pop(), xs=[]; for(var i=0;i<n;i++){ xs.push(sampleVal(pp)); }
+      var stagger=quick?Math.max(6,260/n):Math.max(12,600/n), fall=quick?260:420, t0=performance.now();
+      var flying=xs.map(function(x,i){ return {x:X(x), y0:yPopBase-6, y1:ySampBase-6-(Math.random()*20), start:t0+i*stagger, val:x}; });
+      function frame(now){
+        drawStatic();
+        var allDone=true;
+        flying.forEach(function(b){ var p=(now-b.start)/fall; if(p<0){ allDone=false; return; } if(p>=1){ if(!b.landed){ b.landed=true; sample.push({x:b.x,y:b.y1}); } return; } allDone=false; var e=p*p; dot(b.x, b.y0+(b.y1-b.y0)*e, 4.5, "#0E7C7B"); });
+        if(!allDone){ requestAnimationFrame(frame); return; }
+        var m=xs.reduce(function(a,b){return a+b;},0)/n; lastMean=m;
+        var mb={x:X(m), y0:ySampBase-20, y1:yHistBase-8, start:performance.now()+(quick?150:350)}, dropMs=quick?400:650;
+        function frame2(now2){ drawStatic(); tick(mb.x, ySampBase, "#C77D0A", "x\u0304 = "+m.toFixed(1)); var p=(now2-mb.start)/dropMs; if(p<0){ requestAnimationFrame(frame2); return; } if(p<1){ dot(mb.x, mb.y0+(mb.y1-mb.y0)*p*p, 6, "#C77D0A"); requestAnimationFrame(frame2); return; } means.push(m); drawStatic(); stats(); if(!chain){ busy=false; setBusy(false); } if(done) done(); }
+        requestAnimationFrame(frame2);
+      }
+      requestAnimationFrame(frame);
+    }
+    function setBusy(b){ el.querySelectorAll(".tt-actions button").forEach(function(x){ x.disabled=b; }); }
+    function drawMany(count, perTick){
+      busy=true; setBusy(true); var left=count;
+      (function step(){ var k=Math.min(perTick,left); for(var i=0;i<k;i++){ drawOneInstant(); } left-=k; sample=[]; drawStatic(); stats(); if(left>0){ setTimeout(step,30); } else { busy=false; setBusy(false); } })();
+    }
+    el.querySelectorAll(".tt-pop button").forEach(function(b){ b.addEventListener("click",function(){ if(busy) return; popKey=b.dataset.pop; el.querySelectorAll(".tt-pop button").forEach(function(x){ x.classList.toggle("on",x===b); }); means=[]; sample=[]; lastMean=null; drawStatic(); stats(); }); });
+    var rg=el.querySelector('input[type=range]'); rg.addEventListener("input",function(){ if(busy){ rg.value=n; return; } n=+rg.value; el.querySelector(".tt-val").textContent=n; means=[]; sample=[]; lastMean=null; drawStatic(); stats(); });
+    el.querySelectorAll(".tt-actions button").forEach(function(b){ b.addEventListener("click",function(){ if(busy) return; var a=b.dataset.act;
+      if(a==="one") animateOne();
+      else if(a==="ten"){ var left=10; chain=true; (function next(){ if(left--<=0){ chain=false; busy=false; setBusy(false); return; } animateOne(function(){ setTimeout(next, 120); }, true); })(); }
+      else if(a==="many") drawMany(100,4);
+      else if(a==="lots") drawMany(1000,1000);
+      else { means=[]; sample=[]; lastMean=null; drawStatic(); stats(); } }); });
+    drawStatic(); stats();
   }
 
   function safe(fn){ return function(el){ try{ fn(el); }catch(e){ el.innerHTML='<p style="color:#B5352A;font-family:system-ui">This tool failed to load: '+e.message+'</p>'; if(window.console)console.error(e);} }; }
   function boot(){
     document.querySelectorAll(".tt-lab").forEach(safe(initLab));
     document.querySelectorAll(".tt-dviz").forEach(safe(initDviz));
+    document.querySelectorAll(".tt-sampler").forEach(safe(initSampler));
   }
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot); else boot();
 })();
