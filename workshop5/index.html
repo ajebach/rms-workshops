@@ -2495,7 +2495,7 @@ font-size:14px;cursor:pointer;}
 <p>T-tests compare <strong>means</strong>. Our sample mean is only an estimate of the <strong>population mean</strong> (the parameter we really want to know), so a t-test asks whether the difference we observed is bigger than sampling variation alone would produce, and the CI gives the range of population means (or mean differences) consistent with the data. Which one you use is decided entirely by your <strong>design</strong>:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 44%">
+<col style="width: 43%">
 <col style="width: 23%">
 <col style="width: 23%">
 </colgroup>
@@ -2556,7 +2556,7 @@ font-size:14px;cursor:pointer;}
 </ol>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 68%">
+<col style="width: 66%">
 <col style="width: 23%">
 </colgroup>
 <thead>
@@ -2614,7 +2614,7 @@ font-size:14px;cursor:pointer;}
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
-<col style="width: 47%">
+<col style="width: 45%">
 <col style="width: 23%">
 </colgroup>
 <thead>
@@ -2669,7 +2669,7 @@ font-size:14px;cursor:pointer;}
 <table class="caption-top table">
 <colgroup>
 <col style="width: 22%">
-<col style="width: 43%">
+<col style="width: 40%">
 <col style="width: 22%">
 </colgroup>
 <thead>
@@ -2715,7 +2715,7 @@ font-size:14px;cursor:pointer;}
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
-<col style="width: 70%">
+<col style="width: 69%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -2991,7 +2991,7 @@ document.addEventListener('click', function(e){
 <li><strong>H₀:</strong> μ = 7.0 h (students get the recommended amount of sleep)</li>
 <li><strong>Hₐ:</strong> μ ≠ 7.0 h (two-tailed)</li>
 </ul>
-<p><strong>a) Explore and check assumptions.</strong> Open <code>student_sleep.omv</code>. Run <strong>Exploration ▸ Descriptives</strong> on <code>Sleep (h)</code>: under <em>Statistics</em> tick <strong>Shapiro–Wilk</strong> and <strong>Confidence interval</strong> (for the mean); under <em>Plots</em> tick <strong>Histogram</strong> (+ Density), <strong>Box plot</strong> and <strong>Q-Q</strong>. Is the distribution roughly bell-shaped? Do any values look like entry errors (a 14-hour night, a negative number)? Outliers on their own aren’t an assumption of the t-test, so a few points beyond the whiskers are not a problem, you’re just doing the usual checks before we run the analysis.</p>
+<p><strong>a) Explore and check assumptions.</strong> Open <code>student_sleep.csv</code> in Jamovi. Run <strong>Exploration ▸ Descriptives</strong> on <code>Sleep (h)</code>: under <em>Statistics</em> tick <strong>Shapiro–Wilk</strong> and <strong>Confidence interval</strong> (for the mean); under <em>Plots</em> tick <strong>Histogram</strong> (+ Density), <strong>Box plot</strong> and <strong>Q-Q</strong>. Is the distribution roughly bell-shaped? Do any values look like entry errors (a 14-hour night, a negative number)? Outliers on their own aren’t an assumption of the t-test, so a few points beyond the whiskers are not a problem, you’re just doing the usual checks before we run the analysis.</p>
 <p><strong>b) Run the test.</strong> <strong>Analyses ▸ T-Tests ▸ One Sample T-Test</strong>:</p>
 <ol type="1">
 <li>Move <code>Sleep (h)</code> into <strong>Dependent Variables</strong></li>
@@ -3156,7 +3156,7 @@ document.addEventListener('click', function(e){
 <li><strong>H₀:</strong> μ<sub>Coffee</sub> = μ<sub>NonCoffee</sub> (no difference in mean stress)</li>
 <li><strong>Hₐ:</strong> μ<sub>Coffee</sub> ≠ μ<sub>NonCoffee</sub> (two-tailed)</li>
 </ul>
-<p><strong>a) Explore and check assumptions, per group.</strong> Open <code>coffee_stress.omv</code>. <strong>Exploration ▸ Descriptives</strong>: put <code>VAS Stress 0-10 Score (mm)</code> in <em>Variables</em> and <code>Group</code> in <strong>Split by</strong>. Tick <strong>Shapiro–Wilk</strong> and <strong>Confidence interval</strong> (for the mean), and under <em>Plots</em> the <strong>Histogram</strong> (+ Density), <strong>Box plot</strong> and <strong>Q-Q</strong>.</p>
+<p><strong>a) Explore and check assumptions, per group.</strong> Open <code>coffee_stress.csv</code> in Jamovi. <strong>Exploration ▸ Descriptives</strong>: put <code>VAS Stress 0-10 Score (mm)</code> in <em>Variables</em> and <code>Group</code> in <strong>Split by</strong>. Tick <strong>Shapiro–Wilk</strong> and <strong>Confidence interval</strong> (for the mean), and under <em>Plots</em> the <strong>Histogram</strong> (+ Density), <strong>Box plot</strong> and <strong>Q-Q</strong>.</p>
 <p><strong>b) Run the test.</strong> <strong>Analyses ▸ T-Tests ▸ Independent Samples T-Test</strong>:</p>
 <ol type="1">
 <li><code>VAS Stress 0-10 Score (mm)</code> → <strong>Dependent Variables</strong>; <code>Group</code> → <strong>Grouping Variable</strong></li>
@@ -3299,7 +3299,7 @@ document.addEventListener('click', function(e){
 <li><strong>H₀:</strong> μ<sub>d</sub> = 0 (no difference in focus between conditions)</li>
 <li><strong>Hₐ:</strong> μ<sub>d</sub> ≠ 0 (two-tailed)</li>
 </ul>
-<p><strong>a) Create the difference score.</strong> Open <code>music_focus.omv</code>. <strong>Data ▸ Compute</strong>, name it <code>Difference</code>, formula: <code>`Silence` - `Music`</code>. A positive difference means the student focused <em>better in silence</em>. This is the variable the paired test actually analyses, so it’s the one whose normality matters.</p>
+<p><strong>a) Create the difference score.</strong> Open <code>music_focus.csv</code> in Jamovi. <strong>Data ▸ Compute</strong>, name it <code>Difference</code>, formula: <code>`Silence` - `Music`</code>. A positive difference means the student focused <em>better in silence</em>. This is the variable the paired test actually analyses, so it’s the one whose normality matters.</p>
 <p><strong>b) Check assumptions.</strong> <strong>Exploration ▸ Descriptives</strong> on <code>Silence</code>, <code>Music</code> <strong>and</strong> <code>Difference</code> with <strong>Shapiro–Wilk</strong>, <strong>Histogram</strong>, <strong>Box plot</strong> and <strong>Q-Q</strong>. You’ll see a couple of boxplot outliers in the raw scores (IDs 5 and 12); don’t remove them, there’s no reason to think they’re errors and t-tests are robust to a few.</p>
 <p><strong>c) Run the test.</strong> <strong>Analyses ▸ T-Tests ▸ Paired Samples T-Test</strong>:</p>
 <ol type="1">
@@ -3518,7 +3518,7 @@ document.addEventListener('click', function(e){
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Same shape, two different jobs.</strong> The bell curves here, and the density curves in Jamovi’s Descriptives, show the spread of <strong>individual people’s scores</strong> (you can see the people inside them). The t-distribution in the CI lab shows how the <strong>test statistic</strong> would vary across repeat samples if H₀ were true, and the CI figure earlier shows how a <strong>mean</strong> varies across samples. Individuals vary far more than means do, which is why two groups can overlap heavily here (small d) and still have a mean difference whose CI clearly excludes 0.</p>
+<p>The bell curves here, and the density curves in Jamovi’s Descriptives, show the spread of <strong>individual people’s scores</strong> (you can see the people inside them). The t-distribution in the CI lab shows how the <strong>test statistic</strong> would vary across repeat samples if H₀ were true, and the CI figure earlier shows how a <strong>mean</strong> varies across samples. Individuals vary far more than means do, which is why two groups can overlap heavily here (small d) and still have a mean difference whose CI clearly excludes 0.</p>
 </div>
 </div>
 </div>

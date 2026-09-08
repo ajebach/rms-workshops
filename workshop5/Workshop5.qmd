@@ -122,6 +122,7 @@ editor:
 .ws-four b{display:block;color:#0A5F5E;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;}
 </style>
 ```
+
 **Introduction**
 
 Hey team! Over the last two weeks of lectures you begun to build the
@@ -147,21 +148,21 @@ chi-square later in the trimester.
   <div><b>Clinical meaning</b>Do the values matter in the real world?</div>
 </div>
 ```
+
 You can come back to this page any time you need a reminder of how to
 run a t-test in Jamovi.
 
 **What you'll do today**
 
--   Choose the right t-test from the research design/data
--   Check the normality assumption with Shapiro--Wilk, histograms and
-    Q-Q plots
--   Run a one-sample, an independent samples and a paired samples t-test
--   Read the output: t, df, p, the 95% CI and Cohen's d (an effect size
-    for a t-test)
--   See why the CI and the p-value always agree, and why overlapping
-    group CIs can still be "significant"
--   Write up one result using the four interpretation questions
-    structure
+- Choose the right t-test from the research design/data
+- Check the normality assumption with Shapiro--Wilk, histograms and Q-Q
+  plots
+- Run a one-sample, an independent samples and a paired samples t-test
+- Read the output: t, df, p, the 95% CI and Cohen's d (an effect size
+  for a t-test)
+- See why the CI and the p-value always agree, and why overlapping group
+  CIs can still be "significant"
+- Write up one result using the four interpretation questions structure
 
 ![](jamovi.gif){fig-align="center"}
 
@@ -184,27 +185,27 @@ variation alone would produce, and the CI gives the range of population
 means (or mean differences) consistent with the data. Which one you use
 is decided entirely by your **design**:
 
-+-------------------------------+----------------+----------------+
-| Question                      | Test           | What it        |
-|                               |                | compares       |
-+===============================+================+================+
-| *Does this group differ from  | **One-sample** | One sample     |
-| a known/recommended value?*   |                | mean vs. a     |
-|                               |                | fixed          |
-|                               |                | hypothesised   |
-|                               |                | value μ₀ (e.g. |
-|                               |                | 7 h)           |
-+-------------------------------+----------------+----------------+
-| *Do two separate groups       | **Independent  | Mean of group  |
-| differ?*                      | samples**      | A vs. mean of  |
-|                               |                | group B (bet   |
-|                               |                | ween-subjects) |
-+-------------------------------+----------------+----------------+
-| *Did the same people change   | **Paired       | Mean of the    |
-| between two                   | samples**      | *within-person |
-| conditions/times?*            |                | differences*   |
-|                               |                | vs. 0          |
-+-------------------------------+----------------+----------------+
++------------------------------+----------------+----------------+
+| Question                     | Test           | What it        |
+|                              |                | compares       |
++==============================+================+================+
+| *Does this group differ from | **One-sample** | One sample     |
+| a known/recommended value?*  |                | mean vs. a     |
+|                              |                | fixed          |
+|                              |                | hypothesised   |
+|                              |                | value μ₀ (e.g. |
+|                              |                | 7 h)           |
++------------------------------+----------------+----------------+
+| *Do two separate groups      | **Independent  | Mean of group  |
+| differ?*                     | samples**      | A vs. mean of  |
+|                              |                | group B (bet   |
+|                              |                | ween-subjects) |
++------------------------------+----------------+----------------+
+| *Did the same people change  | **Paired       | Mean of the    |
+| between two                  | samples**      | *within-person |
+| conditions/times?*           |                | differences*   |
+|                              |                | vs. 0          |
++------------------------------+----------------+----------------+
 
 ![The three t-tests from three research
 designs.](t-tests.jpg){width="100%" fig-align="center"}
@@ -225,7 +226,7 @@ is deliberately more cautious/conservative.
 Work through these tabs before the tasks. They condense Lectures 11--13
 into what you need at the keyboard (and in the exam).
 
-::: panel-tabset
+:::::::: panel-tabset
 ### Which test?
 
 The choice is made by the **design**, not by the data. Ask two
@@ -236,18 +237,18 @@ questions:
 2.  **Are the two sets of scores from the *same* people (or matched
     pairs)?** Yes → *paired*. No → *independent*.
 
-+------------------------------------------------+----------------+
-| Design cue in the scenario                     | Test           |
-+================================================+================+
-| "compared to the recommended...", "differ from | One-sample     |
-| the norm"                                      |                |
-+------------------------------------------------+----------------+
-| "two groups", "smokers vs non-smokers",        | Independent    |
-| "between"                                      | samples        |
-+------------------------------------------------+----------------+
-| "before and after", "each participant did      | Paired samples |
-| both", "matched pairs", "cross-over"           |                |
-+------------------------------------------------+----------------+
++-----------------------------------------------+----------------+
+| Design cue in the scenario                    | Test           |
++===============================================+================+
+| "compared to the recommended...", "differ     | One-sample     |
+| from the norm"                                |                |
++-----------------------------------------------+----------------+
+| "two groups", "smokers vs non-smokers",       | Independent    |
+| "between"                                     | samples        |
++-----------------------------------------------+----------------+
+| "before and after", "each participant did     | Paired samples |
+| both", "matched pairs", "cross-over"          |                |
++-----------------------------------------------+----------------+
 
 Quick-fire practice (three scenarios, no data needed):
 
@@ -280,38 +281,39 @@ Quick-fire practice (three scenarios, no data needed):
   <div class="ws-hint"><strong>Hint:</strong> a gamer's score isn't linked to any particular non-gamer's score. They are unrelated groups.</div>
 </div>
 ```
+
 ### The five steps
 
 Every significance test follows the same recipe from Lecture 12. Jamovi
 does the arithmetic for steps 3 and 4; steps 1, 2 and 5 are **yours**.
 
-+----------------+---------------------------------+----------------+
-| Step           | What you do                     | Where it       |
-|                |                                 | happens today  |
-+================+=================================+================+
-| 1\. A          | Continuous outcome, independent | Exploration ▸  |
-| ssumptions\*\* | observations (design),          | Descriptives   |
-|                | approximately normal            |                |
-+----------------+---------------------------------+----------------+
-| 2\.            | H₀: no difference (μ = 7, μ₁ =  | Written        |
-| **Hypotheses** | μ₂, or μ_d = 0).                | *before* you   |
-|                |                                 | analyse        |
-|                | Hₐ: a difference (≠,            |                |
-|                | two-tailed)                     |                |
-+----------------+---------------------------------+----------------+
-| 3\. **Test     | t = (observed difference) ÷     | Jamovi output, |
-| statistic**    | (standard error of that         | `Statistic`    |
-|                | difference)                     |                |
-+----------------+---------------------------------+----------------+
-| 4\.            | Probability of a t at least     | Jamovi output, |
-| **p-value**    | this extreme *if H₀ were true*, | `p`            |
-|                | using the t-distribution with   |                |
-|                | df                              |                |
-+----------------+---------------------------------+----------------+
-| 5\.            | Reject / fail to reject H₀,     | Your write-up  |
-| **Conclusion** | then interpret with CI, effect  |                |
-|                | size and real-world context     |                |
-+----------------+---------------------------------+----------------+
++----------------+--------------------------------+----------------+
+| Step           | What you do                    | Where it       |
+|                |                                | happens today  |
++================+================================+================+
+| 1\. A          | Continuous outcome,            | Exploration ▸  |
+| ssumptions\*\* | independent observations       | Descriptives   |
+|                | (design), approximately normal |                |
++----------------+--------------------------------+----------------+
+| 2\.            | H₀: no difference (μ = 7, μ₁ = | Written        |
+| **Hypotheses** | μ₂, or μ_d = 0).               | *before* you   |
+|                |                                | analyse        |
+|                | Hₐ: a difference (≠,           |                |
+|                | two-tailed)                    |                |
++----------------+--------------------------------+----------------+
+| 3\. **Test     | t = (observed difference) ÷    | Jamovi output, |
+| statistic**    | (standard error of that        | `Statistic`    |
+|                | difference)                    |                |
++----------------+--------------------------------+----------------+
+| 4\.            | Probability of a t at least    | Jamovi output, |
+| **p-value**    | this extreme *if H₀ were       | `p`            |
+|                | true*, using the               |                |
+|                | t-distribution with df         |                |
++----------------+--------------------------------+----------------+
+| 5\.            | Reject / fail to reject H₀,    | Your write-up  |
+| **Conclusion** | then interpret with CI, effect |                |
+|                | size and real-world context    |                |
++----------------+--------------------------------+----------------+
 
 ::: {.callout-tip appearance="simple"}
 **Two-tailed by default.** All three research questions today ask
@@ -330,26 +332,26 @@ T-tests are **parametric**, they assume the sampling distribution of the
 mean is normal. In practice we check the *data* (or the *differences*,
 for a paired test) three ways and read them together:
 
-+---------------+------------------------------+---------------+
-| Check         | What to look for             | Jamovi        |
-+===============+==============================+===============+
-| **Sh          | p \> 0.05 → no evidence      | Descriptives  |
-| apiro--Wilk** | **against** normality        | ▸ Statistics  |
-|               |                              | ▸ Normality,  |
-|               |                              | or T-Tests ▸  |
-|               |                              | Assumption    |
-|               |                              | Checks        |
-+---------------+------------------------------+---------------+
-| **Histog      | Roughly bell-shaped, no      | Descriptives  |
-| ram/density** | severe skew                  | ▸ Plots       |
-+---------------+------------------------------+---------------+
-| **Q-Q plot**  | Dots hug the diagonal;       | Descriptives  |
-|               | wobble at the very ends is   | ▸ Plots ▸     |
-|               | normal, an S-bend is not     | Q-Q, or       |
-|               |                              | T-Tests ▸     |
-|               |                              | Assumption    |
-|               |                              | Checks        |
-+---------------+------------------------------+---------------+
++---------------+----------------------------+---------------+
+| Check         | What to look for           | Jamovi        |
++===============+============================+===============+
+| **Sh          | p \> 0.05 → no evidence    | Descriptives  |
+| apiro--Wilk** | **against** normality      | ▸ Statistics  |
+|               |                            | ▸ Normality,  |
+|               |                            | or T-Tests ▸  |
+|               |                            | Assumption    |
+|               |                            | Checks        |
++---------------+----------------------------+---------------+
+| **Histog      | Roughly bell-shaped, no    | Descriptives  |
+| ram/density** | severe skew                | ▸ Plots       |
++---------------+----------------------------+---------------+
+| **Q-Q plot**  | Dots hug the diagonal;     | Descriptives  |
+|               | wobble at the very ends is | ▸ Plots ▸     |
+|               | normal, an S-bend is not   | Q-Q, or       |
+|               |                            | T-Tests ▸     |
+|               |                            | Assumption    |
+|               |                            | Checks        |
++---------------+----------------------------+---------------+
 
 Plus two you check from the **design**, not a plot... the outcome is
 **continuous**, and observations are **independent** (one row = one
@@ -381,37 +383,39 @@ all the adjustments you can make to data when it is non-normal.
 Jamovi's t-test table has more columns than we've used before. Here's
 what each one is, in the order they appear:
 
-+----------------+--------------------------------------------------+
-| Column         | Plain-English meaning                            |
-+================+==================================================+
-| **Statistic    | The observed difference divided by its standard  |
-| (t)**          | error, i.e. *how many SEs away from H₀ are we?*  |
-|                | Bigger (either sign) = stronger evidence         |
-+----------------+--------------------------------------------------+
-| **df**         | Degrees of freedom. One-sample and paired: n     |
-|                | − 1. Independent: n₁ + n₂ − 2. Sets the exact    |
-|                | shape of the t-distribution                      |
-+----------------+--------------------------------------------------+
-| **p**          | If H₀ were true, how often would sampling alone  |
-|                | give a t at least this extreme? Below 0.05 →     |
-|                | *statistically significant*                      |
-+----------------+--------------------------------------------------+
-| **Mean         | The raw effect in the units you measured (hours, |
-| difference**   | points, mm). For one-sample: mean − hypothesised |
-|                | value (μ₀)                                       |
-+----------------+--------------------------------------------------+
-| **SE           | The precision of that difference (how much it    |
-| difference**   | would wobble in a repeat study). Note **t = Mean |
-|                | difference ÷ SE**                                |
-+----------------+--------------------------------------------------+
-| **95% CI       | The range of plausible values for the            |
-| (Lower,        | *population* difference. For one-sample Jamovi   |
-| Upper)**       | shows the CI of the **difference** in the t-test |
-|                | table and the CI of the **mean** in Descriptives |
-+----------------+--------------------------------------------------+
-| **Effect size  | The difference in **SD units**, so results can   |
-| (Cohen's d)**  | be compared across studies with different scales |
-+----------------+--------------------------------------------------+
++----------------+-------------------------------------------------+
+| Column         | Plain-English meaning                           |
++================+=================================================+
+| **Statistic    | The observed difference divided by its standard |
+| (t)**          | error, i.e. *how many SEs away from H₀ are we?* |
+|                | Bigger (either sign) = stronger evidence        |
++----------------+-------------------------------------------------+
+| **df**         | Degrees of freedom. One-sample and paired: n    |
+|                | − 1. Independent: n₁ + n₂ − 2. Sets the exact   |
+|                | shape of the t-distribution                     |
++----------------+-------------------------------------------------+
+| **p**          | If H₀ were true, how often would sampling alone |
+|                | give a t at least this extreme? Below 0.05 →    |
+|                | *statistically significant*                     |
++----------------+-------------------------------------------------+
+| **Mean         | The raw effect in the units you measured        |
+| difference**   | (hours, points, mm). For one-sample: mean −     |
+|                | hypothesised value (μ₀)                         |
++----------------+-------------------------------------------------+
+| **SE           | The precision of that difference (how much it   |
+| difference**   | would wobble in a repeat study). Note **t =     |
+|                | Mean difference ÷ SE**                          |
++----------------+-------------------------------------------------+
+| **95% CI       | The range of plausible values for the           |
+| (Lower,        | *population* difference. For one-sample Jamovi  |
+| Upper)**       | shows the CI of the **difference** in the       |
+|                | t-test table and the CI of the **mean** in      |
+|                | Descriptives                                    |
++----------------+-------------------------------------------------+
+| **Effect size  | The difference in **SD units**, so results can  |
+| (Cohen's d)**  | be compared across studies with different       |
+|                | scales                                          |
++----------------+-------------------------------------------------+
 
 ::: {.callout-warning appearance="simple"}
 **Two easy-to-confuse terms.** The **test statistic** is *t*, the number
@@ -504,7 +508,7 @@ what guidelines say, a cost threshold. A "small" d can matter (e.g., 20
 min less sleep every night) and a "significant" difference can be
 irrelevant (e.g., a 1.4-point change on a scale where people only begin
 to notice if it is \>4).
-:::
+::::::::
 
 ------------------------------------------------------------------------
 
@@ -512,15 +516,19 @@ to notice if it is \>4).
 
 ![](spicy_data.gif){fig-align="center" width="410"}
 
-Three datasets, one for each type of t-test. Save them somewhere
-easy to find, then open each in Jamovi when its task comes up.
+Three datasets, one for each type of t-test. Save them somewhere easy to
+find, then open each in Jamovi when its task comes up.
 
--   Task 1: [**student_sleep.csv**](https://lms.griffith.edu.au/courses/32192/files/10008969?wrap=1) --- 57 students,
-    `Sleep (h)`
--   Task 2: [**coffee_stress.csv**](https://lms.griffith.edu.au/courses/32192/files/10008970?wrap=1) --- 66 students,
-    `Group` (Coffee / NonCoffee) and `VAS Stress 0-10 Score (mm)`
--   Task 3: [**music_focus.csv**](https://lms.griffith.edu.au/courses/32192/files/10008972?wrap=1) --- 22 students,
-    `Silence` and `Music` focus scores (out of 100)
+- Task 1:
+  [**student_sleep.csv**](https://lms.griffith.edu.au/courses/32192/files/10008969?wrap=1)
+  --- 57 students, `Sleep (h)`
+- Task 2:
+  [**coffee_stress.csv**](https://lms.griffith.edu.au/courses/32192/files/10008970?wrap=1)
+  --- 66 students, `Group` (Coffee / NonCoffee) and
+  `VAS Stress 0-10 Score (mm)`
+- Task 3:
+  [**music_focus.csv**](https://lms.griffith.edu.au/courses/32192/files/10008972?wrap=1)
+  --- 22 students, `Silence` and `Music` focus scores (out of 100)
 
 ::: {.callout-important appearance="simple"}
 In each file, check the Variables tab first. The outcome should be
@@ -661,6 +669,7 @@ document.addEventListener('click', function(e){
 });
 </script>
 ```
+
 ### Task 1 --- One-sample t-test: are students getting enough sleep?
 
 ![](images/sleep.gif){fig-align="center"}
@@ -670,17 +679,18 @@ document.addEventListener('click', function(e){
 university students during exam period. Are they meeting the
 recommendation?
 
--   **H₀:** μ = 7.0 h (students get the recommended amount of sleep)
--   **Hₐ:** μ ≠ 7.0 h (two-tailed)
+- **H₀:** μ = 7.0 h (students get the recommended amount of sleep)
+- **Hₐ:** μ ≠ 7.0 h (two-tailed)
 
-**a) Explore and check assumptions.** Open `student_sleep.omv`. Run
-**Exploration ▸ Descriptives** on `Sleep (h)`: under *Statistics* tick
-**Shapiro--Wilk** and **Confidence interval** (for the mean); under
-*Plots* tick **Histogram** (+ Density), **Box plot** and **Q-Q**. Is the
-distribution roughly bell-shaped? Do any values look like entry errors
-(a 14-hour night, a negative number)? Outliers on their own aren't an
-assumption of the t-test, so a few points beyond the whiskers are not a
-problem, you're just doing the usual checks before we run the analysis.
+**a) Explore and check assumptions.** Open `student_sleep.csv` in
+Jamovi. Run **Exploration ▸ Descriptives** on `Sleep (h)`: under
+*Statistics* tick **Shapiro--Wilk** and **Confidence interval** (for the
+mean); under *Plots* tick **Histogram** (+ Density), **Box plot** and
+**Q-Q**. Is the distribution roughly bell-shaped? Do any values look
+like entry errors (a 14-hour night, a negative number)? Outliers on
+their own aren't an assumption of the t-test, so a few points beyond the
+whiskers are not a problem, you're just doing the usual checks before we
+run the analysis.
 
 **b) Run the test.** **Analyses ▸ T-Tests ▸ One Sample T-Test**:
 
@@ -712,10 +722,12 @@ problem, you're just doing the usual checks before we run the analysis.
     <em>good</em> news for the assumption.</div>
 </div>
 ```
+
 ```{=html}
 <p class="ws-lockednote" data-for="t1-desc">Assumption check locked. Answer correctly above to unlock it.</p>
 ```
-::: {#t1-desc .callout-note .ws-locked collapse="true"}
+
+:::: {#t1-desc .callout-note .ws-locked collapse="true"}
 ## Worked answer --- descriptives & assumptions
 
 ![](WS5_T1_desc_table.png){fig-align="center"}
@@ -739,7 +751,7 @@ t-test.
 Also notice the **95% CI of the mean** in this table **\[6.29, 6.88\]**.
 It doesn't contain our reference value of 7 h. File that away, it
 already tells you how the test is going to go.
-:::
+::::
 
 ```{=html}
 <div class="ws-quiz" data-unlock="t1-test" data-okmsg="That paragraph is a complete write-up of the result.">
@@ -750,6 +762,7 @@ already tells you how the test is going to go.
   <div class="ws-hint"><strong>Hint:</strong> every choice comes from one row of the t-test table. Sign of the mean difference → direction. p vs 0.05 → significant and the H₀ decision (we never “accept” H₀). Does 0 sit between Lower and Upper? d against 0.2 / 0.5 / 0.8. Then ask whether 25 minutes a night would matter to a health professional.</div>
 </div>
 ```
+
 **c) One tail or two?** The research question says "getting *enough*
 sleep", which sounds directional. In the dialog, change *Hypothesis*
 from **≠ Test value** to **\< Test value** and watch the p-value.
@@ -765,6 +778,7 @@ from **≠ Test value** to **\< Test value** and watch the p-value.
   <div class="ws-hint"><strong>Hint:</strong> Lecture 12: a two-tailed test splits α = 0.05 into 0.025 per tail. A one-tailed test puts all 0.05 in one tail, so the same result gets a smaller p.</div>
 </div>
 ```
+
 ::: {.callout-warning appearance="simple"}
 **So why don't we just use one tail?** Because the direction must be
 justified *before* seeing the data, a one-tailed test can never detect a
@@ -777,6 +791,7 @@ only when you pre-specified it and can defend it.
 ```{=html}
 <p class="ws-lockednote" data-for="t1-test">Worked answer locked. Complete the interpretation correctly to unlock it.</p>
 ```
+
 ::: {#t1-test .callout-note .ws-locked collapse="true"}
 ## Worked answer --- the test
 
@@ -824,11 +839,11 @@ regular coffee drinking go with different stress levels? You have
 perceived-stress scores (visual analogue scale, 0--10) from 33 regular
 coffee drinkers and 33 non-drinkers.
 
--   **H₀:** μ~Coffee~ = μ~NonCoffee~ (no difference in mean stress)
--   **Hₐ:** μ~Coffee~ ≠ μ~NonCoffee~ (two-tailed)
+- **H₀:** μ~Coffee~ = μ~NonCoffee~ (no difference in mean stress)
+- **Hₐ:** μ~Coffee~ ≠ μ~NonCoffee~ (two-tailed)
 
 **a) Explore and check assumptions, per group.** Open
-`coffee_stress.omv`. **Exploration ▸ Descriptives**: put
+`coffee_stress.csv` in Jamovi. **Exploration ▸ Descriptives**: put
 `VAS Stress 0-10 Score (mm)` in *Variables* and `Group` in **Split by**.
 Tick **Shapiro--Wilk** and **Confidence interval** (for the mean), and
 under *Plots* the **Histogram** (+ Density), **Box plot** and **Q-Q**.
@@ -876,10 +891,12 @@ vs 1.17) so worth double checking.
     the <em>Homogeneity of Variances Test</em> table under the t-test output.</div>
 </div>
 ```
+
 ```{=html}
 <p class="ws-lockednote" data-for="t2-desc">Assumption check locked. Answer correctly above to unlock it.</p>
 ```
-::: {#t2-desc .callout-note .ws-locked collapse="true"}
+
+:::: {#t2-desc .callout-note .ws-locked collapse="true"}
 ## Worked answer --- descriptives & assumptions
 
 ![](WS5_T2_desc_table.png){width="100%"}
@@ -901,7 +918,7 @@ anyway: t(60) = 1.29, p = 0.203). Two unrelated groups of 33 so we
 assume independence ✓. Also note the two groups' 95% CIs **overlap
 heavily** (6.13--7.21 vs 5.83--6.66); keep that in mind for the next
 part.
-:::
+::::
 
 ```{=html}
 <div class="ws-quiz" data-unlock="t2-test" data-okmsg="A non-significant result written up without over-claiming in either direction.">
@@ -912,9 +929,11 @@ part.
   <div class="ws-hint"><strong>Hint:</strong> p = 0.203 &gt; 0.05 and the CI straddles 0: the two always agree. “Not significant” means we lack evidence of a difference, not that we have shown there is none. And re-read the Effect size tab about d when p &gt; 0.05.</div>
 </div>
 ```
+
 ```{=html}
 <p class="ws-lockednote" data-for="t2-test">Worked answer locked. Complete the interpretation correctly to unlock it.</p>
 ```
+
 ::: {#t2-test .callout-note .ws-locked collapse="true"}
 ## Worked answer --- the test
 
@@ -975,14 +994,14 @@ completed a focus task under two conditions, **silence** and **music**,
 in counterbalanced order. Each person contributes both scores (out of
 100), so the two columns are *paired*.
 
--   **H₀:** μ~d~ = 0 (no difference in focus between conditions)
--   **Hₐ:** μ~d~ ≠ 0 (two-tailed)
+- **H₀:** μ~d~ = 0 (no difference in focus between conditions)
+- **Hₐ:** μ~d~ ≠ 0 (two-tailed)
 
-**a) Create the difference score.** Open `music_focus.omv`. **Data ▸
-Compute**, name it `Difference`, formula: `` `Silence` - `Music` ``. A
-positive difference means the student focused *better in silence*. This
-is the variable the paired test actually analyses, so it's the one whose
-normality matters.
+**a) Create the difference score.** Open `music_focus.csv` in Jamovi.
+**Data ▸ Compute**, name it `Difference`, formula:
+`` `Silence` - `Music` ``. A positive difference means the student
+focused *better in silence*. This is the variable the paired test
+actually analyses, so it's the one whose normality matters.
 
 **b) Check assumptions.** **Exploration ▸ Descriptives** on `Silence`,
 `Music` **and** `Difference` with **Shapiro--Wilk**, **Histogram**,
@@ -1019,10 +1038,12 @@ they're errors and t-tests are robust to a few.
     Difference. The Shapiro–Wilk we care about is the <em>Difference</em> row.</div>
 </div>
 ```
+
 ```{=html}
 <p class="ws-lockednote" data-for="t3-desc">Assumption check locked. Answer correctly above to unlock it.</p>
 ```
-::: {#t3-desc .callout-note .ws-locked collapse="true"}
+
+:::: {#t3-desc .callout-note .ws-locked collapse="true"}
 ## Worked answer --- descriptives & assumptions
 
 ![](WS5_T3_desc_table.png){width="85%" fig-align="center"}
@@ -1040,7 +1061,7 @@ music, with a lot of person-to-person variation (SD 3.16, some students
 improved with music, most got slightly worse). The Difference scores are
 approximately normal (SW p = 0.873, clean histogram and Q-Q) therfore
 **Normality ✓**. The pairs are independent students ✓.
-:::
+::::
 
 ```{=html}
 <div class="ws-quiz" data-unlock="t3-test" data-okmsg="Now the two follow-up questions push on what this result does and doesn’t mean.">
@@ -1051,6 +1072,7 @@ approximately normal (SW p = 0.873, clean histogram and Q-Q) therfore
   <div class="ws-hint"><strong>Hint:</strong> p = 0.046 is under 0.05, but only just, and the CI’s lower limit of 0.03 says the same thing. Positive mean difference = silence scored higher (if yours is negative you entered Music first). df = pairs − 1.</div>
 </div>
 ```
+
 ```{=html}
 <div class="ws-quiz" data-answer="sigoverlap" data-okmsg="Exactly. The CI for the difference is the one that answers the hypothesis.">
   <p class="ws-qtext">The 95% CI for the mean difference is [0.03, 2.83], yet the two groups' own 95% CIs (Silence 76.2–82.2, Music 74.3–81.3) overlap a lot. Which statement is correct?</p>
@@ -1062,6 +1084,7 @@ approximately normal (SW p = 0.873, clean histogram and Q-Q) therfore
   <div class="ws-hint"><strong>Hint:</strong> re-read the warning in the <em>CIs &amp; p-values</em> tab. Non-overlapping group CIs guarantee significance; overlapping ones tell you nothing either way. And a paired test removes the between-person variation that makes each group's CI wide.</div>
 </div>
 ```
+
 ```{=html}
 <div class="ws-quiz" data-answer="notmeaningful" data-okmsg="Significant, but not big enough to matter on this scale.">
   <p class="ws-qtext"><strong>Clinical meaningfulness.</strong> Suppose the focus scale was validated so that a change of about <strong>5 points</strong> is the smallest difference students can actually notice in their concentration. How should the 1.43-point effect be judged?</p>
@@ -1073,9 +1096,11 @@ approximately normal (SW p = 0.873, clean histogram and Q-Q) therfore
   <div class="ws-hint"><strong>Hint:</strong> compare the mean difference (and even the far end of its CI, 2.83) with the 5-point threshold. p answers "is it there?", the scale answers "does it matter?"</div>
 </div>
 ```
+
 ```{=html}
 <p class="ws-lockednote" data-for="t3-test">Worked answer locked. Complete the interpretation correctly to unlock it.</p>
 ```
+
 ::: {#t3-test .callout-note .ws-locked collapse="true"}
 ## Worked answer --- the test
 
@@ -1136,12 +1161,13 @@ hundreds.
 ```{=html}
 <div class="tt-sampler"></div>
 ```
+
 Three things to notice, in this order:
 
 1.  The **sample means pile up around the population mean μ**, and they
-    are far less spread out than the individual scores above them.
-    Their spread is the **standard error of the mean**, and the tool
-    shows it matches σ ÷ √n.
+    are far less spread out than the individual scores above them. Their
+    spread is the **standard error of the mean**, and the tool shows it
+    matches σ ÷ √n.
 2.  **Increase n** and draw again, the pile gets narrower. That is the
     whole reason larger samples give narrower CIs and smaller p-values.
 3.  Switch to the **right-skewed** or **bimodal** population and draw a
@@ -1153,23 +1179,22 @@ Three things to notice, in this order:
 ::: {.callout-important appearance="simple"}
 **This is where the z, t and F tables come from, and where hypothesis
 tests come from.** You have just built a sampling distribution by brute
-force. Statisticians worked out the *exact* shape of these
-distributions mathematically, for every sample size, and that is what
-the tables in the lecture (and Jamovi's p-values) contain: the
-sampling distribution you would get **if H₀ were true**. The t-table
-has a row for every df because, once σ has to be estimated from the
-sample, the shape depends on n, which is why small samples need a bigger
-t to reach significance.
+force. Statisticians worked out the *exact* shape of these distributions
+mathematically, for every sample size, and that is what the tables in
+the lecture (and Jamovi's p-values) contain: the sampling distribution
+you would get **if H₀ were true**. The t-table has a row for every df
+because, once σ has to be estimated from the sample, the shape depends
+on n, which is why small samples need a bigger t to reach significance.
 
-A hypothesis test is then a simple question: *is my sample mean (or
-mean difference) a plausible draw from the sampling distribution that
-H₀ predicts?* If it sits in the middle, H₀ survives. If it sits out in
-the tail, beyond the critical value, we conclude our sample did **not**
-come from a population with that mean. For a pre/post weight-loss
-study, rejecting H₀ says the post-programme weights behave as if they
-were drawn from a population with a *different* mean to the
-pre-programme weights, i.e. the programme moved the population mean,
-not just this sample.
+A hypothesis test is then a simple question: *is my sample mean (or mean
+difference) a plausible draw from the sampling distribution that H₀
+predicts?* If it sits in the middle, H₀ survives. If it sits out in the
+tail, beyond the critical value, we conclude our sample did **not** come
+from a population with that mean. For a pre/post weight-loss study,
+rejecting H₀ says the post-programme weights behave as if they were
+drawn from a population with a *different* mean to the pre-programme
+weights, i.e. the programme moved the population mean, not just this
+sample.
 :::
 
 ```{=html}
@@ -1195,6 +1220,7 @@ sample mean. Drag the inputs and watch the CI, t and p move
 ```{=html}
 <div class="tt-lab" data-n="57" data-mean="6.584" data-sd="1.101" data-mu="7" data-conf="95"></div>
 ```
+
 Try these in order:
 
 1.  Press **Sleep data** and confirm you get the Task 1 numbers (any
@@ -1226,6 +1252,7 @@ t~0.025, df 56~ ≈ 2.003.
   <div class="ws-hint"><strong>Hint:</strong> margin of error = 2.003 × 0.146 = 0.29. Subtract it from and add it to 6.58.</div>
 </div>
 ```
+
 ```{=html}
 <div class="ws-quiz" data-unlock="t4-ci" data-okmsg="Right, a sample in the high 400s. Six minutes of sleep becomes 'significant' purely through sample size. Think to yourself will 6-minute likely be clinically meaningful...? You might want an extra 6-minutes of sleep, but it won't change your health one way or the other (remember 20-minutes of more was our clinical threshold).">
   <p class="ws-qtext">With mean = 6.90 h and s = 1.10 h, roughly what sample size makes the 95% CI first exclude 7 h (p just under 0.05)?</p>
@@ -1238,9 +1265,11 @@ t~0.025, df 56~ ≈ 2.003.
   <div class="ws-hint"><strong>Hint:</strong> type values straight into the n box rather than dragging. Watch the verdict flip from amber to teal.</div>
 </div>
 ```
+
 ```{=html}
 <p class="ws-lockednote" data-for="t4-ci">Worked answer locked. Answer correctly above to unlock it.</p>
 ```
+
 ::: {#t4-ci .callout-note .ws-locked collapse="true"}
 ## Worked answer --- why n matters
 
@@ -1274,19 +1303,20 @@ focus, the two conditions' scores intermingle almost completely (d =
 like.
 
 ::: {.callout-tip appearance="simple"}
-**Same shape, two different jobs.** The bell curves here, and the
-density curves in Jamovi's Descriptives, show the spread of **individual
-people's scores** (you can see the people inside them). The
-t-distribution in the CI lab shows how the **test statistic** would vary
-across repeat samples if H₀ were true, and the CI figure earlier shows
-how a **mean** varies across samples. Individuals vary far more than
-means do, which is why two groups can overlap heavily here (small d) and
-still have a mean difference whose CI clearly excludes 0.
+The bell curves here, and the density curves in Jamovi's Descriptives,
+show the spread of **individual people's scores** (you can see the
+people inside them). The t-distribution in the CI lab shows how the
+**test statistic** would vary across repeat samples if H₀ were true, and
+the CI figure earlier shows how a **mean** varies across samples.
+Individuals vary far more than means do, which is why two groups can
+overlap heavily here (small d) and still have a mean difference whose CI
+clearly excludes 0.
 :::
 
 ```{=html}
 <div class="tt-dviz" data-d="0.45"></div>
 ```
+
 ```{=html}
 <div class="ws-quiz" data-answer="small" data-okmsg="A d of 0.15 leaves the two groups almost completely overlapping.">
   <p class="ws-qtext"><strong>Study question.</strong> A researcher finds that students who use social media &gt; 3 h/day have significantly lower GPAs (p = 0.03) but d = 0.15. Press the <em>Social media</em> preset button (d = 0.15) and look at the overlap, then choose the best interpretation:</p>
@@ -1428,27 +1458,27 @@ predicted), which is exactly the sleep-vs-7-hours logic from Task 1.
 :::
 
 ::: {.callout-tip appearance="simple"}
-**Looking ahead we need to consider multiple comparisons.** Each study today asked *one*
-question, so α = 0.05 was fine. If you tested whether music affects
-focus **and** stress **and** memory (three tests on the same data), the
-chance of at least one false positive rises to about 14%. An upcoming
-lecture covers how to adjust α for that. This is a common mistake in
-published research.
+**Looking ahead we need to consider multiple comparisons.** Each study
+today asked *one* question, so α = 0.05 was fine. If you tested whether
+music affects focus **and** stress **and** memory (three tests on the
+same data), the chance of at least one false positive rises to about
+14%. An upcoming lecture covers how to adjust α for that. This is a
+common mistake in published research.
 :::
 
 ------------------------------------------------------------------------
 
 ## How this links to assessment
 
--   The workflow today (assumptions → hypotheses → test → CI → effect
-    size → interpretation) is the frame for **every** test for the rest
-    of the trimester and for the **exam**.
--   The exam will give you Jamovi output like today's and ask you to
-    **choose the right test from a scenario**, **read the table** (t,
-    df, p, CI, d) and **write the interpretation**, including whether a
-    result is practically meaningful.
--   And most immediately... the group activity (next) counts towards
-    your **Portfolio of Evidence** and has lab-specific questions.
+- The workflow today (assumptions → hypotheses → test → CI → effect size
+  → interpretation) is the frame for **every** test for the rest of the
+  trimester and for the **exam**.
+- The exam will give you Jamovi output like today's and ask you to
+  **choose the right test from a scenario**, **read the table** (t, df,
+  p, CI, d) and **write the interpretation**, including whether a result
+  is practically meaningful.
+- And most immediately... the group activity (next) counts towards your
+  **Portfolio of Evidence** and has lab-specific questions.
 
 ------------------------------------------------------------------------
 
@@ -1459,20 +1489,20 @@ published research.
 **Now gather your team for the group Portfolio of Evidence activity (20
 mins).**
 
--   Put all phones, laptops, electronic devices away
+- Put all phones, laptops, electronic devices away
 
--   Turn off the lab computers
+- Turn off the lab computers
 
--   You can have a calculator, ruler, pen
+- You can have a calculator, ruler, pen
 
--   You can write/draw on the exam sheet
+- You can write/draw on the exam sheet
 
--   Please include all names and s numbers for all group members
+- Please include all names and s numbers for all group members
 
--   1 mark for first correct scratch, 1/2 mark for second, 1/4 for
-    third, 0 for forth
+- 1 mark for first correct scratch, 1/2 mark for second, 1/4 for third,
+  0 for forth
 
--   Work together as a team :)
+- Work together as a team :)
 
 ------------------------------------------------------------------------
 
