@@ -2526,9 +2526,9 @@ box-shadow:0 1px 2px rgba(20,35,46,.04), 0 8px 28px -18px rgba(20,35,46,.28);
 <p>ANOVA compares <strong>means</strong>, just like a <em>t</em>-test, but for <strong>three or more</strong> groups at once. It belongs on the same branch of the decision tree from the lecture, a <em>numeric outcome</em> with a <em>categorical predictor</em>, this time with more than two groups/levels.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 39%">
-<col style="width: 17%">
-<col style="width: 42%">
+<col style="width: 30%">
+<col style="width: 23%">
+<col style="width: 36%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -2584,8 +2584,8 @@ box-shadow:0 1px 2px rgba(20,35,46,.04), 0 8px 28px -18px rgba(20,35,46,.28);
 </ol>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 55%">
-<col style="width: 44%">
+<col style="width: 50%">
+<col style="width: 40%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -2657,9 +2657,9 @@ box-shadow:0 1px 2px rgba(20,35,46,.04), 0 8px 28px -18px rgba(20,35,46,.28);
 <p>With the F-statistic in step 3 and a sixth “which groups?” step tacked on the end. Jamovi does steps 3 and 4 (and the post-hoc arithmetic); steps 1, 2 and 5 are <strong>yours</strong>.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 31%">
-<col style="width: 31%">
-<col style="width: 31%">
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 26%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -2727,9 +2727,9 @@ box-shadow:0 1px 2px rgba(20,35,46,.04), 0 8px 28px -18px rgba(20,35,46,.28);
 <p>ANOVA is <strong>parametric</strong>, like the <em>t</em>-test, with one extra check for independent groups and another for repeated measures:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 31%">
-<col style="width: 31%">
-<col style="width: 31%">
+<col style="width: 23%">
+<col style="width: 26%">
+<col style="width: 38%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -2758,9 +2758,10 @@ box-shadow:0 1px 2px rgba(20,35,46,.04), 0 8px 28px -18px rgba(20,35,46,.28);
 </tr>
 <tr class="odd">
 <td><ul>
-<li>* Sphericity** (RM only)</li>
-</ul></td>
-<td>Mauchly’s p &gt; 0.05. If violated, tick the G r eenhouse–Geisser correction and report that row</td>
+<li>*</li>
+</ul>
+<p>Sphericity** (RM only)</p></td>
+<td>Mauchly’s p &gt; 0.05. If violated, tick the G r e enhouse–Geisser correction and report that row</td>
 <td>RM ANOVA ▸ Assumption Checks ▸ Sphericity tests</td>
 </tr>
 </tbody>
@@ -2783,8 +2784,8 @@ box-shadow:0 1px 2px rgba(20,35,46,.04), 0 8px 28px -18px rgba(20,35,46,.28);
 <p>Jamovi’s ANOVA table has the pieces of the F-ratio laid out, one row for the factor and one for the error (“Residuals”):</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 12%">
-<col style="width: 87%">
+<col style="width: 22%">
+<col style="width: 70%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -2838,10 +2839,10 @@ box-shadow:0 1px 2px rgba(20,35,46,.04), 0 8px 28px -18px rgba(20,35,46,.28);
 <p>The one wrinkle, because Tukey has made the test stricter, the matching interval uses a slightly bigger multiplier than the ordinary t-table value, so that the CI and p<sub>tukey</sub> always agree (i.e., CI excludes 0 then p<sub>tukey</sub> &lt; 0.05). We give you the multiplier; you don’t need to look it up:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 42%">
-<col style="width: 6%">
-<col style="width: 19%">
-<col style="width: 31%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 22%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -2892,9 +2893,9 @@ box-shadow:0 1px 2px rgba(20,35,46,.04), 0 8px 28px -18px rgba(20,35,46,.28);
 <p>They are <strong>not</strong> read the same way, so keep the two side by side:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 21%">
-<col style="width: 32%">
-<col style="width: 46%">
+<col style="width: 23%">
+<col style="width: 26%">
+<col style="width: 40%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -2952,8 +2953,8 @@ box-shadow:0 1px 2px rgba(20,35,46,.04), 0 8px 28px -18px rgba(20,35,46,.28);
 </div>
 <p>Two datasets, one for each type of ANOVA. Save them somewhere easy to find, then open each in Jamovi when its task comes up.</p>
 <ul>
-<li>Task 1: <a href="https://lms.griffith.edu.au/courses/32192/files?search_term=hrv&amp;preview=9304106"><strong>Recovery_HRV.csv</strong></a> — 45 athletes, <code>Recovery Method</code> (Ice Bath / Compression / Active Recovery) and <code>RMSSD (ms)</code></li>
-<li>Task 2: <a href="https://lms.griffith.edu.au/courses/32192/files?search_term=antih&amp;preview=9304108"><strong>Antihistamine_Delivery.csv</strong></a> — 25 patients, <code>Oral</code>, <code>Nasal</code> and <code>Eye</code> symptom-relief scores (0–100)</li>
+<li>Task 1: <a href="https://lms.griffith.edu.au/courses/32192/files/9304106?wrap=1"><strong>Recovery_HRV.csv</strong></a> — 45 athletes, <code>Recovery Method</code> (Ice Bath / Compression / Active Recovery) and <code>RMSSD (ms)</code></li>
+<li>Task 2: <a href="https://lms.griffith.edu.au/courses/32192/files/9304108?wrap=1"><strong>Antihistamine_Delivery.csv</strong></a> — 25 patients, <code>Oral</code>, <code>Nasal</code> and <code>Eye</code> symptom-relief scores (0–100)</li>
 </ul>
 <div class="callout callout-style-simple callout-important">
 <div class="callout-body d-flex">

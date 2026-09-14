@@ -218,11 +218,24 @@ more** groups at once. It belongs on the same branch of the decision
 tree from the lecture, a *numeric outcome* with a *categorical
 predictor*, this time with more than two groups/levels.
 
-| Question                                                                  | Test                             | What it compares                                                                |
-|---------------------------------------------------------------------------|----------------------------------|---------------------------------------------------------------------------------|
-| *Do three or more separate groups differ?*                                | **One-way ANOVA**                | The means of *k* independent groups (between-subjects)                          |
-| *Do the **same people** differ across three or more conditions or times?* | **Repeated measures (RM) ANOVA** | The means of *k* conditions measured in the same participants (within-subjects) |
-| *Do two factors, and their combination, affect the outcome?*              | **Two-way ANOVA**                | Two main effects and their interaction (concept only in this course)            |
++---------------------+----------------+-------------------------+
+| Question            | Test           | What it compares        |
++=====================+================+=========================+
+| *Do three or more   | **One-way      | The means of *k*        |
+| separate groups     | ANOVA**        | independent groups      |
+| differ?*            |                | (between-subjects)      |
++---------------------+----------------+-------------------------+
+| *Do the **same      | **Repeated     | The means of *k*        |
+| people** differ     | measures (RM)  | conditions measured in  |
+| across three or     | ANOVA**        | the same participants   |
+| more conditions or  |                | (within-subjects)       |
+| times?*             |                |                         |
++---------------------+----------------+-------------------------+
+| *Do two factors,    | **Two-way      | Two main effects and    |
+| and their           | ANOVA**        | their interaction       |
+| combination, affect |                | (concept only in this   |
+| the outcome?*       |                | course)                 |
++---------------------+----------------+-------------------------+
 
 So why not just run a *t*-test on every pair? Because every test you run
 is a fresh 5% gamble on a false positive (a Type I error). This will be
@@ -268,12 +281,24 @@ Same two questions as last week, with one more level:
     *two-way ANOVA*. Again, we only need to know the concept, not the
     Jamovi/interpretation steps for this one.
 
-| Design cue in the scenario                                                           | Test                                                                 |
-|--------------------------------------------------------------------------------------|----------------------------------------------------------------------|
-| "three groups", "randomised to one of four diets", "athletes, students and controls" | One-way ANOVA                                                        |
-| "each participant tried all three", "cross-over", "baseline, 4 weeks and 8 weeks"    | Repeated measures ANOVA                                              |
-| "does the effect of A depend on B", two categorical predictors                       | Two-way ANOVA (interaction)                                          |
-| only two groups/conditions                                                           | *t*-test (an ANOVA on two groups gives the identical answer: F = t²) |
++-----------------------------------+----------------------------+
+| Design cue in the scenario        | Test                       |
++===================================+============================+
+| "three groups", "randomised to    | One-way ANOVA              |
+| one of four diets", "athletes,    |                            |
+| students and controls"            |                            |
++-----------------------------------+----------------------------+
+| "each participant tried all       | Repeated measures ANOVA    |
+| three", "cross-over", "baseline,  |                            |
+| 4 weeks and 8 weeks"              |                            |
++-----------------------------------+----------------------------+
+| "does the effect of A depend on   | Two-way ANOVA              |
+| B", two categorical predictors    | (interaction)              |
++-----------------------------------+----------------------------+
+| only two groups/conditions        | *t*-test (an ANOVA on two  |
+|                                   | groups gives the identical |
+|                                   | answer: F = t²)            |
++-----------------------------------+----------------------------+
 
 Quick-fire practice (no data needed):
 
@@ -324,51 +349,59 @@ With the F-statistic in step 3 and a sixth "which groups?" step tacked
 on the end. Jamovi does steps 3 and 4 (and the post-hoc arithmetic);
 steps 1, 2 and 5 are **yours**.
 
-+----------------------+----------------------+----------------------+
-| Step                 | What you do          | Where it happens     |
-|                      |                      | today                |
-+======================+======================+======================+
-| 1\. **Assumptions**  | Continuous outcome,  | Exploration ▸        |
-|                      | independent people,  | Descriptives and the |
-|                      | approximately normal | ANOVA dialog's       |
-|                      | in each group,       | *Assumption Checks*  |
-|                      | similar spread in    |                      |
-|                      | each group (RM: plus |                      |
-|                      | sphericity)          |                      |
-+----------------------+----------------------+----------------------+
-| 2\. **Hypotheses**   | H₀: μ₁ = μ₂ = μ₃     | Written *before* you |
-|                      | (all group means     | analyse              |
-|                      | equal).              |                      |
-|                      |                      |                      |
-|                      | Hₐ: at least one     |                      |
-|                      | mean differs         |                      |
-+----------------------+----------------------+----------------------+
-| 3\. **Test           | F = MS~between~ ÷    | Jamovi ANOVA table,  |
-| statistic**          | MS~within~, i.e. how | `F`                  |
-|                      | far apart the group  |                      |
-|                      | means are, relative  |                      |
-|                      | to how scattered     |                      |
-|                      | people are within    |                      |
-|                      | groups               |                      |
-+----------------------+----------------------+----------------------+
-| 4a. **p-value**      | Probability of an F  | Jamovi ANOVA table,  |
-|                      | at least this large  | `p`                  |
-|                      | *if H₀ were true*,   |                      |
-|                      | from the             |                      |
-|                      | F-distribution with  |                      |
-|                      | df₁ and df₂          |                      |
-+----------------------+----------------------+----------------------+
-| 4b. **Post-hoc** (if | *Only if p \< 0.05*: | Jamovi *Post Hoc     |
-| significant)         | which pairs differ?  | Tests* table         |
-|                      | Mean difference, CI, |                      |
-|                      | Cohen's d, MCID for  |                      |
-|                      | each pair            |                      |
-+----------------------+----------------------+----------------------+
-| 5\. **Conclusion**   | Reject / fail to     | Your write-up        |
-|                      | reject H₀, then      |                      |
-|                      | interpret with η²    |                      |
-|                      | and context          |                      |
-+----------------------+----------------------+----------------------+
++------------------+------------------+------------------+
+| Step             | What you do      | Where it happens |
+|                  |                  | today            |
++==================+==================+==================+
+| 1\.              | Continuous       | Exploration ▸    |
+| **Assumptions**  | outcome,         | Descriptives and |
+|                  | independent      | the ANOVA        |
+|                  | people,          | dialog's         |
+|                  | approximately    | *Assumption      |
+|                  | normal in each   | Checks*          |
+|                  | group, similar   |                  |
+|                  | spread in each   |                  |
+|                  | group (RM: plus  |                  |
+|                  | sphericity)      |                  |
++------------------+------------------+------------------+
+| 2\.              | H₀: μ₁ = μ₂ = μ₃ | Written *before* |
+| **Hypotheses**   | (all group means | you analyse      |
+|                  | equal).          |                  |
+|                  |                  |                  |
+|                  | Hₐ: at least one |                  |
+|                  | mean differs     |                  |
++------------------+------------------+------------------+
+| 3\. **Test       | F = MS~between~  | Jamovi ANOVA     |
+| statistic**      | ÷ MS~within~,    | table, `F`       |
+|                  | i.e. how far     |                  |
+|                  | apart the group  |                  |
+|                  | means are,       |                  |
+|                  | relative to how  |                  |
+|                  | scattered people |                  |
+|                  | are within       |                  |
+|                  | groups           |                  |
++------------------+------------------+------------------+
+| 4a. **p-value**  | Probability of   | Jamovi ANOVA     |
+|                  | an F at least    | table, `p`       |
+|                  | this large *if   |                  |
+|                  | H₀ were true*,   |                  |
+|                  | from the         |                  |
+|                  | F-distribution   |                  |
+|                  | with df₁ and df₂ |                  |
++------------------+------------------+------------------+
+| 4b. **Post-hoc** | *Only if p \<    | Jamovi *Post Hoc |
+| (if significant) | 0.05*: which     | Tests* table     |
+|                  | pairs differ?    |                  |
+|                  | Mean difference, |                  |
+|                  | CI, Cohen's d,   |                  |
+|                  | MCID for each    |                  |
+|                  | pair             |                  |
++------------------+------------------+------------------+
+| 5\.              | Reject / fail to | Your write-up    |
+| **Conclusion**   | reject H₀, then  |                  |
+|                  | interpret with   |                  |
+|                  | η² and context   |                  |
++------------------+------------------+------------------+
 
 ::: {.callout-tip appearance="simple"}
 **Degrees of freedom.** F has two: **df₁ = k − 1** (the number of groups
@@ -392,31 +425,33 @@ scatter can explain.
 ANOVA is **parametric**, like the *t*-test, with one extra check for
 independent groups and another for repeated measures:
 
-+----------------------+----------------------+----------------------+
-| Check                | What to look for     | Jamovi               |
-+======================+======================+======================+
-| -   \*               | Shapiro--Wilk p \>   | Descriptives with    |
-|                      | 0.05, bell-shaped    | *Split by*, or ANOVA |
-| Normality\*\* (each  | histogram, Q-Q dots  | ▸ Assumption Checks  |
-| group /              | on the diagonal      | ▸ Normality test +   |
-|                      |                      | Q-Q (one test on the |
-| condition)           |                      | *residuals* from all |
-|                      |                      | groups)              |
-+----------------------+----------------------+----------------------+
-| -   \*Homogeneity of | Levene's p \> 0.05.  | ANOVA ▸ Assumption   |
-|                      | If violated, tick    | Checks ▸ Homogeneity |
-|     variance\*\*     | *Don't assume equal  | test                 |
-|     (one-way)        | (Welch's)*           |                      |
-|                      | correction and       |                      |
-|                      | report that row      |                      |
-+----------------------+----------------------+----------------------+
-| -   \*               | Mauchly's p \> 0.05. | RM ANOVA ▸           |
-|     Sphericity\*\*   | If violated, tick    | Assumption Checks ▸  |
-|     (RM only)        | the G r              | Sphericity tests     |
-|                      | eenhouse--Geisser    |                      |
-|                      | correction and       |                      |
-|                      | report that row      |                      |
-+----------------------+----------------------+----------------------+
++----------------+------------------+---------------------------+
+| Check          | What to look for | Jamovi                    |
++================+==================+===========================+
+| -   \*         | Shapiro--Wilk p  | Descriptives with *Split  |
+|                | \> 0.05,         | by*, or ANOVA ▸           |
+| Normality\*\*  | bell-shaped      | Assumption Checks ▸       |
+| (each group /  | histogram, Q-Q   | Normality test + Q-Q (one |
+|                | dots on the      | test on the *residuals*   |
+| condition)     | diagonal         | from all groups)          |
++----------------+------------------+---------------------------+
+| -              | Levene's p \>    | ANOVA ▸ Assumption Checks |
+|  \*Homogeneity | 0.05. If         | ▸ Homogeneity test        |
+|     of         | violated, tick   |                           |
+|                | *Don't assume    |                           |
+|                | equal (Welch's)* |                           |
+|   variance\*\* | correction and   |                           |
+|     (one-way)  | report that row  |                           |
++----------------+------------------+---------------------------+
+| -   \*         | Mauchly's p \>   | RM ANOVA ▸ Assumption     |
+|                | 0.05. If         | Checks ▸ Sphericity tests |
+| Sphericity\*\* | violated, tick   |                           |
+|     (RM only)  | the G r          |                           |
+|                | e                |                           |
+|                | enhouse--Geisser |                           |
+|                | correction and   |                           |
+|                | report that row  |                           |
++----------------+------------------+---------------------------+
 
 Plus the two you check from the **design** that the outcome is
 **continuous**, and observations are **independent** (one row = one
@@ -456,14 +491,32 @@ course, so leave them alone.
 Jamovi's ANOVA table has the pieces of the F-ratio laid out, one row for
 the factor and one for the error ("Residuals"):
 
-| Column                  | Plain-English meaning                                                                                                                                                   |
-|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Sum of Squares (SS)** | The raw variability. Factor row = how far the group means sit from the grand mean (between). Residuals row = how far individuals sit from their own group mean (within) |
-| **df**                  | k − 1 for the factor; N − k for the residuals (RM: (n − 1)(k − 1))                                                                                                      |
-| **Mean Square (MS)**    | SS ÷ df, i.e. the variability *per degree of freedom*. This is what gets compared                                                                                       |
-| **F**                   | MS~between~ ÷ MS~within~. Bigger the value = stronger evidence against H₀                                                                                               |
-| **p**                   | Right-tail probability of an F this large if H₀ were true. Below 0.05 then it is *statistically significant*                                                            |
-| **η²**                  | SS~between~ ÷ SS~total~: the proportion of all the variability in scores that is explained by which group you are in (an effect size; tick it under *Effect Size*)      |
++---------------+--------------------------------------------------+
+| Column        | Plain-English meaning                            |
++===============+==================================================+
+| **Sum of      | The raw variability. Factor row = how far the    |
+| Squares       | group means sit from the grand mean (between).   |
+| (SS)**        | Residuals row = how far individuals sit from     |
+|               | their own group mean (within)                    |
++---------------+--------------------------------------------------+
+| **df**        | k − 1 for the factor; N − k for the residuals    |
+|               | (RM: (n − 1)(k − 1))                             |
++---------------+--------------------------------------------------+
+| **Mean Square | SS ÷ df, i.e. the variability *per degree of     |
+| (MS)**        | freedom*. This is what gets compared             |
++---------------+--------------------------------------------------+
+| **F**         | MS~between~ ÷ MS~within~. Bigger the value =     |
+|               | stronger evidence against H₀                     |
++---------------+--------------------------------------------------+
+| **p**         | Right-tail probability of an F this large if H₀  |
+|               | were true. Below 0.05 then it is *statistically  |
+|               | significant*                                     |
++---------------+--------------------------------------------------+
+| **η²**        | SS~between~ ÷ SS~total~: the proportion of all   |
+|               | the variability in scores that is explained by   |
+|               | which group you are in (an effect size; tick it  |
+|               | under *Effect Size*)                             |
++---------------+--------------------------------------------------+
 
 The **Post Hoc Comparisons** table then has one row per pair, with
 columns you already know from the *t*-test: **Mean Difference**, **SE**,
@@ -504,10 +557,18 @@ value, so that the CI and p~tukey~ always agree (i.e., CI excludes 0
 then p~tukey~ \< 0.05). We give you the multiplier; you don't need to
 look it up:
 
-| Design today                   | df  | t-table value | Tukey adjusted t-value |
-|--------------------------------|-----|---------------|------------------------|
-| Task 1: one-way, N = 45, k = 3 | 42  | 2.02          | **2.43**               |
-| Task 2: RM, n = 25, k = 3      | 24  | 2.06          | **2.50**               |
++---------------+---------------+---------------+---------------+
+| Design today  | df            | t-table value | Tukey         |
+|               |               |               | adjusted      |
+|               |               |               | t-value       |
++===============+===============+===============+===============+
+| Task 1:       | 42            | 2.02          | **2.43**      |
+| one-way, N =  |               |               |               |
+| 45, k = 3     |               |               |               |
++---------------+---------------+---------------+---------------+
+| Task 2: RM, n | 24            | 2.06          | **2.50**      |
+| = 25, k = 3   |               |               |               |
++---------------+---------------+---------------+---------------+
 
 If you used the t-table value you would get a slightly narrower
 "unadjusted" interval, correct for a single planned comparison but not
@@ -545,14 +606,30 @@ $$\eta^2 = \frac{SS_{between}}{SS_{total}} = \frac{SS_{between}}{SS_{between} + 
 
 They are **not** read the same way, so keep the two side by side:
 
-|                            | Cohen's *d*                               | η²                                                           |
-|----------------------------|-------------------------------------------|--------------------------------------------------------------|
-| **What it is**             | A *distance*, how far apart two means are | A *proportion*, how much of the variance the factor explains |
-| **Units**                  | Standard deviations                       | A fraction of 1 (read it as a %)                             |
-| **Applies to**             | One pair of groups                        | The whole ANOVA (all groups at once)                         |
-| **Small / medium / large** | 0.2 / 0.5 / 0.8                           | 0.01 / 0.06 / 0.14                                           |
-| **Say it as**              | "the means are 0.89 SD apart"             | "recovery method explains 69% of the variability"            |
-| **Never say**              | "explains 89% of the variance"            | "the groups are 0.69 SD apart" or "69% chance they differ"   |
++----------------+------------------+----------------------------+
+|                | Cohen's *d*      | η²                         |
++================+==================+============================+
+| **What it is** | A *distance*,    | A *proportion*, how much   |
+|                | how far apart    | of the variance the factor |
+|                | two means are    | explains                   |
++----------------+------------------+----------------------------+
+| **Units**      | Standard         | A fraction of 1 (read it   |
+|                | deviations       | as a %)                    |
++----------------+------------------+----------------------------+
+| **Applies to** | One pair of      | The whole ANOVA (all       |
+|                | groups           | groups at once)            |
++----------------+------------------+----------------------------+
+| **Small /      | 0.2 / 0.5 / 0.8  | 0.01 / 0.06 / 0.14         |
+| medium /       |                  |                            |
+| large**        |                  |                            |
++----------------+------------------+----------------------------+
+| **Say it as**  | "the means are   | "recovery method explains  |
+|                | 0.89 SD apart"   | 69% of the variability"    |
++----------------+------------------+----------------------------+
+| **Never say**  | "explains 89% of | "the groups are 0.69 SD    |
+|                | the variance"    | apart" or "69% chance they |
+|                |                  | differ"                    |
++----------------+------------------+----------------------------+
 
 You don't need the η² benchmarks by heart, but you should be able to
 *read* η² = 0.30 as "30% of the variation in the outcome is down to the
@@ -579,11 +656,11 @@ Two datasets, one for each type of ANOVA. Save them somewhere easy to
 find, then open each in Jamovi when its task comes up.
 
 -   Task 1:
-    [**Recovery_HRV.csv**](https://lms.griffith.edu.au/courses/32192/files?search_term=hrv&preview=9304106)
+    [**Recovery_HRV.csv**](https://lms.griffith.edu.au/courses/32192/files/9304106?wrap=1)
     --- 45 athletes, `Recovery Method` (Ice Bath / Compression / Active
     Recovery) and `RMSSD (ms)`
 -   Task 2:
-    [**Antihistamine_Delivery.csv**](https://lms.griffith.edu.au/courses/32192/files?search_term=antih&preview=9304108)
+    [**Antihistamine_Delivery.csv**](https://lms.griffith.edu.au/courses/32192/files/9304108?wrap=1)
     --- 25 patients, `Oral`, `Nasal` and `Eye` symptom-relief scores
     (0--100)
 
